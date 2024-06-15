@@ -103,7 +103,9 @@ public class Data {
             customerAddressField.setText(selectedCustomer.getCustomerAddress());
             customerContactField.setText(selectedCustomer.getCustomerContact());
             customerEmailField.setText(selectedCustomer.getCustomerEmail());
-        }
+        } 
+
+        event.
     }
 
     @FXML
