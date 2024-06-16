@@ -21,12 +21,12 @@ public class CategoryDao extends DatabaseConfiguration {
 
             while (rs.next()) {
                 Category category = new Category(0, null, null, null, null, null);
-                category.setCategoryId(rs.getInt("id_kategori"));
+                category.setCategoryId(rs.getInt("category_id"));
                 category.setCategoryBrand(rs.getString("brand"));
-                category.setCategoryType(rs.getString("type"));
+                category.setCategoryType(rs.getString("product_type"));
                 category.setCategorySize(rs.getString("size"));
                 category.setCategoryWeight(rs.getString("weight"));
-                category.setCategoryUnit(rs.getString("unit"));
+                category.setCategoryUnit(rs.getString("weight_unit"));
 
                 categories.add(category);
             }
@@ -57,7 +57,7 @@ public class CategoryDao extends DatabaseConfiguration {
     }
 
     public void addCategory(Category category) {
-        String sql = "INSERT INTO categories (id_kategori, brand, type, size, weight, unit) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO categories (category_id, brand, product_type, size, weight, weight_unit) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -76,7 +76,7 @@ public class CategoryDao extends DatabaseConfiguration {
     }
 
     public void updateCategory(Category category) {
-        String sql = "UPDATE categories SET brand = ?, type = ?, size = ?, weight = ?, unit = ? WHERE id_kategori = ?";
+        String sql = "UPDATE categories SET brand = ?, product_type = ?, size = ?, weight = ?, weight_unit = ? WHERE category_id = ?";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -95,7 +95,7 @@ public class CategoryDao extends DatabaseConfiguration {
     }
 
     public void removeCategory(Category category) {
-        String sql = "DELETE FROM categories WHERE id_kategori = ?";
+        String sql = "DELETE FROM categories WHERE category_id = ?";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -107,5 +107,33 @@ public class CategoryDao extends DatabaseConfiguration {
             e.printStackTrace();
         }
     }
+
+    // get id only
+
+    public Category getCategoryById(int categoryId) {
+        Category category = new Category(0, null, null, null, null, null);
+        String sql = "SELECT * FROM categories WHERE category_id = ?";
+
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, categoryId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    category.setCategoryId(rs.getInt("category_id"));
+                    category.setCategoryBrand(rs.getString("brand"));
+                    category.setCategoryType(rs.getString("product_type"));
+                    category.setCategorySize(rs.getString("size"));
+                    category.setCategoryWeight(rs.getString("weight"));
+                    category.setCategoryUnit(rs.getString("weight_unit"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return category;
+    }
+
 
 }

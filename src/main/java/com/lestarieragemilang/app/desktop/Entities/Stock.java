@@ -1,56 +1,82 @@
 package com.lestarieragemilang.app.desktop.Entities;
 
 public class Stock {
-    private String stockId;
-    private int categoryId, stock;
-    private double buyPrice, sellPrice;
-
-    public String getStockId() {
-        return stockId;
+    private int stockID, stockOnCategoryID;
+    private String quantity, purchasePrice, purchaseSell, categoryBrand, categoryType, categorySize, categoryWeight, categoryUnit;
+    public Stock(int stockID, int stockOnCategoryID, String quantity, String purchasePrice, String purchaseSell,
+            String categoryBrand, String categoryType, String categorySize, String categoryWeight,
+            String categoryUnit) {
+        this.stockID = stockID;
+        this.stockOnCategoryID = stockOnCategoryID;
+        this.quantity = quantity;
+        this.purchasePrice = purchasePrice;
+        this.purchaseSell = purchaseSell;
+        this.categoryBrand = categoryBrand;
+        this.categoryType = categoryType;
+        this.categorySize = categorySize;
+        this.categoryWeight = categoryWeight;
+        this.categoryUnit = categoryUnit;
+    }
+    public int getStockID() {
+        return stockID;
+    }
+    public void setStockID(int stockID) {
+        this.stockID = stockID;
+    }
+    public int getStockOnCategoryID() {
+        return stockOnCategoryID;
+    }
+    public void setStockOnCategoryID(int stockOnCategoryID) {
+        this.stockOnCategoryID = stockOnCategoryID;
+    }
+    public String getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+    public String getPurchasePrice() {
+        return purchasePrice;
+    }
+    public void setPurchasePrice(String purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
+    public String getPurchaseSell() {
+        return purchaseSell;
+    }
+    public void setPurchaseSell(String purchaseSell) {
+        this.purchaseSell = purchaseSell;
+    }
+    public String getCategoryBrand() {
+        return categoryBrand;
+    }
+    public void setCategoryBrand(String categoryBrand) {
+        this.categoryBrand = categoryBrand;
+    }
+    public String getCategoryType() {
+        return categoryType;
+    }
+    public void setCategoryType(String categoryType) {
+        this.categoryType = categoryType;
+    }
+    public String getCategorySize() {
+        return categorySize;
+    }
+    public void setCategorySize(String categorySize) {
+        this.categorySize = categorySize;
+    }
+    public String getCategoryWeight() {
+        return categoryWeight;
+    }
+    public void setCategoryWeight(String categoryWeight) {
+        this.categoryWeight = categoryWeight;
+    }
+    public String getCategoryUnit() {
+        return categoryUnit;
+    }
+    public void setCategoryUnit(String categoryUnit) {
+        this.categoryUnit = categoryUnit;
     }
 
-    public void setStockId(String stockId) {
-        this.stockId = stockId;
-    }
-
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public double getBuyPrice() {
-        return buyPrice;
-    }
-
-    public void setBuyPrice(double buyPrice) {
-        this.buyPrice = buyPrice;
-    }
-
-    public double getSellPrice() {
-        return sellPrice;
-    }
-
-    public void setSellPrice(double sellPrice) {
-        this.sellPrice = sellPrice;
-    }
-
-    public Stock(String stockId, int categoryId, int stock, double buyPrice, double sellPrice) {
-        this.stockId = stockId;
-        this.categoryId = categoryId;
-        this.stock = stock;
-        this.buyPrice = buyPrice;
-        this.sellPrice = sellPrice;
-    }
-
+    
 }

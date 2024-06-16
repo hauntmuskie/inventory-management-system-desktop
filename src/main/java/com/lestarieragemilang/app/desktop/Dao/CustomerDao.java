@@ -21,13 +21,8 @@ public class CustomerDao extends DatabaseConfiguration {
                 ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                Customer customer = new Customer(0, null, null, null, null);
-                customer.setCustomerId(rs.getInt("id_customer"));
-                customer.setCustomerName(rs.getString("customer_name"));
-                customer.setCustomerAddress(rs.getString("customer_address"));
-                customer.setCustomerContact(rs.getString("customer_contact"));
-                customer.setCustomerEmail(rs.getString("customer_email"));
-
+                Customer customer = new Customer(rs.getInt("customer_id"), rs.getString("customer_name"),
+                        rs.getString("contact"), rs.getString("address"), rs.getString("email"));
                 customers.add(customer);
             }
         } catch (SQLException e) {
@@ -38,15 +33,15 @@ public class CustomerDao extends DatabaseConfiguration {
     }
 
     public void addCustomer(Customer customer) {
-        String sql = "INSERT INTO customers (id_customer, customer_name, customer_address, customer_contact, customer_email) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO customers (customer_id, customer_name, contact, address, email) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, customer.getCustomerId());
             stmt.setString(2, customer.getCustomerName());
-            stmt.setString(3, customer.getCustomerAddress());
-            stmt.setString(4, customer.getCustomerContact());
+            stmt.setString(3, customer.getCustomerContact());
+            stmt.setString(4, customer.getCustomerAddress());
             stmt.setString(5, customer.getCustomerEmail());
 
             stmt.executeUpdate();
@@ -56,14 +51,14 @@ public class CustomerDao extends DatabaseConfiguration {
     }
 
     public void updateCustomer(Customer customer) {
-        String sql = "UPDATE customers SET customer_name = ?, customer_address = ?, customer_contact = ?, customer_email = ? WHERE id_customer = ?";
+        String sql = "UPDATE customers SET customer_name = ?, contact = ?, address = ?, email = ? WHERE customer_id = ?";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, customer.getCustomerName());
-            stmt.setString(2, customer.getCustomerAddress());
-            stmt.setString(3, customer.getCustomerContact());
+            stmt.setString(2, customer.getCustomerContact());
+            stmt.setString(3, customer.getCustomerAddress());
             stmt.setString(4, customer.getCustomerEmail());
             stmt.setInt(5, customer.getCustomerId());
 
@@ -74,7 +69,7 @@ public class CustomerDao extends DatabaseConfiguration {
     }
 
     public void removeCustomer(Customer customer) {
-        String sql = "DELETE FROM customers WHERE id_customer = ?";
+        String sql = "DELETE FROM customers WHERE customer_id = ?";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {

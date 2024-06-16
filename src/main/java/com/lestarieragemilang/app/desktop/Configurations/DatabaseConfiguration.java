@@ -11,7 +11,7 @@ import javafx.scene.control.Alert.AlertType;
 public class DatabaseConfiguration {
 
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/steel";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/steel_shop";
     private static final String USER = "root";
     private static final String PASS = "";
 
@@ -27,6 +27,13 @@ public class DatabaseConfiguration {
     }
 
     public Connection getConnection() {
+        try {
+            if (connection == null || connection.isClosed()) {
+                connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            }
+        } catch (SQLException e) {
+            showErrorMessage(e.getMessage());
+        }
         return connection;
     }
 

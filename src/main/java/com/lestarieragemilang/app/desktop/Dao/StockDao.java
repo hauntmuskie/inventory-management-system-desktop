@@ -11,41 +11,151 @@ import com.lestarieragemilang.app.desktop.Configurations.DatabaseConfiguration;
 import com.lestarieragemilang.app.desktop.Entities.Stock;
 
 public class StockDao extends DatabaseConfiguration {
-    public List<Stock> getAllStocks() throws SQLException {
+    public List<Stock> getAllStocks() {
         List<Stock> stocks = new ArrayList<>();
-        String sql = "SELECT * FROM stock";
+        String sql = "SELECT * FROM stocks";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                Stock stock = new Stock(sql, 0, 0, 0, 0);
-                stock.setStockId(rs.getString("id"));
-                stock.setCategoryId(rs.getInt("id_kategori"));
-                stock.setStock(rs.getInt("stok"));
-                stock.setBuyPrice(rs.getDouble("harga_beli"));
-                stock.setSellPrice(rs.getDouble("harga_jual"));
-
+                Stock stock = new Stock(0, 0, null, null, null, null, null, null, null, null);
+                stock.setStockID(rs.getInt("stock_id"));
+                stock.setStockOnCategoryID(rs.getInt("category_id"));
+                stock.setQuantity(rs.getString("quantity"));
+                stock.setPurchasePrice(rs.getString("purchase_price"));
+                stock.setPurchaseSell(rs.getString("selling_price"));
 
                 stocks.add(stock);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return stocks;
+
+    }
+
+    public void addStock(Stock stock) {
+        String sql = "INSERT INTO stocks (stock_id, category_id, quantity, purchase_price, selling_price) VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, stock.getStockID());
+            stmt.setInt(2, stock.getStockOnCategoryID());
+            stmt.setString(3, stock.getQuantity());
+            stmt.setString(4, stock.getPurchasePrice());
+            stmt.setString(5, stock.getPurchaseSell());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateStock(Stock stock) {
+        String sql = "UPDATE stocks SET category_id = ?, quantity = ?, purchase_price = ?, selling_price = ? WHERE stock_id = ?";
+
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, stock.getStockOnCategoryID());
+            stmt.setString(2, stock.getQuantity());
+            stmt.setString(3, stock.getPurchasePrice());
+            stmt.setString(4, stock.getPurchaseSell());
+            stmt.setInt(5, stock.getStockID());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeStock(int stockId) {
+        String sqlDeleteSales = "DELETE FROM sales WHERE stock_id = ?";
+        String sqlDeletePurchasing = "DELETE FROM purchasing WHERE stock_id = ?";
+        String sqlDeleteStocks = "DELETE FROM stocks WHERE stock_id = ?";
+    
+        try (Connection conn = getConnection(); 
+             PreparedStatement stmtSales = conn.prepareStatement(sqlDeleteSales);
+             PreparedStatement stmtPurchasing = conn.prepareStatement(sqlDeletePurchasing);
+             PreparedStatement stmtStocks = conn.prepareStatement(sqlDeleteStocks)) {
+    
+            // Delete referencing records in sales
+            stmtSales.setInt(1, stockId);
+            stmtSales.executeUpdate();
+    
+            // Delete referencing records in purchasing
+            stmtPurchasing.setInt(1, stockId);
+            stmtPurchasing.executeUpdate();
+    
+            // Delete record in stocks
+            stmtStocks.setInt(1, stockId);
+            stmtStocks.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Stock getStockById(int stockId) {
+        Stock stock = new Stock(0, 0, null, null, null, null, null, null, null, null);
+        String sql = "SELECT * FROM stocks WHERE stock_id = ?";
+
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, stockId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    stock.setStockID(rs.getInt("stock_id"));
+                    stock.setStockOnCategoryID(rs.getInt("category_id"));
+                    stock.setQuantity(rs.getString("quantity"));
+                    stock.setPurchasePrice(rs.getString("purchase_price"));
+                    stock.setPurchaseSell(rs.getString("selling_price"));
+
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return stock;
+    }
+
+    // get only id from category
+
+    public List<Integer> getStockCategoryIds() {
+        List<Integer> categoryIds = new ArrayList<>();
+        String sql = "SELECT category_id FROM stocks";
+
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                categoryIds.add(rs.getInt("category_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categoryIds;
+    }
+
+    public List<Stock> getStocksWithCategoryDetails() {
+        List<Stock> stocks = new ArrayList<>();
+        String sql = "SELECT s.stock_id, s.category_id, c.brand, c.product_type, c.size, c.weight, c.weight_unit, s.quantity as stok, s.purchase_price as hargaBeli, s.selling_price as hargaJual "
+                +
+                "FROM stocks s " +
+                "INNER JOIN categories c ON s.category_id = c.category_id";
+    
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Stock stock = new Stock(rs.getInt("stock_id"), rs.getInt("category_id"), rs.getString("brand"),
+                            rs.getString("product_type"), rs.getString("size"), rs.getString("weight"),
+                            rs.getString("weight_unit"), rs.getString("stok"), rs.getString("hargaBeli"),
+                            rs.getString("hargaJual"));
+                    stocks.add(stock);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return stocks;
     }
 
-    public void addStock(Stock stock) throws SQLException {
-        String sql = "INSERT INTO stock (merek, jenis, ukuran, satuan, id_kategori, stok, harga_beli, harga_jual) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-        try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, stock.getStockId());
-            stmt.setInt(2, stock.getCategoryId());
-            stmt.setInt(3, stock.getStock());
-            stmt.setDouble(4, stock.getBuyPrice());
-            stmt.setDouble(5, stock.getSellPrice());
-            
-            stmt.executeUpdate();
-        }
-    }
 }

@@ -33,22 +33,31 @@ public class App extends Application {
         stage.show();
     }
 
-    private void addStylesheets(String stylesheet) {
-        scene.getStylesheets().add(getClass().getResource(stylesheet).toExternalForm());
-    }
+    // private void addStylesheets(String stylesheet) {
+    // scene.getStylesheets().add(getClass().getResource(stylesheet).toExternalForm());
+    // }
 
     private void enableDrag(Stage stage) {
         final double[] xOffset = new double[1];
         final double[] yOffset = new double[1];
+        final double dragThreshold = 50; // The area on top of the app where dragging is allowed
 
         scene.setOnMousePressed(event -> {
-            xOffset[0] = event.getSceneX();
-            yOffset[0] = event.getSceneY();
+            if (event.getSceneY() <= dragThreshold) {
+                xOffset[0] = event.getSceneX();
+                yOffset[0] = event.getSceneY();
+            }
         });
 
         scene.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() - xOffset[0]);
-            stage.setY(event.getScreenY() - yOffset[0]);
+            if (yOffset[0] <= dragThreshold) {
+                double newX = event.getScreenX() - xOffset[0];
+                double newY = event.getScreenY() - yOffset[0];
+                if (newX >= 0 && newY >= 0) {
+                    stage.setX(newX);
+                    stage.setY(newY);
+                }
+            }
         });
     }
 

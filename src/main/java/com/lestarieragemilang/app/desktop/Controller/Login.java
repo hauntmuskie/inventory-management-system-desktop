@@ -63,7 +63,7 @@ public class Login extends AuthRepositories {
         username.getText(), password.getText());
 
     if (validation) {
-      Redirect.page("dashboard", anchorPane);
+      Redirect.page("dashboard", null);
     } else {
       Alert confirmationDialog = new Alert(Alert.AlertType.ERROR);
       confirmationDialog.getDialogPane().setPrefSize(450, 250);

@@ -22,7 +22,7 @@ public class SupplierDao extends DatabaseConfiguration {
 
             while (rs.next()) {
                 Supplier supplier = new Supplier(0, null, null, null, null);
-                supplier.setSupplierId(rs.getInt("id_supplier"));
+                supplier.setSupplierId(rs.getInt("supplier_id"));
                 supplier.setSupplierName(rs.getString("supplier_name"));
                 supplier.setSupplierAddress(rs.getString("address"));
                 supplier.setSupplierContact(rs.getString("contact"));
@@ -38,7 +38,7 @@ public class SupplierDao extends DatabaseConfiguration {
     }
 
     public void addSupplier(Supplier supplier) {
-        String sql = "INSERT INTO suppliers (id_supplier, supplier_name, address, contact, email) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO suppliers (supplier_id, supplier_name, address, contact, email) VALUES (?, ?, ?, ?, ?)";
     
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -56,7 +56,7 @@ public class SupplierDao extends DatabaseConfiguration {
     }
 
     public void updateSupplier(Supplier supplier) {
-        String sql = "UPDATE suppliers SET supplier_name = ?, address = ?, contact = ?, email = ? WHERE id_supplier = ?";
+        String sql = "UPDATE suppliers SET supplier_name = ?, address = ?, contact = ?, email = ? WHERE supplier_id = ?";
     
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -74,7 +74,7 @@ public class SupplierDao extends DatabaseConfiguration {
     }
 
     public void removeSupplier(Supplier supplier) {
-        String sql = "DELETE FROM suppliers WHERE id_supplier = ?";
+        String sql = "DELETE FROM suppliers WHERE supplier_id = ?";
     
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
