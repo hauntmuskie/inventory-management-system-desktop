@@ -93,7 +93,7 @@ public class StockDao extends DatabaseConfiguration {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+    }   
 
     public Stock getStockById(int stockId) {
         Stock stock = new Stock(0, 0, null, null, null, null, null, null, null, null);
@@ -109,7 +109,6 @@ public class StockDao extends DatabaseConfiguration {
                     stock.setQuantity(rs.getString("quantity"));
                     stock.setPurchasePrice(rs.getString("purchase_price"));
                     stock.setPurchaseSell(rs.getString("selling_price"));
-
                 }
             }
         } catch (SQLException e) {
@@ -118,16 +117,15 @@ public class StockDao extends DatabaseConfiguration {
         return stock;
     }
 
-    // get only id from category
-
     public List<Integer> getStockCategoryIds() {
         List<Integer> categoryIds = new ArrayList<>();
-        String sql = "SELECT category_id FROM stocks";
+        String sql = "SELECT category_id FROM categories";
 
-        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql);
-                ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                categoryIds.add(rs.getInt("category_id"));
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    categoryIds.add(rs.getInt("category_id"));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -140,7 +138,7 @@ public class StockDao extends DatabaseConfiguration {
         String sql = "SELECT s.stock_id, s.category_id, c.brand, c.product_type, c.size, c.weight, c.weight_unit, s.quantity as stok, s.purchase_price as hargaBeli, s.selling_price as hargaJual "
                 +
                 "FROM stocks s " +
-                "INNER JOIN categories c ON s.category_id = c.category_id";
+                "INNER JOIN cat c ON s.category_id = c.category_id";
     
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             try (ResultSet rs = stmt.executeQuery()) {

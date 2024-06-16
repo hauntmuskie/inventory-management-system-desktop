@@ -8,6 +8,8 @@ import com.lestarieragemilang.app.desktop.Entities.Transactions.Buy;
 import com.lestarieragemilang.app.desktop.Utilities.GenerateRandomID;
 import com.lestarieragemilang.app.desktop.Utilities.Transactions.BuyTablePopulator;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -68,10 +70,10 @@ public class TransactionForms {
     private TextField buyTypeField;
 
     @FXML
-    private JFXComboBox<?> stockIDDropdown;
+    private JFXComboBox<Integer> stockIDDropdown;
 
     @FXML
-    private JFXComboBox<?> supplierIDDropDown;
+    private JFXComboBox<Integer> supplierIDDropDown;
 
     @FXML
     private TextField supplierNameField;
@@ -148,5 +150,15 @@ public class TransactionForms {
     public void initialize() {
         buyTablePopulator.populateBuyTable(buyDateCol, buyBrandCol, buyTypeCol, buyOnSupplierNameCol, buyInvoiceCol,
                 buySubTotalCol, buyPriceCol, buyTotalCol, buyTable);
+
+        BuyDao buyDao = new BuyDao();
+        ObservableList<Integer> stockIds = FXCollections.observableArrayList(buyDao.getStockCategoryIdsFromCategory());
+        stockIDDropdown.setItems(stockIds);
+        stockIDDropdown.getSelectionModel().selectFirst();
+
+        ObservableList<Integer> supplierIds = FXCollections.observableArrayList(buyDao.getSupplierIdsFromSupplier());
+        supplierIDDropDown.setItems(supplierIds);
+        supplierIDDropDown.getSelectionModel().selectFirst();
+
     }
 }

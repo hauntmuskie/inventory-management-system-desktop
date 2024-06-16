@@ -42,12 +42,11 @@ public class BuyDao extends DatabaseConfiguration {
         return buys;
     }
 
-
     public void addBuy(Buy buy) {
         String sql = "INSERT INTO purchasing (purchase_date, brand, product_type, supplier_name, invoice_number, stock_id, supplier_id, quantity, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setDate(1, java.sql.Date.valueOf(buy.getPurchaseDate()));
             stmt.setString(2, buy.getBrand());
@@ -69,7 +68,7 @@ public class BuyDao extends DatabaseConfiguration {
         String sql = "UPDATE purchasing SET brand = ?, product_type = ?, supplier_name = ?, invoice_number = ?, stock_id = ?, supplier_id = ?, quantity = ?, price = ? WHERE purchase_date = ?";
 
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, buy.getBrand());
             stmt.setString(2, buy.getProductType());
@@ -91,7 +90,7 @@ public class BuyDao extends DatabaseConfiguration {
         String sql = "DELETE FROM purchasing WHERE purchase_date = ?";
 
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setDate(1, purchaseDate);
 
@@ -100,4 +99,102 @@ public class BuyDao extends DatabaseConfiguration {
             e.printStackTrace();
         }
     }
+
+    public List<Integer> getStockCategoryIdsFromCategory() {
+        List<Integer> stockCategoryIds = new ArrayList<>();
+        String sql = "SELECT category_id FROM stocks";
+
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                stockCategoryIds.add(rs.getInt("category_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return stockCategoryIds;
+    }
+
+    public List<Integer> getSupplierIdsFromSupplier() {
+        List<Integer> supplierIds = new ArrayList<>();
+        String sql = "SELECT supplier_id FROM suppliers";
+
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                supplierIds.add(rs.getInt("supplier_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return supplierIds;
+    }
+
+    // get all stock
+    public List<Integer> getAllStocks() {
+        List<Integer> stocks = new ArrayList<>();
+        String sql = "SELECT stock_id, quantity, purchase_price FROM stocks";
+
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                stocks.add(rs.getInt("stock_id"));
+                stocks.add(rs.getInt("quantity"));
+                stocks.add(rs.getInt("purchase_price"));
+
+                
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return stocks;
+    }
+
+    // get all supplier
+    public List<Integer> getAllSuppliers() {
+        List<Integer> suppliers = new ArrayList<>();
+        String sql = "SELECT supplier_id FROM suppliers";
+
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                suppliers.add(rs.getInt("supplier_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return suppliers;
+
+    }
+
+    // get brand, type, and price from stocks
+    public List<String> getBrandTypePriceFromStocks() {
+        List<String> brandTypePrice = new ArrayList<>();
+        String sql = "SELECT brand, type, purchase_price FROM stocks";
+
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                brandTypePrice.add(rs.getString("brand"));
+                brandTypePrice.add(rs.getString("type"));
+                brandTypePrice.add(rs.getString("purchase_price"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return brandTypePrice;
+    }
+    
 }

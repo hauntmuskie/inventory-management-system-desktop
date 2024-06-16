@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 com\lestarieragemilang\app\desktop\Dao\Transactions\BuyDao.class
 com\lestarieragemilang\app\desktop\Controller\TransactionForms.class
 com\lestarieragemilang\app\desktop\Configurations\DatabaseConfiguration.class
@@ -16,12 +17,17 @@ com\lestarieragemilang\app\desktop\Entities\Transactions\Sell.class
 com\lestarieragemilang\app\desktop\Utilities\Redirect.class
 com\lestarieragemilang\app\desktop\Controller\ReturnForm.class
 com\lestarieragemilang\app\desktop\Controller\SupplierForm.class
+=======
+com\lestarieragemilang\app\desktop\Controller\SupplierForm.class
+com\lestarieragemilang\app\desktop\Dao\Transactions\BuyDao.class
+>>>>>>> 3c682959e1cb3e933b0f35463546e5f8608f2be0
 com\lestarieragemilang\app\desktop\Controller\Dashboard.class
 com\lestarieragemilang\app\desktop\Controller\Data.class
 com\lestarieragemilang\app\desktop\Controller\StockForm.class
 com\lestarieragemilang\app\desktop\Utilities\CategoryTablePopulator.class
 com\lestarieragemilang\app\desktop\Utilities\GenerateRandomID.class
 com\lestarieragemilang\app\desktop\Dao\Transactions\SellDao.class
+<<<<<<< HEAD
 com\lestarieragemilang\app\desktop\Dao\CategoryDao.class
 com\lestarieragemilang\app\desktop\Dao\StockDao.class
 com\lestarieragemilang\app\desktop\Dao\CustomerDao.class
@@ -30,4 +36,30 @@ com\lestarieragemilang\app\desktop\Utilities\Transactions\BuyTablePopulator.clas
 com\lestarieragemilang\app\desktop\Entities\Stock.class
 com\lestarieragemilang\app\desktop\Utilities\CustomerTablePopulator.class
 com\lestarieragemilang\app\desktop\App.class
+=======
+com\lestarieragemilang\app\desktop\Controller\TransactionForms.class
+com\lestarieragemilang\app\desktop\Dao\CategoryDao.class
+com\lestarieragemilang\app\desktop\Dao\StockDao.class
+com\lestarieragemilang\app\desktop\Configurations\DatabaseConfiguration.class
+com\lestarieragemilang\app\desktop\Entities\Category.class
+com\lestarieragemilang\app\desktop\Dao\CustomerDao.class
+module-info.class
+com\lestarieragemilang\app\desktop\Controller\CategoryForm.class
+com\lestarieragemilang\app\desktop\Entities\Supplier.class
+com\lestarieragemilang\app\desktop\Utilities\Transactions\BuyTablePopulator.class
+com\lestarieragemilang\app\desktop\Utilities\SupplierTablePopulator.class
+com\lestarieragemilang\app\desktop\Entities\Customer.class
+com\lestarieragemilang\app\desktop\Controller\CustomerForm.class
+com\lestarieragemilang\app\desktop\Entities\Transactions\Buy.class
+com\lestarieragemilang\app\desktop\Utilities\StockTablePopulator.class
+com\lestarieragemilang\app\desktop\Entities\Stock.class
+com\lestarieragemilang\app\desktop\Repositories\AuthRepositories.class
+com\lestarieragemilang\app\desktop\Controller\Login.class
+com\lestarieragemilang\app\desktop\Dao\SupplierDao.class
+com\lestarieragemilang\app\desktop\Utilities\CustomerTablePopulator.class
+com\lestarieragemilang\app\desktop\App.class
+com\lestarieragemilang\app\desktop\Entities\Transactions\Sell.class
+com\lestarieragemilang\app\desktop\Utilities\Redirect.class
+com\lestarieragemilang\app\desktop\Controller\ReturnForm.class
+>>>>>>> 3c682959e1cb3e933b0f35463546e5f8608f2be0
 com\lestarieragemilang\app\desktop\Utilities\Transactions\SellTablePopulator.class

@@ -1,11 +1,14 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import com.jfoenix.controls.JFXComboBox;
+import com.lestarieragemilang.app.desktop.Dao.CategoryDao;
 import com.lestarieragemilang.app.desktop.Dao.StockDao;
+import com.lestarieragemilang.app.desktop.Entities.Category;
 import com.lestarieragemilang.app.desktop.Entities.Stock;
 import com.lestarieragemilang.app.desktop.Utilities.GenerateRandomID;
 import com.lestarieragemilang.app.desktop.Utilities.StockTablePopulator;
@@ -39,12 +42,16 @@ public class StockForm {
     @FXML
     JFXComboBox<Integer> categoryIDDropDown;
 
-    // Stock Table
     @FXML
     void addStockButton(ActionEvent event) {
+        CategoryDao categoryDao = new CategoryDao();
+        List<Category> categories = categoryDao.getAllCategories();
+
+        
         Stock stock = new Stock(gen.generateRandomId(), categoryIDDropDown.getValue(), stockQuantityField.getText(),
-                stockBuyPriceField.getText(), stockSellPriceField.getText(), stockSizeField.getText(), null, null, null,
-                null);
+                stockBuyPriceField.getText(), stockSellPriceField.getText(), categories.get(categoryIDDropDown.getValue()).getCategoryBrand(),
+                categories.get(categoryIDDropDown.getValue()).getCategoryType(), stockQuantityField.getText(), categories.get(categoryIDDropDown.getValue()).getCategoryWeight(),
+                categories.get(categoryIDDropDown.getValue()).getCategoryUnit());
 
         StockDao stockDao = new StockDao();
         stockDao.addStock(stock);
@@ -70,7 +77,7 @@ public class StockForm {
     void resetStockButton(ActionEvent event) {
         stockIDIncrement.clear();
         categoryIDDropDown.setValue(null);
-        stockSizeField.clear();
+        stockQuantityField.clear();
         stockBuyPriceField.clear();
         stockSellPriceField.clear();
         stockQuantityField.clear();
