@@ -1,16 +1,17 @@
 package com.lestarieragemilang.app.desktop.Entities.Transactions;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Buy {
 
-    Date purchaseDate;
-    String brand, productType, supplierName;
-    int invoiceNumber, stockId, supplierId, quantity;
-    double price;
+    private LocalDate purchaseDate;
+    private String brand, productType, supplierName;
+    private int invoiceNumber, stockId, supplierId, quantity;
+    private double price;
 
-    public Buy(Date purchaseDate, String brand, String productType, String supplierName, int invoiceNumber, int stockId,
-            int supplierId, int quantity, double price) {
+    public Buy(LocalDate purchaseDate, String brand, String productType, String supplierName, int invoiceNumber,
+            int stockId, int supplierId, int quantity, double price) {
         this.purchaseDate = purchaseDate;
         this.brand = brand;
         this.productType = productType;
@@ -22,11 +23,11 @@ public class Buy {
         this.price = price;
     }
 
-    public Date getPurchaseDate() {
+    public LocalDate getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(Date purchaseDate) {
+    public void setPurchaseDate(LocalDate purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 

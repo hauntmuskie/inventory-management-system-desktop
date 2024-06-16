@@ -11,6 +11,7 @@ module com.lestarieragemilang.app.desktop {
     opens com.lestarieragemilang.app.desktop to javafx.fxml;
     opens com.lestarieragemilang.app.desktop.Controller to javafx.fxml;
     opens com.lestarieragemilang.app.desktop.Entities to javafx.base;
+    opens com.lestarieragemilang.app.desktop.Entities.Transactions to javafx.base;
 
     exports com.lestarieragemilang.app.desktop;
     exports com.lestarieragemilang.app.desktop.Controller;
