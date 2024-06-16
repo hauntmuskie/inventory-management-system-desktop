@@ -56,6 +56,89 @@ public class CategoryDao extends DatabaseConfiguration {
         return categories;
     }
 
+    // ukuran
+    public List<Category> getAllCategorySizes() {
+        List<Category> categories = new ArrayList<>();
+        String sql = "SELECT DISTINCT size FROM categories";
+
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Category category = new Category(0, null, null, null, null, null);
+                category.setCategorySize(rs.getString("size"));
+
+                categories.add(category);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categories;
+    }
+
+    // berat
+    public List<Category> getAllCategoryWeights() {
+        List<Category> categories = new ArrayList<>();
+        String sql = "SELECT DISTINCT weight FROM categories";
+
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Category category = new Category(0, null, null, null, null, null);
+                category.setCategoryWeight(rs.getString("weight"));
+
+                categories.add(category);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categories;
+    }
+
+    // satuan
+    public List<Category> getAllCategoryUnits() {
+        List<Category> categories = new ArrayList<>();
+        String sql = "SELECT DISTINCT weight_unit FROM categories";
+
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Category category = new Category(0, null, null, null, null, null);
+                category.setCategoryUnit(rs.getString("weight_unit"));
+
+                categories.add(category);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categories;
+    }
+    
+    public List<Category> getAllCategoryTypes() {
+        List<Category> categories = new ArrayList<>();
+        String sql = "SELECT DISTINCT product_type FROM categories";
+
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Category category = new Category(0, null, null, null, null, null);
+                category.setCategoryType(rs.getString("product_type"));
+
+                categories.add(category);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categories;
+    }
+
     public void addCategory(Category category) {
         String sql = "INSERT INTO categories (category_id, brand, product_type, size, weight, weight_unit) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -110,14 +193,14 @@ public class CategoryDao extends DatabaseConfiguration {
 
     // get id only
 
-    public Category getCategoryById(int categoryId) {
+    public Category getCategoryById(int i) {
         Category category = new Category(0, null, null, null, null, null);
         String sql = "SELECT * FROM categories WHERE category_id = ?";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, categoryId);
+            stmt.setInt(1, i);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {

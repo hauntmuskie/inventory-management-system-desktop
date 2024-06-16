@@ -29,6 +29,7 @@ public class App extends Application {
         // addStylesheets("style.css");
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
+        stage.centerOnScreen();
         enableDrag(stage);
         stage.show();
     }

@@ -1,5 +1,7 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
+import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
@@ -14,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -89,18 +92,27 @@ public class CategoryForm {
         }
     }
 
+    private void setCategoryDropDownItems(List<Category> categories, Function<Category, String> categoryMapper,
+            ComboBox<String> dropDown) {
+        ObservableList<String> categoryItems = categories.stream()
+                .map(categoryMapper)
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+        dropDown.setItems(categoryItems);
+    }
+
     @FXML
     public void initialize() {
-        // Category Table
         categoryTablePopulator.populateCategoryTable(categoryIDCol, brandCategoryCol, typeCategoryCol, sizeCategoryCol,
                 weightCategoryCol, unitCategoryCol, categoryTable);
 
-        // Fetch category brands from the database
         CategoryDao categoryDao = new CategoryDao();
-        ObservableList<Category> categories = FXCollections.observableArrayList(categoryDao.getAllCategoryBrands());
-        ObservableList<String> categoryBrands = categories.stream()
-                .map(Category::getCategoryBrand)
-                .collect(Collectors.toCollection(FXCollections::observableArrayList));
-        categoryBrandDropDown.setItems(categoryBrands);
+
+        setCategoryDropDownItems(categoryDao.getAllCategoryBrands(), Category::getCategoryBrand, categoryBrandDropDown);
+        setCategoryDropDownItems(categoryDao.getAllCategoryTypes(), Category::getCategoryType, categoryTypeDropDown);
+        setCategoryDropDownItems(categoryDao.getAllCategorySizes(), Category::getCategorySize, categorySizeDropDown);
+        setCategoryDropDownItems(categoryDao.getAllCategoryWeights(), Category::getCategoryWeight,
+                categoryWeightDropDown);
+        setCategoryDropDownItems(categoryDao.getAllCategoryUnits(), Category::getCategoryUnit, categoryUnitDropDown);
     }
+
 }
