@@ -42,7 +42,4 @@ public class Report {
     Redirect.page("laporan-produk", setScene);
   }
 
-  
-
 }
-

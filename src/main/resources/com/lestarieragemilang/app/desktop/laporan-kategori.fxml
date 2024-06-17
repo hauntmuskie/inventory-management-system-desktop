@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lestarieragemilang.app.desktop.Controller.ReportCategory">
    <children>
       <AnchorPane prefHeight="573.0" prefWidth="970.0">
          <children>
@@ -19,7 +19,7 @@
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="850.0" layoutY="217.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="PRINT DATA" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="850.0" layoutY="217.0" onMouseClicked="#printJasperCategory" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="PRINT DATA" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
