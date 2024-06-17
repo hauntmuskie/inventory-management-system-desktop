@@ -30,14 +30,16 @@ public class App extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.centerOnScreen();
-        enableDrag(stage);
+        // enableDrag(stage);
         stage.show();
     }
 
-    // private void addStylesheets(String stylesheet) {
-    // scene.getStylesheets().add(getClass().getResource(stylesheet).toExternalForm());
-    // }
+    @SuppressWarnings("unused")
+    private void addStylesheets(String stylesheet) {
+    scene.getStylesheets().add(getClass().getResource(stylesheet).toExternalForm());
+    }
 
+    @SuppressWarnings("unused")
     private void enableDrag(Stage stage) {
         final double[] xOffset = new double[1];
         final double[] yOffset = new double[1];
