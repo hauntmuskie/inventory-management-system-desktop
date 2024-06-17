@@ -18,25 +18,40 @@ public class Stock {
         this.categorySize = categorySize;
         this.categoryWeight = categoryWeight;
         this.categoryUnit = categoryUnit;
-        }
+    }
 
-        @Override
-        public String toString() {
+    public Stock(int randomId, Integer value, int categoryBrand2, int categoryType2, String text, int categoryWeight2,
+            int categoryUnit2, String text2, String text3, String text4) {
+
+    this.stockID = randomId;
+    this.stockOnCategoryID = value;
+    this.quantity = text;
+    this.purchasePrice = text2;
+    this.purchaseSell = text3;
+    this.categoryBrand = String.valueOf(categoryBrand2);
+    this.categoryType = String.valueOf(categoryType2);
+    this.categorySize = text4;
+    this.categoryWeight = String.valueOf(categoryWeight2);
+    this.categoryUnit = String.valueOf(categoryUnit2);
+    }
+
+    @Override
+    public String toString() {
         return "Stock [\n" +
-            "    categoryBrand=" + categoryBrand + ",\n" +
-            "    categorySize=" + categorySize + ",\n" +
-            "    categoryType=" + categoryType + ",\n" +
-            "    categoryUnit=" + categoryUnit + ",\n" +
-            "    categoryWeight=" + categoryWeight + ",\n" +
-            "    purchasePrice=" + purchasePrice + ",\n" +
-            "    purchaseSell=" + purchaseSell + ",\n" +
-            "    quantity=" + quantity + ",\n" +
-            "    stockID=" + stockID + ",\n" +
-            "    stockOnCategoryID=" + stockOnCategoryID + "\n" +
-            "]";
-        }
+                "    categoryBrand=" + categoryBrand + ",\n" +
+                "    categorySize=" + categorySize + ",\n" +
+                "    categoryType=" + categoryType + ",\n" +
+                "    categoryUnit=" + categoryUnit + ",\n" +
+                "    categoryWeight=" + categoryWeight + ",\n" +
+                "    purchasePrice=" + purchasePrice + ",\n" +
+                "    purchaseSell=" + purchaseSell + ",\n" +
+                "    quantity=" + quantity + ",\n" +
+                "    stockID=" + stockID + ",\n" +
+                "    stockOnCategoryID=" + stockOnCategoryID + "\n" +
+                "]";
+    }
 
-        public int getStockID() {
+    public int getStockID() {
         return stockID;
     }
 

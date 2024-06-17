@@ -102,6 +102,17 @@ public class TransactionForms {
 
     }
 
+    @FXML
+    void confirmBuyButton() {
+        Buy selectedBuy = buyTable.getSelectionModel().getSelectedItem();
+        if (selectedBuy != null) {
+            BuyDao buyDao = new BuyDao();
+            buyDao.updateBuy(selectedBuy);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row to confirm");
+        }
+    }
+
     void searchBuyData() {
         BuyDao buyDao = new BuyDao();
         List<Buy> buyList = buyDao.getAll();

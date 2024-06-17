@@ -53,7 +53,12 @@ public class CategoryForm {
         CategoryDao categoryDao = new CategoryDao();
         categoryDao.addCategory(category);
 
+        categoryTable.setItems(FXCollections.observableArrayList());
         categoryTable.getItems().add(category);
+
+        // refresh
+        categoryTablePopulator.populateCategoryTable(categoryIDCol, brandCategoryCol, typeCategoryCol, sizeCategoryCol,
+                weightCategoryCol, unitCategoryCol, categoryTable);
     }
 
     @FXML
@@ -103,7 +108,7 @@ public class CategoryForm {
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
         dropDown.setItems(categoryItems);
     }
-    
+
     void searchData() {
         CategoryDao categoryDao = new CategoryDao();
         List<Category> categories = categoryDao.getAllCategories();
@@ -117,10 +122,10 @@ public class CategoryForm {
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
                 if (category.getCategoryBrand().toLowerCase().contains(lowerCaseFilter)
-                    || category.getCategoryType().toLowerCase().contains(lowerCaseFilter)
-                    || category.getCategorySize().toLowerCase().contains(lowerCaseFilter)
-                    || category.getCategoryWeight().toLowerCase().contains(lowerCaseFilter)
-                    || category.getCategoryUnit().toLowerCase().contains(lowerCaseFilter)) {
+                        || category.getCategoryType().toLowerCase().contains(lowerCaseFilter)
+                        || category.getCategorySize().toLowerCase().contains(lowerCaseFilter)
+                        || category.getCategoryWeight().toLowerCase().contains(lowerCaseFilter)
+                        || category.getCategoryUnit().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 }
                 return false;
@@ -137,6 +142,7 @@ public class CategoryForm {
         categoryTablePopulator.populateCategoryTable(categoryIDCol, brandCategoryCol, typeCategoryCol, sizeCategoryCol,
                 weightCategoryCol, unitCategoryCol, categoryTable);
 
+        searchData();
         CategoryDao categoryDao = new CategoryDao();
 
         setCategoryDropDownItems(categoryDao.getAllCategoryBrands(), Category::getCategoryBrand, categoryBrandDropDown);
@@ -146,7 +152,6 @@ public class CategoryForm {
                 categoryWeightDropDown);
         setCategoryDropDownItems(categoryDao.getAllCategoryUnits(), Category::getCategoryUnit, categoryUnitDropDown);
 
-        searchData();
     }
 
 }
