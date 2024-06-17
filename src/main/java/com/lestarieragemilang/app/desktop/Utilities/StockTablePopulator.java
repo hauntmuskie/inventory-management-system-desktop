@@ -18,24 +18,24 @@ public class StockTablePopulator {
     StockDao stockDao = new StockDao();
     CategoryDao categoryDao = new CategoryDao();
 
-    public void populateStockTable(TableColumn<Stock, String> stockIDCol, TableColumn<Stock, String> stockOnCategoryIDCol,
-            TableColumn<Stock, String> categoryBrandCol, TableColumn<Stock, String> categoryTypeCol, TableColumn<Stock, String> categorySizeCol,
-            TableColumn<Stock, String> categoryWeightCol, TableColumn<Stock, String> categoryUnitCol, TableColumn<Stock, String> quantityCol,
-            TableColumn<Stock, String> purchasePriceCol, TableColumn<Stock, String> purchaseSellCol, TableView<Stock> stockTable)
+    public void populateStockTable(TableColumn<?, ?> stockIDCol, TableColumn<?, ?> stockOnCategoryIDCol,
+            TableColumn<?, ?> stockBrandCol, TableColumn<?, ?> stockTypeCol, TableColumn<?, ?> stockSizeCol,
+            TableColumn<?, ?> stockWeightCol, TableColumn<?, ?> stockUnitCol, TableColumn<?, ?> stockQuantityCol,
+            TableColumn<?, ?> stockBuyPriceCol, TableColumn<?, ?> stockSellPriceCol, TableView<Stock> stockTable)
             throws SQLException {
         ObservableList<Stock> stockData = FXCollections.observableArrayList();
         List<Stock> stocks = stockDao.getAllStocks();
 
         stockIDCol.setCellValueFactory(new PropertyValueFactory<>("stockID"));
         stockOnCategoryIDCol.setCellValueFactory(new PropertyValueFactory<>("stockOnCategoryID"));
-        categoryBrandCol.setCellValueFactory(new PropertyValueFactory<>("categoryBrand"));
-        categoryTypeCol.setCellValueFactory(new PropertyValueFactory<>("categoryType"));
-        categorySizeCol.setCellValueFactory(new PropertyValueFactory<>("categorySize"));
-        categoryWeightCol.setCellValueFactory(new PropertyValueFactory<>("categoryWeight"));
-        categoryUnitCol.setCellValueFactory(new PropertyValueFactory<>("categoryUnit"));
-        quantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        purchasePriceCol.setCellValueFactory(new PropertyValueFactory<>("purchasePrice"));
-        purchaseSellCol.setCellValueFactory(new PropertyValueFactory<>("purchaseSell"));
+        stockBrandCol.setCellValueFactory(new PropertyValueFactory<>("categoryBrand"));
+        stockTypeCol.setCellValueFactory(new PropertyValueFactory<>("categoryType"));
+        stockSizeCol.setCellValueFactory(new PropertyValueFactory<>("categorySize"));
+        stockWeightCol.setCellValueFactory(new PropertyValueFactory<>("categoryWeight"));
+        stockUnitCol.setCellValueFactory(new PropertyValueFactory<>("categoryUnit"));
+        stockQuantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        stockBuyPriceCol.setCellValueFactory(new PropertyValueFactory<>("purchasePrice"));
+        stockSellPriceCol.setCellValueFactory(new PropertyValueFactory<>("purchaseSell"));
 
         for (Stock stock : stocks) {
             Category category = categoryDao.getCategoryById(stock.getStockOnCategoryID());
