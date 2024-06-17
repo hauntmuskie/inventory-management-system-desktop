@@ -25,58 +25,18 @@ public class TransactionForms {
 
     // Buy Form
     @FXML
-    private TableColumn<?, ?> buyBrandCol;
-
+    private TableColumn<?, ?> buyBrandCol, buyDateCol, buyInvoiceCol, buyOnSupplierNameCol, buyPriceCol, buySubTotalCol,
+            buyTotalCol, buyTypeCol;
     @FXML
-    private TextField buyBrandField;
-
+    private TextField buyBrandField, buyInvoiceNumber, buyPriceField, buyTotalField, buyTypeField, supplierNameField;
     @FXML
     private DatePicker buyDate;
-
-    @FXML
-    private TableColumn<?, ?> buyDateCol;
-
-    @FXML
-    private TableColumn<?, ?> buyInvoiceCol;
-
-    @FXML
-    private TextField buyInvoiceNumber;
-
-    @FXML
-    private TableColumn<?, ?> buyOnSupplierNameCol;
-
-    @FXML
-    private TableColumn<?, ?> buyPriceCol;
-
-    @FXML
-    private TextField buyPriceField;
-
-    @FXML
-    private TableColumn<?, ?> buySubTotalCol;
-
     @FXML
     private TableView<Buy> buyTable;
-
     @FXML
-    private TableColumn<?, ?> buyTotalCol;
-
+    private JFXComboBox<Object> stockIDDropdown;
     @FXML
-    private TextField buyTotalField;
-
-    @FXML
-    private TableColumn<?, ?> buyTypeCol;
-
-    @FXML
-    private TextField buyTypeField;
-
-    @FXML
-    private JFXComboBox<Integer> stockIDDropdown;
-
-    @FXML
-    private JFXComboBox<Integer> supplierIDDropDown;
-
-    @FXML
-    private TextField supplierNameField;
+    private JFXComboBox<Object> supplierIDDropDown;
 
     @FXML
     void addBuyButton(ActionEvent event) {
@@ -152,11 +112,17 @@ public class TransactionForms {
                 buySubTotalCol, buyPriceCol, buyTotalCol, buyTable);
 
         BuyDao buyDao = new BuyDao();
-        ObservableList<Integer> stockIds = FXCollections.observableArrayList(buyDao.getStockCategoryIdsFromCategory());
+        ObservableList<Object> stockIds = FXCollections.observableArrayList(buyDao.getStockCategoryIdsFromCategory());
         stockIDDropdown.setItems(stockIds);
-        stockIDDropdown.getSelectionModel().selectFirst();
+        if (!stockIds.isEmpty()) {
+            Object firstItem = stockIds.get(0);
+            buyBrandField.setText(stockIds.get(1).toString());
+            buyTypeField.setText(stockIds.get(1).toString());
+            buyPriceField.setText(firstItem.toString());
+            stockIDDropdown.getSelectionModel().selectFirst();
+        }
 
-        ObservableList<Integer> supplierIds = FXCollections.observableArrayList(buyDao.getSupplierIdsFromSupplier());
+        ObservableList<Object> supplierIds = FXCollections.observableArrayList(buyDao.getSupplierIdsFromSupplier());
         supplierIDDropDown.setItems(supplierIds);
         supplierIDDropDown.getSelectionModel().selectFirst();
 

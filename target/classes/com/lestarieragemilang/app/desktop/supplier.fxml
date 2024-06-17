@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lestarieragemilang.app.desktop.Controller.SupplierForm">
    <children>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -27,8 +26,8 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="32.0" prefWidth="250.0" style="-fx-background-radius: 5;" />
-                              <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
+                              <TextField fx:id="supplierSearchField" prefHeight="32.0" prefWidth="250.0" promptText="Cari Data Supplier" style="-fx-background-radius: 5;" />
+                              <JFXButton buttonType="RAISED" onAction="#searchSupplierButton" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

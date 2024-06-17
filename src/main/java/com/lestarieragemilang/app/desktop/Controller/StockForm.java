@@ -2,6 +2,7 @@ package com.lestarieragemilang.app.desktop.Controller;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 import javax.swing.JOptionPane;
 
@@ -17,12 +18,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class StockForm {
-
     GenerateRandomID gen = new GenerateRandomID();
 
     // Stock Table
@@ -35,69 +38,120 @@ public class StockForm {
     private TableView<Stock> stockTable;
 
     @FXML
-    TextField stockIDIncrement, stockSizeField, stockBuyPriceField, stockSellPriceField, stockQuantityField;
+    TextField stockIDIncrement, stockSizeField, stockBuyPriceField, stockSellPriceField, stockQuantityField,
+            stockSearchField;
 
     private StockTablePopulator stockTablePopulator = new StockTablePopulator();
 
     @FXML
     JFXComboBox<Integer> categoryIDDropDown;
 
+    private StockDao stockDao = new StockDao();
+    private CategoryDao categoryDao = new CategoryDao();
+
     @FXML
     void addStockButton(ActionEvent event) {
-        CategoryDao categoryDao = new CategoryDao();
-        List<Category> categories = categoryDao.getAllCategories();
+        if (JOptionPane.showConfirmDialog(null, "Do you want to add this stock?", "Add Stock",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            List<Category> categories = categoryDao.getAllCategories();
 
-        
-        Stock stock = new Stock(gen.generateRandomId(), categoryIDDropDown.getValue(), stockQuantityField.getText(),
-                stockBuyPriceField.getText(), stockSellPriceField.getText(), categories.get(categoryIDDropDown.getValue()).getCategoryBrand(),
-                categories.get(categoryIDDropDown.getValue()).getCategoryType(), stockQuantityField.getText(), categories.get(categoryIDDropDown.getValue()).getCategoryWeight(),
-                categories.get(categoryIDDropDown.getValue()).getCategoryUnit());
+            Stock stock = new Stock(gen.generateRandomId(), categoryIDDropDown.getValue(), stockQuantityField.getText(),
+                    stockBuyPriceField.getText(), stockSellPriceField.getText(),
+                    categories.get(categoryIDDropDown.getValue()).getCategoryBrand(),
+                    categories.get(categoryIDDropDown.getValue()).getCategoryType(), stockQuantityField.getText(),
+                    categories.get(categoryIDDropDown.getValue()).getCategoryWeight(),
+                    categories.get(categoryIDDropDown.getValue()).getCategoryUnit());
 
-        StockDao stockDao = new StockDao();
-        stockDao.addStock(stock);
+            stockDao.addStock(stock);
 
-        stockTable.getItems().add(stock);
+            stockTable.getItems().add(stock);
+        }
     }
 
     @FXML
     void editStockButton(ActionEvent event) {
-        Stock selectedStock = stockTable.getSelectionModel().getSelectedItem();
+        if (JOptionPane.showConfirmDialog(null, "Do you want to edit this stock?", "Edit Stock",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            Stock selectedStock = stockTable.getSelectionModel().getSelectedItem();
 
-        if (selectedStock != null) {
-            stockIDIncrement.setText(String.valueOf(selectedStock.getStockID()));
-            categoryIDDropDown.setValue(selectedStock.getStockOnCategoryID());
-            stockQuantityField.setText(selectedStock.getQuantity());
-            stockBuyPriceField.setText(selectedStock.getPurchasePrice());
-            stockSellPriceField.setText(selectedStock.getPurchaseSell());
-            stockQuantityField.setText(selectedStock.getQuantity());
+            if (selectedStock != null) {
+                stockIDIncrement.setText(String.valueOf(selectedStock.getStockID()));
+                categoryIDDropDown.setValue(selectedStock.getStockOnCategoryID());
+                stockQuantityField.setText(selectedStock.getQuantity());
+                stockBuyPriceField.setText(selectedStock.getPurchasePrice());
+                stockSellPriceField.setText(selectedStock.getPurchaseSell());
+                stockQuantityField.setText(selectedStock.getQuantity());
+            }
         }
     }
 
     @FXML
     void resetStockButton(ActionEvent event) {
-        stockIDIncrement.clear();
-        categoryIDDropDown.setValue(null);
-        stockQuantityField.clear();
-        stockBuyPriceField.clear();
-        stockSellPriceField.clear();
-        stockQuantityField.clear();
+        if (JOptionPane.showConfirmDialog(null, "Do you want to reset the stock form?", "Reset Stock Form",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            stockIDIncrement.clear();
+            categoryIDDropDown.setValue(null);
+            stockQuantityField.clear();
+            stockBuyPriceField.clear();
+            stockSellPriceField.clear();
+            stockQuantityField.clear();
+
+            // populate stock table
+            try {
+                stockTablePopulator.populateStockTable(stockIDCol, stockOnCategoryIDCol, stockBrandCol, stockTypeCol,
+                        stockSizeCol,
+                        stockWeightCol, stockUnitCol, stockQuantityCol, stockBuyPriceCol, stockSellPriceCol,
+                        stockTable);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
     void removeStockButton(ActionEvent event) {
-        if (JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this stock?", "Delete Stock",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            Stock stock = stockTable.getSelectionModel().getSelectedItem();
-            StockDao stockDao = new StockDao();
-            stockDao.removeStock(stock.getStockID());
-            stockTable.getItems().remove(stock);
-            JOptionPane.showMessageDialog(null, "Stock deleted.");
-        } else {
-            JOptionPane.showMessageDialog(null, "Deletion cancelled.");
+        Stock stock = stockTable.getSelectionModel().getSelectedItem(); // Declare and initialize the stock variable
+        if (stock != null) { // Check if stock is not null
+            Alert alert = new Alert(AlertType.CONFIRMATION,
+                    "Are you sure you want to delete the following stock: \n" + stock.toString() + "?", ButtonType.YES,
+                    ButtonType.NO);
+            alert.setTitle("Delete Stock");
+            alert.setHeaderText(null);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.YES) {
+                stockDao.removeStock(stock.getStockID());
+                stockTable.getItems().remove(stock);
+
+                Alert infoAlert = new Alert(AlertType.INFORMATION,
+                        "Stock with ID: " + stock.getStockID() + " deleted.");
+                infoAlert.setTitle("Stock Deleted");
+                infoAlert.setHeaderText(null);
+                infoAlert.showAndWait();
+            } else {
+                Alert infoAlert = new Alert(AlertType.INFORMATION, "Deletion cancelled.");
+                infoAlert.setTitle("Deletion Cancelled");
+                infoAlert.setHeaderText(null);
+                infoAlert.showAndWait();
+            }
         }
     }
 
-    // initialize
+    @FXML
+    void searchStockButton(ActionEvent event) {
+        if (JOptionPane.showConfirmDialog(null, "Do you want to search for this stock?", "Search Stock",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            List<Stock> stocks = stockDao.searchStock(
+                    stockSearchField.getText());
+
+            ObservableList<Stock> stockData = FXCollections.observableArrayList();
+            stockData.addAll(stocks);
+            stockTable.setItems(stockData);
+
+            stockSearchField.clear();
+        }
+    }
+
     @FXML
     public void initialize() {
         try {
@@ -108,9 +162,7 @@ public class StockForm {
             e.printStackTrace();
         }
 
-        // Fetch id_category list in stocks from the database
-        StockDao stock = new StockDao();
-        ObservableList<Integer> stockList = FXCollections.observableArrayList(stock.getStockCategoryIds());
+        ObservableList<Integer> stockList = FXCollections.observableArrayList(stockDao.getStockCategoryIds());
         categoryIDDropDown.setItems(stockList);
     }
 }

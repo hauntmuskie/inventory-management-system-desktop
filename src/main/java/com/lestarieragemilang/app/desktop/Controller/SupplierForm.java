@@ -1,5 +1,7 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import com.jfoenix.controls.JFXButton;
@@ -8,6 +10,10 @@ import com.lestarieragemilang.app.desktop.Entities.Supplier;
 import com.lestarieragemilang.app.desktop.Utilities.GenerateRandomID;
 import com.lestarieragemilang.app.desktop.Utilities.SupplierTablePopulator;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -22,8 +28,9 @@ public class SupplierForm {
 
     // Supplier Table
     @FXML
-    TextField supplierIDIncrement, supplierNameField, supplierAddressField, supplierContactField, supplierEmailField;
-    
+    TextField supplierIDIncrement, supplierNameField, supplierAddressField, supplierContactField, supplierEmailField,
+            supplierSearchField;
+
     @FXML
     private TableColumn<Supplier, String> supplierIDCol, supplierNameCol, supplierAddressCol, supplierContactCol,
             supplierEmailCol;
@@ -107,6 +114,36 @@ public class SupplierForm {
             JOptionPane.showMessageDialog(null, "Deletion cancelled.");
         }
 
+    }
+
+    @FXML
+    void searchSupplierButton(ActionEvent event) {
+        SupplierDao supplierDao = new SupplierDao();
+        List<Supplier> suppliers = supplierDao.getAllSuppliers();
+        ObservableList<Supplier> supplierList = FXCollections.observableArrayList(suppliers);
+        FilteredList<Supplier> filteredData = new FilteredList<>(supplierList, p -> true);
+        supplierSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(supplier -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                // Check if the filter is found in any column
+                if (supplier.getSupplierName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (supplier.getSupplierAddress().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (supplier.getSupplierContact().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (supplier.getSupplierEmail().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+        SortedList<Supplier> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(supplierTable.comparatorProperty());
+        supplierTable.setItems(sortedData);
     }
 
     @FXML

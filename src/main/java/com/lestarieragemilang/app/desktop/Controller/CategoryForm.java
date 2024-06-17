@@ -14,6 +14,8 @@ import com.lestarieragemilang.app.desktop.Utilities.GenerateRandomID;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -35,7 +37,7 @@ public class CategoryForm {
     private CategoryTablePopulator categoryTablePopulator = new CategoryTablePopulator();
 
     @FXML
-    TextField categoryIDIncrement;
+    TextField categoryIDIncrement, categorySearchField;
 
     @FXML
     JFXComboBox<String> categoryBrandDropDown, categoryTypeDropDown, categorySizeDropDown, categoryWeightDropDown,
@@ -69,6 +71,31 @@ public class CategoryForm {
     }
 
     @FXML
+    void searchCategoryButton(ActionEvent event) {
+        CategoryDao categoryDao = new CategoryDao();
+        List<Category> categories = categoryDao.getAllCategories();
+        ObservableList<Category> categoryList = FXCollections.observableArrayList(categories);
+        FilteredList<Category> filteredData = new FilteredList<>(categoryList, p -> true);
+
+        categorySearchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(category -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (category.getCategoryBrand().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        SortedList<Category> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(categoryTable.comparatorProperty());
+        categoryTable.setItems(sortedData);
+    }
+
+    @FXML
     void resetCategoryButton(ActionEvent event) {
         categoryIDIncrement.clear();
         categoryBrandDropDown.setValue(null);
@@ -91,6 +118,8 @@ public class CategoryForm {
             JOptionPane.showMessageDialog(null, "Deletion cancelled.");
         }
     }
+
+    @FXML
 
     private void setCategoryDropDownItems(List<Category> categories, Function<Category, String> categoryMapper,
             ComboBox<String> dropDown) {

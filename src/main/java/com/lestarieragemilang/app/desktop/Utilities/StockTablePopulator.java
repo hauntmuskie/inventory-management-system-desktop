@@ -18,10 +18,10 @@ public class StockTablePopulator {
     StockDao stockDao = new StockDao();
     CategoryDao categoryDao = new CategoryDao();
 
-    public void populateStockTable(TableColumn<?, ?> stockIDCol, TableColumn<?, ?> stockOnCategoryIDCol,
-            TableColumn<?, ?> categoryBrandCol, TableColumn<?, ?> categoryTypeCol, TableColumn<?, ?> categorySizeCol,
-            TableColumn<?, ?> categoryWeightCol, TableColumn<?, ?> categoryUnitCol, TableColumn<?, ?> quantityCol,
-            TableColumn<?, ?> purchasePriceCol, TableColumn<?, ?> purchaseSellCol, TableView<Stock> stockTable)
+    public void populateStockTable(TableColumn<Stock, String> stockIDCol, TableColumn<Stock, String> stockOnCategoryIDCol,
+            TableColumn<Stock, String> categoryBrandCol, TableColumn<Stock, String> categoryTypeCol, TableColumn<Stock, String> categorySizeCol,
+            TableColumn<Stock, String> categoryWeightCol, TableColumn<Stock, String> categoryUnitCol, TableColumn<Stock, String> quantityCol,
+            TableColumn<Stock, String> purchasePriceCol, TableColumn<Stock, String> purchaseSellCol, TableView<Stock> stockTable)
             throws SQLException {
         ObservableList<Stock> stockData = FXCollections.observableArrayList();
         List<Stock> stocks = stockDao.getAllStocks();
@@ -48,5 +48,4 @@ public class StockTablePopulator {
         stockData.addAll(stocks);
         stockTable.setItems(stockData);
     }
-
 }

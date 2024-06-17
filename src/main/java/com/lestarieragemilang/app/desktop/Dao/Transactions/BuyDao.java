@@ -100,9 +100,9 @@ public class BuyDao extends DatabaseConfiguration {
         }
     }
 
-    public List<Integer> getStockCategoryIdsFromCategory() {
-        List<Integer> stockCategoryIds = new ArrayList<>();
-        String sql = "SELECT category_id FROM stocks";
+    public List<Object> getStockCategoryIdsFromCategory() {
+        List<Object> stockCategoryIds = new ArrayList<>();
+        String sql = "SELECT stocks.category_id, categories.brand, categories.product_type, stocks.purchase_price FROM stocks INNER JOIN categories ON stocks.category_id = categories.category_id";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);
@@ -110,12 +110,15 @@ public class BuyDao extends DatabaseConfiguration {
 
             while (rs.next()) {
                 stockCategoryIds.add(rs.getInt("category_id"));
+                stockCategoryIds.add(rs.getString("brand"));
+                stockCategoryIds.add(rs.getString("product_type"));
+                stockCategoryIds.add(rs.getString("purchase_price"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return stockCategoryIds;
+        
     }
 
     public List<Integer> getSupplierIdsFromSupplier() {
@@ -196,5 +199,7 @@ public class BuyDao extends DatabaseConfiguration {
         }
         return brandTypePrice;
     }
+
+    
     
 }

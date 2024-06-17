@@ -10,6 +10,10 @@ import java.util.List;
 import com.lestarieragemilang.app.desktop.Configurations.DatabaseConfiguration;
 import com.lestarieragemilang.app.desktop.Entities.Supplier;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+
 public class SupplierDao extends DatabaseConfiguration {
 
     public List<Supplier> getAllSuppliers() {
@@ -85,6 +89,31 @@ public class SupplierDao extends DatabaseConfiguration {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void searchSupplier(ObservableList<Supplier> supplierData, FilteredList<Supplier> filteredData,
+            SortedList<Supplier> sortedData, String search) {
+        filteredData.setPredicate(supplier -> {
+            if (search == null || search.isEmpty()) {
+                return true;
+            }
+
+            String lowerCaseFilter = search.toLowerCase();
+
+            if (supplier.getSupplierName().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (supplier.getSupplierAddress().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (supplier.getSupplierContact().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (supplier.getSupplierEmail().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            }
+
+            return false;
+        });
+
+        sortedData.comparatorProperty().bind(((SortedList<Supplier>) supplierData).comparatorProperty());
     }
 
 }
