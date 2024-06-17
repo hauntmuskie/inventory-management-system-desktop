@@ -116,8 +116,7 @@ public class SupplierForm {
 
     }
 
-    @FXML
-    void searchSupplierButton(ActionEvent event) {
+    void searchData() {
         SupplierDao supplierDao = new SupplierDao();
         List<Supplier> suppliers = supplierDao.getAllSuppliers();
         ObservableList<Supplier> supplierList = FXCollections.observableArrayList(suppliers);
@@ -162,5 +161,7 @@ public class SupplierForm {
                 supplierEmailField.clear();
             }
         });
+
+        searchData();
     }
 }

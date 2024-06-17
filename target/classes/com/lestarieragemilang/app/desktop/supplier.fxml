@@ -27,7 +27,7 @@
                                  </font>
                               </Label>
                               <TextField fx:id="supplierSearchField" prefHeight="32.0" prefWidth="250.0" promptText="Cari Data Supplier" style="-fx-background-radius: 5;" />
-                              <JFXButton buttonType="RAISED" onAction="#searchSupplierButton" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
+                              <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

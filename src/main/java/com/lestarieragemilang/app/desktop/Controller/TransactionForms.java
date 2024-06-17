@@ -13,6 +13,7 @@ import com.lestarieragemilang.app.desktop.Utilities.Transactions.BuyTablePopulat
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -31,7 +32,8 @@ public class TransactionForms {
     private TableColumn<?, ?> buyBrandCol, buyDateCol, buyInvoiceCol, buyOnSupplierNameCol, buyPriceCol, buySubTotalCol,
             buyTotalCol, buyTypeCol;
     @FXML
-    private TextField buyBrandField, buyInvoiceNumber, buyPriceField, buyTotalField, buyTypeField, supplierNameField;
+    private TextField buyBrandField, buyInvoiceNumber, buyPriceField, buyTotalField, buyTypeField, supplierNameField,
+            transactionBuySearchField;
     @FXML
     private DatePicker buyDate;
     @FXML
@@ -40,22 +42,24 @@ public class TransactionForms {
     private JFXComboBox<Object> stockIDDropdown;
     @FXML
     private JFXComboBox<Object> supplierIDDropDown;
-    
 
     @FXML
     void addBuyButton(ActionEvent event) {
-        // Create a new Buy object with the values from the form fields
+        GenerateRandomID gen = new GenerateRandomID();
+
+        int invoiceNumber = gen.generateRandomId();
+
         Buy newBuy = new Buy(LocalDate.now(), buyBrandField.getText(), buyTypeField.getText(),
                 supplierNameField.getText(),
-                Integer.parseInt(buyInvoiceNumber.getText()), Integer.parseInt(stockIDDropdown.getValue().toString()),
+                invoiceNumber, Integer.parseInt(stockIDDropdown.getValue().toString()),
                 Integer.parseInt(supplierIDDropDown.getValue().toString()), 1,
                 Double.parseDouble(buyPriceField.getText()),
                 Double.parseDouble(buyTotalField.getText()), Double.parseDouble(buyTotalField.getText()));
 
-        // Add the new Buy object to the buyTable
-        buyTable.getItems().add(newBuy);
+        BuyDao buyDao = new BuyDao();
+        buyDao.addBuy(newBuy);
 
-        
+        buyTable.getItems().add(newBuy);
 
         // Clear the form fields
         buyBrandField.clear();
@@ -65,20 +69,77 @@ public class TransactionForms {
         buyInvoiceNumber.clear();
         supplierNameField.clear();
         buyDate.setValue(null);
+
     }
 
     @FXML
-    void editBuyButton(ActionEvent event) {
-
+    void editBuyButton() {
+        Buy selectedBuy = buyTable.getSelectionModel().getSelectedItem();
+        if (selectedBuy != null) {
+            buyBrandField.setText(selectedBuy.getBrand());
+            buyTypeField.setText(selectedBuy.getProductType());
+            buyPriceField.setText(String.valueOf(selectedBuy.getPrice()));
+            buyTotalField.setText(String.valueOf(selectedBuy.getTotal()));
+            buyInvoiceNumber.setText(String.valueOf(selectedBuy.getInvoiceNumber()));
+            supplierNameField.setText(selectedBuy.getSupplierName());
+            buyDate.setValue(selectedBuy.getPurchaseDate());
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row to edit");
+        }
     }
 
     @FXML
     void removeBuyButton(ActionEvent event) {
-
+        Buy selectedBuy = buyTable.getSelectionModel().getSelectedItem();
+        if (selectedBuy != null) {
+            buyTable.getItems().remove(selectedBuy);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row to remove");
+        }
     }
 
     @FXML
     void resetBuyButton(ActionEvent event) {
+
+    }
+
+    void searchBuyData() {
+        BuyDao buyDao = new BuyDao();
+        List<Buy> buyList = buyDao.getAll();
+        ObservableList<Buy> buyObservableList = FXCollections.observableArrayList(buyList);
+        FilteredList<Buy> filteredData = new FilteredList<>(buyObservableList, p -> true);
+        transactionBuySearchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(buy -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (buy.getBrand().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (buy.getProductType().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (buy.getSupplierName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(buy.getInvoiceNumber()).contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(buy.getStockId()).contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(buy.getSupplierId()).contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(buy.getQuantity()).contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(buy.getPrice()).contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(buy.getSubTotal()).contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(buy.getTotal()).contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
 
     }
 
@@ -129,6 +190,8 @@ public class TransactionForms {
                 supplierNameField.setText(supplierName);
             }
         });
+
+        searchBuyData();
 
     }
 }
