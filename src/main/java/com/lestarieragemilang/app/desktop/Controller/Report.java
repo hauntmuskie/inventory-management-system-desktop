@@ -37,5 +37,12 @@ public class Report {
   public void setSceneReportCategory(MouseEvent event) throws IOException {
     Redirect.page("laporan-kategori", setScene);
   }
+
+  // initialize method
+  @FXML
+  public void initialize() throws IOException {
+    Redirect.page("laporan-supplier", setScene);
+  }
+  
 }
 
