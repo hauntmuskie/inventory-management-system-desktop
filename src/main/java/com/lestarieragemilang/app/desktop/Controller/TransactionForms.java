@@ -61,7 +61,6 @@ public class TransactionForms {
 
         buyTable.getItems().add(newBuy);
 
-        // Clear the form fields
         buyBrandField.clear();
         buyTypeField.clear();
         buyPriceField.clear();
@@ -171,8 +170,6 @@ public class TransactionForms {
                 buyPriceField.setText(stockDetails.get(2)); // Assuming the price is the third item in the list
             }
         });
-
-        // Supplier ID Dropdown
 
         ObservableList<Object> supplierIds = FXCollections.observableArrayList(buyDao.getSupplierIds());
         supplierIDDropDown.setItems(supplierIds);
