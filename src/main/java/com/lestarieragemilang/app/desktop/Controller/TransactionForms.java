@@ -1,5 +1,8 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import com.jfoenix.controls.JFXComboBox;
@@ -40,60 +43,12 @@ public class TransactionForms {
 
     @FXML
     void addBuyButton(ActionEvent event) {
-        int invoiceNumber = buyInvoiceNumber.getText().isEmpty() ? 0 : Integer.parseInt(buyInvoiceNumber.getText());
-        int stockId = stockIDDropdown.getValue().toString().isEmpty() ? 0
-                : Integer.parseInt(stockIDDropdown.getValue().toString());
-        int supplierId = supplierIDDropDown.getValue().toString().isEmpty() ? 0
-                : Integer.parseInt(supplierIDDropDown.getValue().toString());
-        int quantity = buyTotalField.getText().isEmpty() ? 0 : Integer.parseInt(buyTotalField.getText());
-        double price = buyPriceField.getText().isEmpty() ? 0.0 : Double.parseDouble(buyPriceField.getText());
-
-        Buy buy = new Buy(buyDate.getValue(), buyBrandField.getText(), buyTypeField.getText(),
-                supplierNameField.getText(),
-                invoiceNumber, stockId,
-                supplierId, quantity,
-                price);
-
-        BuyDao buyDao = new BuyDao();
-        buyDao.addBuy(buy);
-
-        buyTable.getItems().add(buy);
+        
     }
 
     @FXML
     void editBuyButton(ActionEvent event) {
-        Buy selectedBuy = buyTable.getSelectionModel().getSelectedItem();
-        BuyDao buyDao = new BuyDao();
 
-        if (selectedBuy != null) {
-            selectedBuy.setPurchaseDate(buyDate.getValue());
-            selectedBuy.setBrand(buyBrandField.getText());
-            selectedBuy.setProductType(buyTypeField.getText());
-            selectedBuy.setSupplierName(supplierNameField.getText());
-
-            if (!buyInvoiceNumber.getText().isEmpty()) {
-                selectedBuy.setInvoiceNumber(Integer.parseInt(buyInvoiceNumber.getText()));
-            }
-            if (!stockIDDropdown.getValue().toString().isEmpty()) {
-                selectedBuy.setStockId(Integer.parseInt(stockIDDropdown.getValue().toString()));
-            }
-            if (!supplierIDDropDown.getValue().toString().isEmpty()) {
-                selectedBuy.setSupplierId(Integer.parseInt(supplierIDDropDown.getValue().toString()));
-            }
-            if (!buyTotalField.getText().isEmpty()) {
-                selectedBuy.setQuantity(Integer.parseInt(buyTotalField.getText()));
-            }
-            if (!buyPriceField.getText().isEmpty()) {
-                selectedBuy.setPrice(Double.parseDouble(buyPriceField.getText()));
-            }
-
-            if (JOptionPane.showConfirmDialog(null, "Are you sure you want to update this buy?", "Update Buy",
-                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                buyDao.updateBuy(selectedBuy);
-            }
-
-            buyTable.refresh();
-        }
     }
 
     @FXML
@@ -112,27 +67,47 @@ public class TransactionForms {
                 buySubTotalCol, buyPriceCol, buyTotalCol, buyTable);
 
         BuyDao buyDao = new BuyDao();
-        ObservableList<Object> stockIds = FXCollections.observableArrayList(buyDao.getStockCategoryIdsFromCategory());
+
+        // Stock ID Dropdown
+        ObservableList<Object> stockIds = FXCollections.observableArrayList(buyDao.getAllStockIds());
         stockIDDropdown.setItems(stockIds);
         if (!stockIds.isEmpty()) {
-            Object firstItem = stockIds.get(0);
-            buyBrandField.setText(stockIds.get(1).toString());
-            buyTypeField.setText(stockIds.get(1).toString());
-            buyPriceField.setText(firstItem.toString());
             stockIDDropdown.getSelectionModel().selectFirst();
+            String firstStockId = stockIds.get(0).toString();
+            List<String> firstStockDetails = buyDao.getBrandTypePrice(firstStockId);
+            buyBrandField.setText(firstStockDetails.get(0)); // Assuming the brand is the first item in the list
+            buyTypeField.setText(firstStockDetails.get(1)); // Assuming the type is the second item in the list
+            buyPriceField.setText(firstStockDetails.get(2)); // Assuming the price is the third item in the list
         }
 
-        ObservableList<Object> supplierIds = FXCollections.observableArrayList(buyDao.getSupplierIdsFromSupplier());
-        supplierIDDropDown.setItems(supplierIds);
-        supplierIDDropDown.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (!supplierIds.isEmpty()) {
-                // fill name
-                supplierNameField.setText(supplierIds.get(supplierIDDropDown.getSelectionModel().getSelectedIndex()).toString());
+        stockIDDropdown.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                String stockId = newValue.toString();
+                List<String> stockDetails = buyDao.getBrandTypePrice(stockId);
+                buyBrandField.setText(stockDetails.get(0)); // Assuming the brand is the first item in the list
+                buyTypeField.setText(stockDetails.get(1)); // Assuming the type is the second item in the list
+                buyPriceField.setText(stockDetails.get(2)); // Assuming the price is the third item in the list
             }
         });
-        supplierIDDropDown.getSelectionModel().selectFirst();
 
-        
+        // Supplier ID Dropdown
+
+        ObservableList<Object> supplierIds = FXCollections.observableArrayList(buyDao.getSupplierIds());
+        supplierIDDropDown.setItems(supplierIds);
+        if (!supplierIds.isEmpty()) {
+            supplierIDDropDown.getSelectionModel().selectFirst();
+            String firstSupplierId = supplierIds.get(0).toString();
+            String firstSupplierName = buyDao.getSupplierName(firstSupplierId);
+            supplierNameField.setText(firstSupplierName);
+        }
+
+        supplierIDDropDown.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                String supplierId = newValue.toString();
+                String supplierName = buyDao.getSupplierName(supplierId);
+                supplierNameField.setText(supplierName);
+            }
+        });
 
     }
 }

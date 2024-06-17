@@ -118,26 +118,7 @@ public class BuyDao extends DatabaseConfiguration {
             e.printStackTrace();
         }
         return stockCategoryIds;
-        
-    }
 
-    public List<Object> getSupplierIdsFromSupplier() {
-        List<Object> supplierIds = new ArrayList<>();
-        String sql = "SELECT supplier_id, supplier_name FROM suppliers";
-
-        try (Connection conn = getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                supplierIds.add(rs.getString("supplier_id"));
-                supplierIds.add(rs.getString("supplier_name"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return supplierIds;
     }
 
     // get all stock
@@ -153,8 +134,6 @@ public class BuyDao extends DatabaseConfiguration {
                 stocks.add(rs.getInt("stock_id"));
                 stocks.add(rs.getInt("quantity"));
                 stocks.add(rs.getInt("purchase_price"));
-
-                
 
             }
         } catch (SQLException e) {
@@ -202,41 +181,120 @@ public class BuyDao extends DatabaseConfiguration {
         return brandTypePrice;
     }
 
-    public List<Integer> getBrandBySupplierId(int selectedSupplierId) {
-        List<Integer> brand = new ArrayList<>();
-        String sql = "SELECT brand FROM suppliers WHERE supplier_id = ?";
+    // get sup id with param
+    public int getSupplierId(String supplierId) {
+        int id = 0;
+        String sql = "SELECT supplier_id FROM suppliers WHERE supplier_id = ?";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, String.valueOf(selectedSupplierId));
+            stmt.setString(1, supplierId);
+            ResultSet rs = stmt.executeQuery();
 
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    brand.add(rs.getInt("brand"));
-                }
+            while (rs.next()) {
+                id = rs.getInt("supplier_id");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return brand;
+        return id;
     }
 
-    public List<Object> getSupplierNameFromSupplierId(int selectedSupplierId) {
-        List<Object> supplierName = new ArrayList<>();
-        String sql = "SELECT supplier_id FROM suppliers";
+    // get sup name with param
+    public String getSupplierName(String supplierId) {
+        String name = "";
+        String sql = "SELECT supplier_name FROM suppliers WHERE supplier_id = ?";
 
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, supplierId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                name = rs.getString("supplier_name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
+
+    // get supplier id with param
+    public List<Integer> getSupplierIds() {
+        List<Integer> ids = new ArrayList<>();
+        String sql = "SELECT supplier_id FROM suppliers";
+    
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery()) {
-
+    
             while (rs.next()) {
-                supplierName.add(rs.getString("supplier_id"));
+                ids.add(rs.getInt("supplier_id"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return supplierName;
+        return ids;
     }
+
+    // get stock id with param
+    public int getStockId(String stockId) {
+        int id = 0;
+        String sql = "SELECT stock_id FROM stocks WHERE stock_id = ?";
+
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, stockId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                id = rs.getInt("stock_id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    // get brand, type, purchase price with param
+    public List<Integer> getAllStockIds() {
+        List<Integer> ids = new ArrayList<>();
+        String sql = "SELECT stock_id FROM stocks";
     
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+    
+            while (rs.next()) {
+                ids.add(rs.getInt("stock_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ids;
+    }
+
+    public List<String> getBrandTypePrice(String stockId) {
+        List<String> brandTypePrice = new ArrayList<>();
+        String sql = "SELECT c.brand, c.product_type, s.purchase_price FROM stocks s INNER JOIN categories c ON s.category_id = c.category_id WHERE s.stock_id = ?";
+    
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+    
+            stmt.setString(1, stockId);
+            ResultSet rs = stmt.executeQuery();
+    
+            while (rs.next()) {
+                brandTypePrice.add(rs.getString("brand"));
+                brandTypePrice.add(rs.getString("product_type"));
+                brandTypePrice.add(rs.getString("purchase_price"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return brandTypePrice;
+    }
 }

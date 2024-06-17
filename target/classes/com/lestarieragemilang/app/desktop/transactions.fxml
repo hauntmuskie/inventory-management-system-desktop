@@ -107,7 +107,7 @@
                                                       </VBox>
                                                       <VBox alignment="BASELINE_LEFT" prefHeight="85.0" prefWidth="131.0" spacing="20.0">
                                                          <children>
-                                                            <DatePicker fx:id="buyDate" />
+                                                            <DatePicker fx:id="buyDate" disable="true" />
                                                             <TextField fx:id="buyInvoiceNumber" disable="true" promptText="Auto-Generated" style="-fx-background-radius: 5;" />
                                                          </children>
                                                       </VBox>
@@ -334,7 +334,7 @@
                                                       </VBox>
                                                       <VBox alignment="BASELINE_LEFT" prefHeight="85.0" prefWidth="131.0" spacing="20.0">
                                                          <children>
-                                                            <DatePicker />
+                                                            <DatePicker disable="true" />
                                                             <TextField disable="true" style="-fx-background-radius: 5;" />
                                                          </children>
                                                       </VBox>
