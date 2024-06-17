@@ -35,13 +35,14 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="570.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lestarieragemilang.app.desktop.Controller.Report">
-   <children>
-      <AnchorPane prefHeight="586.0" prefWidth="981.0">
+
+<BorderPane fx:id="bp" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lestarieragemilang.app.desktop.Controller.Report">
+   <center>
+      <AnchorPane fx:id="setScene" prefHeight="586.0" prefWidth="981.0" BorderPane.alignment="CENTER">
          <children>
             <JFXButton layoutX="10.0" layoutY="100.0" onMouseClicked="#setSceneReportStock" prefHeight="115.0" prefWidth="250.0" style="-fx-background-color: BLACK; -fx-background-radius: 25;" text="STOK BESI" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="100.0">
                <font>
@@ -105,5 +106,5 @@
             </JFXButton>
          </children>
       </AnchorPane>
-   </children>
-</VBox>
+   </center>
+</BorderPane>

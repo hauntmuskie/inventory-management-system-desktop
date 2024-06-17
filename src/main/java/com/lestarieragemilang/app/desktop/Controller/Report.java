@@ -38,11 +38,11 @@ public class Report {
     Redirect.page("laporan-kategori", setScene);
   }
 
-  // initialize method
-  @FXML
-  public void initialize() throws IOException {
-    Redirect.page("laporan-supplier", setScene);
+  public void setSceneReports(MouseEvent event) throws IOException {
+    Redirect.page("laporan-produk", setScene);
   }
+
   
+
 }
 

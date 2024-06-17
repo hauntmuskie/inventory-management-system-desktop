@@ -124,7 +124,15 @@ public class TransactionForms {
 
         ObservableList<Object> supplierIds = FXCollections.observableArrayList(buyDao.getSupplierIdsFromSupplier());
         supplierIDDropDown.setItems(supplierIds);
+        supplierIDDropDown.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (!supplierIds.isEmpty()) {
+                // fill name
+                supplierNameField.setText(supplierIds.get(supplierIDDropDown.getSelectionModel().getSelectedIndex()).toString());
+            }
+        });
         supplierIDDropDown.getSelectionModel().selectFirst();
+
+        
 
     }
 }

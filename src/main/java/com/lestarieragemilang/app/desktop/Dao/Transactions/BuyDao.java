@@ -121,20 +121,22 @@ public class BuyDao extends DatabaseConfiguration {
         
     }
 
-    public List<Integer> getSupplierIdsFromSupplier() {
-        List<Integer> supplierIds = new ArrayList<>();
-        String sql = "SELECT supplier_id FROM suppliers";
+    public List<Object> getSupplierIdsFromSupplier() {
+        List<Object> supplierIds = new ArrayList<>();
+        String sql = "SELECT supplier_id, supplier_name FROM suppliers";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                supplierIds.add(rs.getInt("supplier_id"));
+                supplierIds.add(rs.getString("supplier_id"));
+                supplierIds.add(rs.getString("supplier_name"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return supplierIds;
     }
 
@@ -200,6 +202,41 @@ public class BuyDao extends DatabaseConfiguration {
         return brandTypePrice;
     }
 
-    
+    public List<Integer> getBrandBySupplierId(int selectedSupplierId) {
+        List<Integer> brand = new ArrayList<>();
+        String sql = "SELECT brand FROM suppliers WHERE supplier_id = ?";
+
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, String.valueOf(selectedSupplierId));
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    brand.add(rs.getInt("brand"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return brand;
+    }
+
+    public List<Object> getSupplierNameFromSupplierId(int selectedSupplierId) {
+        List<Object> supplierName = new ArrayList<>();
+        String sql = "SELECT supplier_id FROM suppliers";
+
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                supplierName.add(rs.getString("supplier_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return supplierName;
+    }
     
 }
