@@ -28,7 +28,7 @@
                                  </font>
                               </Label>
                               <TextField fx:id="categorySearchField" prefHeight="30.0" prefWidth="250.0" style="-fx-background-radius: 5;" />
-                              <JFXButton buttonType="RAISED" onAction="#searchCategoryButton" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
+                              <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

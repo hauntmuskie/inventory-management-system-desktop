@@ -40,10 +40,31 @@ public class TransactionForms {
     private JFXComboBox<Object> stockIDDropdown;
     @FXML
     private JFXComboBox<Object> supplierIDDropDown;
+    
 
     @FXML
     void addBuyButton(ActionEvent event) {
+        // Create a new Buy object with the values from the form fields
+        Buy newBuy = new Buy(LocalDate.now(), buyBrandField.getText(), buyTypeField.getText(),
+                supplierNameField.getText(),
+                Integer.parseInt(buyInvoiceNumber.getText()), Integer.parseInt(stockIDDropdown.getValue().toString()),
+                Integer.parseInt(supplierIDDropDown.getValue().toString()), 1,
+                Double.parseDouble(buyPriceField.getText()),
+                Double.parseDouble(buyTotalField.getText()), Double.parseDouble(buyTotalField.getText()));
+
+        // Add the new Buy object to the buyTable
+        buyTable.getItems().add(newBuy);
+
         
+
+        // Clear the form fields
+        buyBrandField.clear();
+        buyTypeField.clear();
+        buyPriceField.clear();
+        buyTotalField.clear();
+        buyInvoiceNumber.clear();
+        supplierNameField.clear();
+        buyDate.setValue(null);
     }
 
     @FXML

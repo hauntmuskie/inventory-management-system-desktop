@@ -22,7 +22,7 @@ public class BuyDao extends DatabaseConfiguration {
                 ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                Buy buy = new Buy(null, null, null, null, 0, 0, 0, 0, 0);
+                Buy buy = new Buy(null, null, null, null, 0, 0, 0, 0, 0, 0, 0);
                 buy.setPurchaseDate(rs.getDate("purchase_date").toLocalDate());
                 buy.setBrand(rs.getString("brand"));
                 buy.setProductType(rs.getString("product_type"));

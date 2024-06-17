@@ -71,31 +71,6 @@ public class CategoryForm {
     }
 
     @FXML
-    void searchCategoryButton(ActionEvent event) {
-        CategoryDao categoryDao = new CategoryDao();
-        List<Category> categories = categoryDao.getAllCategories();
-        ObservableList<Category> categoryList = FXCollections.observableArrayList(categories);
-        FilteredList<Category> filteredData = new FilteredList<>(categoryList, p -> true);
-
-        categorySearchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(category -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                if (category.getCategoryBrand().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-                return false;
-            });
-        });
-
-        SortedList<Category> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(categoryTable.comparatorProperty());
-        categoryTable.setItems(sortedData);
-    }
-
-    @FXML
     void resetCategoryButton(ActionEvent event) {
         categoryIDIncrement.clear();
         categoryBrandDropDown.setValue(null);
@@ -128,6 +103,34 @@ public class CategoryForm {
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
         dropDown.setItems(categoryItems);
     }
+    
+    void searchData() {
+        CategoryDao categoryDao = new CategoryDao();
+        List<Category> categories = categoryDao.getAllCategories();
+        ObservableList<Category> categoryList = FXCollections.observableArrayList(categories);
+        FilteredList<Category> filteredData = new FilteredList<>(categoryList, p -> true);
+
+        categorySearchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(category -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (category.getCategoryBrand().toLowerCase().contains(lowerCaseFilter)
+                    || category.getCategoryType().toLowerCase().contains(lowerCaseFilter)
+                    || category.getCategorySize().toLowerCase().contains(lowerCaseFilter)
+                    || category.getCategoryWeight().toLowerCase().contains(lowerCaseFilter)
+                    || category.getCategoryUnit().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        SortedList<Category> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(categoryTable.comparatorProperty());
+        categoryTable.setItems(sortedData);
+    }
 
     @FXML
     public void initialize() {
@@ -142,6 +145,8 @@ public class CategoryForm {
         setCategoryDropDownItems(categoryDao.getAllCategoryWeights(), Category::getCategoryWeight,
                 categoryWeightDropDown);
         setCategoryDropDownItems(categoryDao.getAllCategoryUnits(), Category::getCategoryUnit, categoryUnitDropDown);
+
+        searchData();
     }
 
 }

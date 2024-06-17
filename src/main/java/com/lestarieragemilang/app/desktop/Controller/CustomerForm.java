@@ -136,9 +136,9 @@ public class CustomerForm {
     @FXML
     public void initialize() {
         // Customer Table
-        searchData();
         customerTablePopulator.populateCustomerTable(customerIDCol, customerNameCol, customerAddressCol,
                 customerContactCol, customerEmailCol, customerTable);
-
+                
+                searchData();
     }
 }
