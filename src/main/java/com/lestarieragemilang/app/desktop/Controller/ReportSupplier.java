@@ -39,9 +39,10 @@ public class ReportSupplier {
   void printJasperSupplier(MouseEvent event) {
     try {
       JasperLoader loader = new JasperLoader();
-      loader.showJasperReport(
+      loader.showJasperReportSupplier(
           "src/main/java/com/lestarieragemilang/app/desktop/Configurations/ReportConfiguration/supplier-list.jasper",
-          event);
+          supplierSearchField.getText(),
+          supplierSearchField.getText(), supplierSearchField.getText(), supplierSearchField.getText(), event);
     } catch (Exception e) {
       e.printStackTrace();
     }

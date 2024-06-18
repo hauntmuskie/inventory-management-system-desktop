@@ -41,9 +41,10 @@ public class ReportCustomer {
   void printJasperCustomer(MouseEvent event) {
     try {
       JasperLoader loader = new JasperLoader();
-      loader.showJasperReport(
+      loader.showJasperReportCustomer(
           "src/main/java/com/lestarieragemilang/app/desktop/Configurations/ReportConfiguration/customer-list.jasper",
-          event);
+          customerSearchField.getText(), customerSearchField.getText(), customerSearchField.getText(),
+          customerSearchField.getText(), event);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -68,7 +69,6 @@ public class ReportCustomer {
         }));
     customerTable.setItems(filteredData);
   }
-  
 
   @FXML
   void initialize() throws SQLException {
@@ -76,6 +76,6 @@ public class ReportCustomer {
     customerTablePopulator.populateCustomerTable(customerIDCol, customerNameCol, customerAddressCol,
         customerContactCol, customerEmailCol, customerTable);
 
-        customerSearch();
+    customerSearch();
   }
 }
