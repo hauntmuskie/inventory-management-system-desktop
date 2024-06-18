@@ -1,8 +1,11 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
+=======
+>>>>>>> a20b4e0ee86616262a478ba26f8c30b101b8ec68
 import javax.swing.JOptionPane;
 
 import com.jfoenix.controls.JFXButton;
@@ -12,9 +15,7 @@ import com.lestarieragemilang.app.desktop.Utilities.GenerateRandomID;
 import com.lestarieragemilang.app.desktop.Utilities.SupplierTablePopulator;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -131,33 +132,23 @@ public class SupplierForm {
 
     }
 
-    void searchData() {
-        SupplierDao supplierDao = new SupplierDao();
-        List<Supplier> suppliers = supplierDao.getAllSuppliers();
-        ObservableList<Supplier> supplierList = FXCollections.observableArrayList(suppliers);
-        FilteredList<Supplier> filteredData = new FilteredList<>(supplierList, p -> true);
-        supplierSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(supplier -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                // Check if the filter is found in any column
-                if (supplier.getSupplierName().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (supplier.getSupplierAddress().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (supplier.getSupplierContact().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (supplier.getSupplierEmail().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-                return false;
-            });
-        });
-        SortedList<Supplier> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(supplierTable.comparatorProperty());
-        supplierTable.setItems(sortedData);
+    void supplierSearch() {
+        FilteredList<Supplier> filteredData = new FilteredList<>(supplierTable.getItems());
+        supplierSearchField.textProperty()
+                .addListener((observable, oldValue, newValue) -> filteredData.setPredicate(supplier -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseFilter = newValue.toLowerCase();
+                    if (supplier.getSupplierName().toLowerCase().contains(lowerCaseFilter)
+                            || supplier.getSupplierAddress().toLowerCase().contains(lowerCaseFilter)
+                            || supplier.getSupplierContact().toLowerCase().contains(lowerCaseFilter)
+                            || supplier.getSupplierEmail().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    }
+                    return false;
+                }));
+        supplierTable.setItems(filteredData);
     }
 
     @FXML
@@ -177,6 +168,6 @@ public class SupplierForm {
             }
         });
 
-        searchData();
+        supplierSearch();
     }
 }

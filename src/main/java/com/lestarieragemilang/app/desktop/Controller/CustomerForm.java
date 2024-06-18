@@ -1,8 +1,11 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
+=======
+>>>>>>> a20b4e0ee86616262a478ba26f8c30b101b8ec68
 import javax.swing.JOptionPane;
 
 import com.lestarieragemilang.app.desktop.Dao.CustomerDao;
@@ -10,10 +13,7 @@ import com.lestarieragemilang.app.desktop.Entities.Customer;
 import com.lestarieragemilang.app.desktop.Utilities.CustomerTablePopulator;
 import com.lestarieragemilang.app.desktop.Utilities.GenerateRandomID;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -115,33 +115,23 @@ public class CustomerForm {
         customerTable.getItems().addAll(customerDao.getAllCustomers());
     }
 
-    private void searchData() {
-        CustomerDao customerDao = new CustomerDao();
-        List<Customer> customers = customerDao.getAllCustomers();
-        ObservableList<Customer> customerList = FXCollections.observableArrayList(customers);
-        FilteredList<Customer> filteredData = new FilteredList<>(customerList, p -> true);
-        customerSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(customer -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                // Check if the filter is found in any column
-                if (customer.getCustomerName().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (customer.getCustomerAddress().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (customer.getCustomerContact().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (customer.getCustomerEmail().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-                return false;
-            });
-        });
-        SortedList<Customer> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(customerTable.comparatorProperty());
-        customerTable.setItems(sortedData);
+    void customerSearch() {
+        FilteredList<Customer> filteredData = new FilteredList<>(customerTable.getItems());
+        customerSearchField.textProperty()
+                .addListener((observable, oldValue, newValue) -> filteredData.setPredicate(customer -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseFilter = newValue.toLowerCase();
+                    if (customer.getCustomerName().toLowerCase().contains(lowerCaseFilter)
+                            || customer.getCustomerAddress().toLowerCase().contains(lowerCaseFilter)
+                            || customer.getCustomerContact().toLowerCase().contains(lowerCaseFilter)
+                            || customer.getCustomerEmail().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    }
+                    return false;
+                }));
+        customerTable.setItems(filteredData);
     }
 
     @FXML
@@ -150,6 +140,6 @@ public class CustomerForm {
         customerTablePopulator.populateCustomerTable(customerIDCol, customerNameCol, customerAddressCol,
                 customerContactCol, customerEmailCol, customerTable);
                 
-                searchData();
+                customerSearch();
     }
 }

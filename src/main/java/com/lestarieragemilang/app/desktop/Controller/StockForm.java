@@ -17,7 +17,6 @@ import com.lestarieragemilang.app.desktop.Utilities.StockTablePopulator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -57,9 +56,17 @@ public class StockForm {
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             List<Category> categories = categoryDao.getAllCategories();
 
+<<<<<<< HEAD
             Stock stock = new Stock(gen.generateRandomId(), categoryIDDropDown.getValue(), categories.get(0).getCategoryBrand(),
                     categories.get(0).getCategoryType(), stockQuantityField.getText(), categories.get(0).getCategorySize(),
                     categories.get(0).getCategoryUnit(), stockBuyPriceField.getText(), categories.get(0).getCategoryWeight(),
+=======
+            Stock stock = new Stock(gen.generateRandomId(), categoryIDDropDown.getValue(),
+                    categories.get(0).getCategoryBrand(),
+                    categories.get(0).getCategoryType(), stockSizeField.getText(),
+                    categories.get(0).getCategoryWeight(),
+                    categories.get(0).getCategoryUnit(), stockQuantityField.getText(), stockBuyPriceField.getText(),
+>>>>>>> a20b4e0ee86616262a478ba26f8c30b101b8ec68
                     stockSellPriceField.getText());
             stockDao.addStock(stock);
 
@@ -136,48 +143,27 @@ public class StockForm {
         }
     }
 
-
-    void searchData() {
-        StockDao stockDao = new StockDao();
-        CategoryDao categoryDao = new CategoryDao();
-        List<Stock> stocks = stockDao.getAllStocks();
-        ObservableList<Stock> stockData = FXCollections.observableArrayList(stocks);
-        FilteredList<Stock> filteredData = new FilteredList<>(stockData, p -> true);
-
-        stockSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(stock -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (stock.getCategoryBrand().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (stock.getCategoryType().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (stock.getCategorySize().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (stock.getCategoryWeight().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (stock.getCategoryUnit().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (stock.getQuantity().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (stock.getPurchasePrice().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (stock.getPurchaseSell().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-
-                return false;
-            });
-        });
-
-        SortedList<Stock> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(stockTable.comparatorProperty());
-        stockTable.setItems(sortedData);
-    
+    void stockSearch() {
+        FilteredList<Stock> filteredData = new FilteredList<>(stockTable.getItems());
+        stockSearchField.textProperty()
+                .addListener((observable, oldValue, newValue) -> filteredData.setPredicate(stock -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseFilter = newValue.toLowerCase();
+                    if (stock.getCategoryBrand().toLowerCase().contains(lowerCaseFilter)
+                            || stock.getCategoryType().toLowerCase().contains(lowerCaseFilter)
+                            || stock.getCategorySize().toLowerCase().contains(lowerCaseFilter)
+                            || stock.getCategoryWeight().toLowerCase().contains(lowerCaseFilter)
+                            || stock.getCategoryUnit().toLowerCase().contains(lowerCaseFilter)
+                            || stock.getQuantity().toString().toLowerCase().contains(lowerCaseFilter)
+                            || stock.getPurchasePrice().toString().toLowerCase().contains(lowerCaseFilter)
+                            || stock.getPurchaseSell().toString().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    }
+                    return false;
+                }));
+        stockTable.setItems(filteredData);
     }
 
     @FXML
@@ -192,7 +178,6 @@ public class StockForm {
 
         ObservableList<Integer> stockList = FXCollections.observableArrayList(stockDao.getStockCategoryIds());
         categoryIDDropDown.setItems(stockList);
-
-        searchData();
+        stockSearch();
     }
 }
