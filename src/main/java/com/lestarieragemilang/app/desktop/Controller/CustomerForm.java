@@ -1,11 +1,8 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
-=======
->>>>>>> a20b4e0ee86616262a478ba26f8c30b101b8ec68
 import javax.swing.JOptionPane;
 
 import com.lestarieragemilang.app.desktop.Dao.CustomerDao;
