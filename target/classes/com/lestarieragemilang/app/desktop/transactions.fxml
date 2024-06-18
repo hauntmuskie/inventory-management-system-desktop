@@ -153,7 +153,7 @@
                                                       </VBox>
                                                       <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="10.0">
                                                          <children>
-                                                            <JFXComboBox fx:id="stockIDDropdown" prefHeight="25.0" prefWidth="127.0" />
+                                                            <JFXComboBox fx:id="buyStockIDDropdown" prefHeight="25.0" prefWidth="127.0" />
                                                             <TextField fx:id="buyBrandField" disable="true" style="-fx-background-radius: 5;" />
                                                             <TextField fx:id="buyTypeField" disable="true" style="-fx-background-radius: 5;" />
                                                             <TextField fx:id="buyPriceField" disable="true" style="-fx-background-radius: 5;" />
@@ -380,7 +380,7 @@
                                                       </VBox>
                                                       <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="10.0">
                                                          <children>
-                                                            <JFXComboBox fx:id="stockIDDropdown" prefHeight="25.0" prefWidth="127.0" />
+                                                            <JFXComboBox fx:id="sellStockIDDropdown" prefHeight="25.0" prefWidth="127.0" />
                                                             <TextField fx:id="sellBrandField" disable="true" style="-fx-background-radius: 5;" />
                                                             <TextField fx:id="sellTypeField" disable="true" style="-fx-background-radius: 5;" />
                                                             <TextField fx:id="sellPriceField" disable="true" style="-fx-background-radius: 5;" />

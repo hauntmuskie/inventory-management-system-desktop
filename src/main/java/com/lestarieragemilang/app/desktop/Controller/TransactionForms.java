@@ -1,7 +1,10 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -60,7 +63,7 @@ public class TransactionForms {
     private TableView<Sell> sellTable;
 
     @FXML
-    private JFXComboBox<Object> stockIDDropdown;
+    private JFXComboBox<Object> buyStockIDDropdown, sellStockIDDropdown;
 
     @FXML
     private JFXComboBox<Object> supplierIDDropDown;
@@ -74,7 +77,7 @@ public class TransactionForms {
 
         Sell newSell = new Sell(LocalDate.now(), sellBrandField.getText(), sellTypeField.getText(),
                 customerNameField.getText(),
-                invoiceNumber, Integer.parseInt(stockIDDropdown.getValue().toString()),
+                invoiceNumber, Integer.parseInt(buyStockIDDropdown.getValue().toString()),
                 Integer.parseInt(supplierIDDropDown.getValue().toString()), 1,
                 Double.parseDouble(sellPriceField.getText()),
                 Double.parseDouble(sellTotalField.getText()), Double.parseDouble(sellTotalField.getText()));
@@ -187,7 +190,7 @@ public class TransactionForms {
 
         Buy newBuy = new Buy(LocalDate.now(), buyBrandField.getText(), buyTypeField.getText(),
                 supplierNameField.getText(),
-                invoiceNumber, Integer.parseInt(stockIDDropdown.getValue().toString()),
+                invoiceNumber, Integer.parseInt(buyStockIDDropdown.getValue().toString()),
                 Integer.parseInt(supplierIDDropDown.getValue().toString()), 1,
                 Double.parseDouble(buyPriceField.getText()),
                 Double.parseDouble(buyTotalField.getText()), Double.parseDouble(buyTotalField.getText()));
@@ -297,6 +300,8 @@ public class TransactionForms {
 
     void buyInit() {
 
+        BuyTablePopulator buyTablePopulator = new BuyTablePopulator();
+
         // Buy Table
         buyTablePopulator.populateBuyTable(buyDateCol, buyBrandCol, buyTypeCol, buyOnSupplierNameCol, buyInvoiceCol,
                 buySubTotalCol, buyPriceCol, buyTotalCol, buyTable);
@@ -305,9 +310,9 @@ public class TransactionForms {
 
         // Stock ID Dropdown
         ObservableList<Object> stockIds = FXCollections.observableArrayList(buyDao.getAllStockIds());
-        stockIDDropdown.setItems(stockIds);
+        buyStockIDDropdown.setItems(stockIds);
         if (!stockIds.isEmpty()) {
-            stockIDDropdown.getSelectionModel().selectFirst();
+            buyStockIDDropdown.getSelectionModel().selectFirst();
             String firstStockId = stockIds.get(0).toString();
             List<String> firstStockDetails = buyDao.getBrandTypePrice(firstStockId);
             buyBrandField.setText(firstStockDetails.get(0)); // Assuming the brand is the first item in the list
@@ -315,7 +320,7 @@ public class TransactionForms {
             buyPriceField.setText(firstStockDetails.get(2)); // Assuming the price is the third item in the list
         }
 
-        stockIDDropdown.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        buyStockIDDropdown.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 String stockId = newValue.toString();
                 List<String> stockDetails = buyDao.getBrandTypePrice(stockId);
@@ -354,9 +359,9 @@ public class TransactionForms {
 
         // Stock ID Dropdown
         ObservableList<Object> stockIds = FXCollections.observableArrayList(sellDao.getAllStockIds());
-        stockIDDropdown.setItems(stockIds);
+        sellStockIDDropdown.setItems(stockIds);
         if (!stockIds.isEmpty()) {
-            stockIDDropdown.getSelectionModel().selectFirst();
+            sellStockIDDropdown.getSelectionModel().selectFirst();
             String firstStockId = stockIds.get(0).toString();
             List<String> firstStockDetails = sellDao.getBrandTypePrice(firstStockId);
             sellBrandField.setText(firstStockDetails.get(0)); // Assuming the brand is the first item in the list
@@ -364,7 +369,7 @@ public class TransactionForms {
             sellPriceField.setText(firstStockDetails.get(2)); // Assuming the price is the third item in the list
         }
 
-        stockIDDropdown.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        sellStockIDDropdown.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 String stockId = newValue.toString();
                 List<String> stockDetails = sellDao.getBrandTypePrice(stockId);
@@ -379,11 +384,12 @@ public class TransactionForms {
 
     @FXML
     public void initialize() {
-
-        buyInit();
-        sellInit();
-
-        searchBuyData();
-
+        try {
+            buyInit();
+            sellInit();
+            searchBuyData();
+        } catch (Exception e) {
+            Logger.getLogger(TransactionForms.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 }
