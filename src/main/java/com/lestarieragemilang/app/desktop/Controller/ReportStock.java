@@ -4,12 +4,15 @@ import java.sql.SQLException;
 
 import com.lestarieragemilang.app.desktop.Configurations.ReportConfiguration.JasperLoader;
 
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import com.lestarieragemilang.app.desktop.Entities.Stock;
 import com.lestarieragemilang.app.desktop.Utilities.StockTablePopulator;
+
 
 public class ReportStock {
 
@@ -47,6 +50,9 @@ public class ReportStock {
   private TableColumn<?, ?> stockWeightCol;
 
   @FXML
+  private TextField stockSearchField;
+
+  @FXML
   void printJasperStock(MouseEvent event) {
     try {
       JasperLoader loader = new JasperLoader();
@@ -58,10 +64,35 @@ public class ReportStock {
   }
 
   @FXML
+  void stockSearch() {
+    FilteredList<Stock> filteredData = new FilteredList<>(stockTable.getItems());
+    stockSearchField.textProperty()
+        .addListener((observable, oldValue, newValue) -> filteredData.setPredicate(stock -> {
+          if (newValue == null || newValue.isEmpty()) {
+            return true;
+          }
+          String lowerCaseFilter = newValue.toLowerCase();
+          if (stock.getCategoryBrand().toLowerCase().contains(lowerCaseFilter)
+              || stock.getCategoryType().toLowerCase().contains(lowerCaseFilter)
+              || stock.getCategorySize().toLowerCase().contains(lowerCaseFilter)
+              || stock.getCategoryWeight().toLowerCase().contains(lowerCaseFilter)
+              || stock.getCategoryUnit().toLowerCase().contains(lowerCaseFilter)
+              || stock.getQuantity().toString().toLowerCase().contains(lowerCaseFilter)
+              || stock.getPurchasePrice().toString().toLowerCase().contains(lowerCaseFilter)
+              || stock.getPurchaseSell().toString().toLowerCase().contains(lowerCaseFilter)) {
+            return true;
+          }
+          return false;
+        }));
+    stockTable.setItems(filteredData);
+  }
+  @FXML
   void initialize() throws SQLException {
     StockTablePopulator stockTablePopulator = new StockTablePopulator();
     stockTablePopulator.populateStockTable(stockIDCol, stockOnCategoryIDCol, stockBrandCol, stockTypeCol,
         stockSizeCol,
         stockWeightCol, stockUnitCol, stockQuantityCol, stockBuyPriceCol, stockSellPriceCol, stockTable);
+
+        stockSearch();
   }
 }
