@@ -10,6 +10,7 @@ import com.lestarieragemilang.app.desktop.Entities.Customer;
 import com.lestarieragemilang.app.desktop.Utilities.CustomerTablePopulator;
 import com.lestarieragemilang.app.desktop.Utilities.GenerateRandomID;
 
+import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

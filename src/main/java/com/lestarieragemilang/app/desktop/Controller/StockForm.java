@@ -1,11 +1,13 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.swing.JOptionPane;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.lestarieragemilang.app.desktop.Dao.CategoryDao;
 import com.lestarieragemilang.app.desktop.Dao.StockDao;
@@ -28,6 +30,9 @@ import javafx.scene.control.TextField;
 
 public class StockForm {
     GenerateRandomID gen = new GenerateRandomID();
+
+    @FXML
+    JFXButton editStockButtonText;
 
     // Stock Table
     @FXML
@@ -52,66 +57,103 @@ public class StockForm {
 
     @FXML
     void addStockButton(ActionEvent event) {
-        if (JOptionPane.showConfirmDialog(null, "Do you want to add this stock?", "Add Stock",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            List<Category> categories = categoryDao.getAllCategories();
+        List<Category> categories = categoryDao.getAllCategories();
 
-<<<<<<< HEAD
-            Stock stock = new Stock(gen.generateRandomId(), categoryIDDropDown.getValue(), categories.get(0).getCategoryBrand(),
-                    categories.get(0).getCategoryType(), stockQuantityField.getText(), categories.get(0).getCategorySize(),
-                    categories.get(0).getCategoryUnit(), stockBuyPriceField.getText(), categories.get(0).getCategoryWeight(),
-=======
-            Stock stock = new Stock(gen.generateRandomId(), categoryIDDropDown.getValue(),
-                    categories.get(0).getCategoryBrand(),
-                    categories.get(0).getCategoryType(), stockSizeField.getText(),
-                    categories.get(0).getCategoryWeight(),
-                    categories.get(0).getCategoryUnit(), stockQuantityField.getText(), stockBuyPriceField.getText(),
->>>>>>> a20b4e0ee86616262a478ba26f8c30b101b8ec68
-                    stockSellPriceField.getText());
-            stockDao.addStock(stock);
+        Stock stock = new Stock(
+                gen.generateRandomId(), // id stok
+                categoryIDDropDown.getValue(), // id kategori
+                categories.get(0).getCategoryBrand(), // merek
+                categories.get(0).getCategoryType(), // jenis
+                categories.get(0).getCategorySize(), // ukuran
+                categories.get(0).getCategoryWeight(), // berat
+                categories.get(0).getCategoryUnit(), // satuan
+                stockQuantityField.getText(), // stok
+                stockBuyPriceField.getText(), // harga beli
+                stockSellPriceField.getText() // harga jual
+        );
 
-            stockTable.getItems().add(stock);
+        stockDao.addStock(stock);
+
+        stockTable.setItems(FXCollections.observableArrayList());
+        stockTable.getItems().add(stock);
+
+        tablePopulator();
+    }
+
+    void tablePopulator() {
+        try {
+            stockTablePopulator.populateStockTable(stockIDCol, stockOnCategoryIDCol, stockBrandCol, stockTypeCol,
+                    stockSizeCol,
+                    stockWeightCol, stockUnitCol, stockQuantityCol, stockBuyPriceCol, stockSellPriceCol, stockTable);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     @FXML
     void editStockButton(ActionEvent event) {
-        if (JOptionPane.showConfirmDialog(null, "Do you want to edit this stock?", "Edit Stock",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            Stock selectedStock = stockTable.getSelectionModel().getSelectedItem();
+        Stock selectedStock = stockTable.getSelectionModel().getSelectedItem();
 
-            if (selectedStock != null) {
-                stockIDIncrement.setText(String.valueOf(selectedStock.getStockID()));
+        if (selectedStock != null) {
+            if (editStockButtonText.getText().equals("KONFIRMASI")) {
+                // Confirmation alert
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText(null);
+                alert.setContentText("Do you want to update the stock?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    
+                    selectedStock.setQuantity(stockQuantityField.getText());
+                    selectedStock.setPurchasePrice(stockBuyPriceField.getText());
+                    selectedStock.setPurchaseSell(stockSellPriceField.getText());
+
+                    stockDao.updateStock(selectedStock);
+
+                    stockTable.refresh();
+
+                    editStockButtonText.setText("EDIT");
+
+                    // Success alert
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                    successAlert.setTitle("Success");
+                    successAlert.setHeaderText(null);
+                    successAlert.setContentText("Stock has been successfully updated.");
+
+                    successAlert.showAndWait();
+                }
+            } else {
+                // Populate the fields with the selected stock's details
                 categoryIDDropDown.setValue(selectedStock.getStockOnCategoryID());
                 stockQuantityField.setText(selectedStock.getQuantity());
                 stockBuyPriceField.setText(selectedStock.getPurchasePrice());
                 stockSellPriceField.setText(selectedStock.getPurchaseSell());
-                stockQuantityField.setText(selectedStock.getQuantity());
+
+                editStockButtonText.setText("KONFIRMASI");
             }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a stock to edit.");
+
+            alert.showAndWait();
         }
     }
 
     @FXML
     void resetStockButton(ActionEvent event) {
-        if (JOptionPane.showConfirmDialog(null, "Do you want to reset the stock form?", "Reset Stock Form",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            stockIDIncrement.clear();
-            categoryIDDropDown.setValue(null);
-            stockQuantityField.clear();
-            stockBuyPriceField.clear();
-            stockSellPriceField.clear();
-            stockQuantityField.clear();
 
-            // populate stock table
-            try {
-                stockTablePopulator.populateStockTable(stockIDCol, stockOnCategoryIDCol, stockBrandCol, stockTypeCol,
-                        stockSizeCol,
-                        stockWeightCol, stockUnitCol, stockQuantityCol, stockBuyPriceCol, stockSellPriceCol,
-                        stockTable);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        editStockButtonText.setText("EDIT");
+        stockIDIncrement.clear();
+        categoryIDDropDown.setValue(null);
+        stockQuantityField.clear();
+        stockBuyPriceField.clear();
+        stockSellPriceField.clear();
+        stockQuantityField.clear();
+
+        stockTable.refresh();
     }
 
     @FXML
@@ -127,13 +169,17 @@ public class StockForm {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.YES) {
                 stockDao.removeStock(stock.getStockID());
-                stockTable.getItems().remove(stock);
+
+                List<Stock> stocks = new ArrayList<>(stockTable.getItems());
+                stocks.remove(stock);
+                stockTable.setItems(FXCollections.observableArrayList(stocks));
 
                 Alert infoAlert = new Alert(AlertType.INFORMATION,
                         "Stock with ID: " + stock.getStockID() + " deleted.");
                 infoAlert.setTitle("Stock Deleted");
                 infoAlert.setHeaderText(null);
                 infoAlert.showAndWait();
+
             } else {
                 Alert infoAlert = new Alert(AlertType.INFORMATION, "Deletion cancelled.");
                 infoAlert.setTitle("Deletion Cancelled");
@@ -168,16 +214,14 @@ public class StockForm {
 
     @FXML
     public void initialize() {
-        try {
-            stockTablePopulator.populateStockTable(stockIDCol, stockOnCategoryIDCol, stockBrandCol, stockTypeCol,
-                    stockSizeCol,
-                    stockWeightCol, stockUnitCol, stockQuantityCol, stockBuyPriceCol, stockSellPriceCol, stockTable);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        // populate stock table
+        tablePopulator();
 
+        // populate category dropdown
         ObservableList<Integer> stockList = FXCollections.observableArrayList(stockDao.getStockCategoryIds());
         categoryIDDropDown.setItems(stockList);
+
+        // search stock
         stockSearch();
     }
 }

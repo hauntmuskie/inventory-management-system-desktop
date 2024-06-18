@@ -54,15 +54,14 @@ public class StockDao extends DatabaseConfiguration {
     }
 
     public void updateStock(Stock stock) {
-        String sql = "UPDATE stocks SET category_id = ?, quantity = ?, purchase_price = ?, selling_price = ? WHERE stock_id = ?";
-
+        String sql = "UPDATE stocks SET quantity = ?, purchase_price = ?, selling_price = ? WHERE stock_id = ?";
+    
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, stock.getStockOnCategoryID());
-            stmt.setString(2, stock.getQuantity());
-            stmt.setString(3, stock.getPurchasePrice());
-            stmt.setString(4, stock.getPurchaseSell());
-            stmt.setInt(5, stock.getStockID());
-
+            stmt.setString(1, stock.getQuantity());
+            stmt.setString(2, stock.getPurchasePrice());
+            stmt.setString(3, stock.getPurchaseSell());
+            stmt.setInt(4, stock.getStockID());
+    
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

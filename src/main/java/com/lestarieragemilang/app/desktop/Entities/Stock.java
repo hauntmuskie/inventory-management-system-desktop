@@ -5,34 +5,18 @@ public class Stock {
     private String quantity, purchasePrice, purchaseSell, categoryBrand, categoryType, categorySize, categoryWeight,
             categoryUnit;
 
-    public Stock(int stockID, int stockOnCategoryID, String quantity, String purchasePrice, String purchaseSell,
-            String categoryBrand, String categoryType, String categorySize, String categoryWeight,
-            String categoryUnit) {
+    public Stock(int stockID, int stockOnCategoryID, String categoryBrand, String categoryType, String categorySize,
+            String categoryWeight, String categoryUnit, String quantity, String purchasePrice, String purchaseSell) {
         this.stockID = stockID;
         this.stockOnCategoryID = stockOnCategoryID;
-        this.quantity = quantity;
-        this.purchasePrice = purchasePrice;
-        this.purchaseSell = purchaseSell;
         this.categoryBrand = categoryBrand;
         this.categoryType = categoryType;
         this.categorySize = categorySize;
         this.categoryWeight = categoryWeight;
         this.categoryUnit = categoryUnit;
-    }
-
-    public Stock(int randomId, Integer value, int categoryBrand2, int categoryType2, String text, int categoryWeight2,
-            int categoryUnit2, String text2, String text3, String text4) {
-
-    this.stockID = randomId;
-    this.stockOnCategoryID = value;
-    this.quantity = text;
-    this.purchasePrice = text2;
-    this.purchaseSell = text3;
-    this.categoryBrand = String.valueOf(categoryBrand2);
-    this.categoryType = String.valueOf(categoryType2);
-    this.categorySize = text4;
-    this.categoryWeight = String.valueOf(categoryWeight2);
-    this.categoryUnit = String.valueOf(categoryUnit2);
+        this.quantity = quantity;
+        this.purchasePrice = purchasePrice;
+        this.purchaseSell = purchaseSell;
     }
 
     @Override

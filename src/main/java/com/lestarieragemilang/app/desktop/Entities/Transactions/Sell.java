@@ -3,110 +3,90 @@ package com.lestarieragemilang.app.desktop.Entities.Transactions;
 import java.time.LocalDate;
 
 public class Sell {
-    private LocalDate purchaseDate;
-    private String brand, productType, supplierName;
-    private int invoiceNumber, stockId, supplierId, quantity, price, subTotal, total;
-
-    public Sell(LocalDate purchaseDate, String brand, String productType, String supplierName, int invoiceNumber,
-            int stockId, int supplierId, int quantity, int price, int subTotal, int total) {
-        this.purchaseDate = purchaseDate;
+    private LocalDate sellDate;
+    private String brand, productType, customerName;
+    private int invoiceNumber, stockId, customerId, quantity;
+    private Double price, subTotal, total;
+    public Sell(LocalDate sellDate, String brand, String productType, String customerName, int invoiceNumber,
+            int stockId, int customerId, int quantity, Double price, Double subTotal, Double total) {
+        this.sellDate = sellDate;
         this.brand = brand;
         this.productType = productType;
-        this.supplierName = supplierName;
+        this.customerName = customerName;
         this.invoiceNumber = invoiceNumber;
         this.stockId = stockId;
-        this.supplierId = supplierId;
+        this.customerId = customerId;
         this.quantity = quantity;
         this.price = price;
         this.subTotal = subTotal;
         this.total = total;
     }
-
-    public LocalDate getPurchaseDate() {
-        return purchaseDate;
+    public LocalDate getSellDate() {
+        return sellDate;
     }
-
-    public void setPurchaseDate(LocalDate purchaseDate) {
-        this.purchaseDate = purchaseDate;
+    public void setSellDate(LocalDate sellDate) {
+        this.sellDate = sellDate;
     }
-
     public String getBrand() {
         return brand;
     }
-
     public void setBrand(String brand) {
         this.brand = brand;
     }
-
     public String getProductType() {
         return productType;
     }
-
     public void setProductType(String productType) {
         this.productType = productType;
     }
-
-    public String getSupplierName() {
-        return supplierName;
+    public String getCustomerName() {
+        return customerName;
     }
-
-    public void setSupplierName(String supplierName) {
-        this.supplierName = supplierName;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
-
     public int getInvoiceNumber() {
         return invoiceNumber;
     }
-
     public void setInvoiceNumber(int invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
     }
-
     public int getStockId() {
         return stockId;
     }
-
     public void setStockId(int stockId) {
         this.stockId = stockId;
     }
-
-    public int getSupplierId() {
-        return supplierId;
+    public int getCustomerId() {
+        return customerId;
     }
-
-    public void setSupplierId(int supplierId) {
-        this.supplierId = supplierId;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
-
     public int getQuantity() {
         return quantity;
     }
-
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    public int getPrice() {
+    public Double getPrice() {
         return price;
     }
-
-    public void setPrice(int price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
-
-    public int getSubTotal() {
+    public Double getSubTotal() {
         return subTotal;
     }
-
-    public void setSubTotal(int subTotal) {
+    public void setSubTotal(Double subTotal) {
         this.subTotal = subTotal;
     }
-
-    public int getTotal() {
+    public Double getTotal() {
         return total;
     }
-
-    public void setTotal(int total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
+
+    
 }

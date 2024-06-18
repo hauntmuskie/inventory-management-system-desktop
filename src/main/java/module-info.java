@@ -10,6 +10,7 @@ module com.lestarieragemilang.app.desktop {
     requires transitive javafx.graphics;
     requires transitive javafx.base;
     requires atlantafx.base;
+    
 
     opens com.lestarieragemilang.app.desktop to javafx.fxml;
     opens com.lestarieragemilang.app.desktop.Controller to javafx.fxml;

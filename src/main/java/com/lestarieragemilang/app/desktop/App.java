@@ -14,8 +14,6 @@ import java.util.logging.Logger;
 
 import atlantafx.base.theme.CupertinoLight;
 
-
-
 /**
  * JavaFX App
  */
@@ -30,7 +28,9 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
 
+        // Set the default theme
         Application.setUserAgentStylesheet(new CupertinoLight().getUserAgentStylesheet());
+
         try {
             scene = new Scene(loadFXML(LOGIN_FXML), WIDTH, HEIGHT);
             stage.initStyle(StageStyle.UNDECORATED);
