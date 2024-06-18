@@ -1,5 +1,11 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
+<<<<<<< HEAD
+import java.util.ArrayList;
+import java.util.List;
+
+=======
+>>>>>>> a20b4e0ee86616262a478ba26f8c30b101b8ec68
 import javax.swing.JOptionPane;
 
 import com.jfoenix.controls.JFXButton;
@@ -8,6 +14,7 @@ import com.lestarieragemilang.app.desktop.Entities.Supplier;
 import com.lestarieragemilang.app.desktop.Utilities.GenerateRandomID;
 import com.lestarieragemilang.app.desktop.Utilities.SupplierTablePopulator;
 
+import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,7 +53,15 @@ public class SupplierForm {
         SupplierDao supplierDao = new SupplierDao();
         supplierDao.addSupplier(supplier);
 
+        supplierTable.setItems(FXCollections.observableArrayList());
         supplierTable.getItems().add(supplier);
+
+        tablePopulator();
+    }
+
+    void tablePopulator() {
+        supplierTablePopulator.populateSupplierTable(supplierIDCol, supplierNameCol, supplierAddressCol,
+                supplierContactCol, supplierEmailCol, supplierTable);
     }
 
     @FXML
@@ -84,6 +99,8 @@ public class SupplierForm {
         } else {
             JOptionPane.showMessageDialog(null, "Please select a supplier to edit.");
         }
+
+        
     }
 
     @FXML
@@ -103,7 +120,11 @@ public class SupplierForm {
             Supplier supplier = supplierTable.getSelectionModel().getSelectedItem();
             SupplierDao supplierDao = new SupplierDao();
             supplierDao.removeSupplier(supplier);
-            supplierTable.getItems().remove(supplier);
+
+            List<Supplier> list = new ArrayList<>(supplierTable.getItems());
+            list.remove(supplier);
+            supplierTable.setItems(FXCollections.observableArrayList(list));
+
             JOptionPane.showMessageDialog(null, "Supplier deleted.");
         } else {
             JOptionPane.showMessageDialog(null, "Deletion cancelled.");

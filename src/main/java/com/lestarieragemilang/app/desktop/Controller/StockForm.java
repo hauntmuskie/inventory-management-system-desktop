@@ -56,11 +56,17 @@ public class StockForm {
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             List<Category> categories = categoryDao.getAllCategories();
 
+<<<<<<< HEAD
+            Stock stock = new Stock(gen.generateRandomId(), categoryIDDropDown.getValue(), categories.get(0).getCategoryBrand(),
+                    categories.get(0).getCategoryType(), stockQuantityField.getText(), categories.get(0).getCategorySize(),
+                    categories.get(0).getCategoryUnit(), stockBuyPriceField.getText(), categories.get(0).getCategoryWeight(),
+=======
             Stock stock = new Stock(gen.generateRandomId(), categoryIDDropDown.getValue(),
                     categories.get(0).getCategoryBrand(),
                     categories.get(0).getCategoryType(), stockSizeField.getText(),
                     categories.get(0).getCategoryWeight(),
                     categories.get(0).getCategoryUnit(), stockQuantityField.getText(), stockBuyPriceField.getText(),
+>>>>>>> a20b4e0ee86616262a478ba26f8c30b101b8ec68
                     stockSellPriceField.getText());
             stockDao.addStock(stock);
 
