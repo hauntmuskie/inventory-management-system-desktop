@@ -44,9 +44,10 @@ public class ReportCategory {
   void printJasperCategory(MouseEvent event) {
     try {
       JasperLoader loader = new JasperLoader();
-      loader.showJasperReport(
+      loader.showJasperReportCategory(
           "src/main/java/com/lestarieragemilang/app/desktop/Configurations/ReportConfiguration/category-list.jasper",
-          event);
+          categorySearchField.getText(), categorySearchField.getText(), categorySearchField.getText(),
+          categorySearchField.getText(), categorySearchField.getText(), event);
     } catch (Exception e) {
       e.printStackTrace();
     }

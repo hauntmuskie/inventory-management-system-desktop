@@ -13,7 +13,6 @@ import javafx.scene.input.MouseEvent;
 import com.lestarieragemilang.app.desktop.Entities.Stock;
 import com.lestarieragemilang.app.desktop.Utilities.StockTablePopulator;
 
-
 public class ReportStock {
 
   @FXML
@@ -56,7 +55,11 @@ public class ReportStock {
   void printJasperStock(MouseEvent event) {
     try {
       JasperLoader loader = new JasperLoader();
-      loader.showJasperReport("src/main/java/com/lestarieragemilang/app/desktop/Configurations/ReportConfiguration/stock-list.jasper", event);
+      loader.showJasperReportStock(
+          "src/main/java/com/lestarieragemilang/app/desktop/Configurations/ReportConfiguration/stock-list.jasper",
+          stockSearchField.getText(), stockSearchField.getText(), stockSearchField.getText(),
+          stockSearchField.getText(), stockSearchField.getText(), stockSearchField.getText(),
+          stockSearchField.getText(), stockSearchField.getText(), event);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -86,6 +89,7 @@ public class ReportStock {
         }));
     stockTable.setItems(filteredData);
   }
+
   @FXML
   void initialize() throws SQLException {
     StockTablePopulator stockTablePopulator = new StockTablePopulator();
@@ -93,6 +97,6 @@ public class ReportStock {
         stockSizeCol,
         stockWeightCol, stockUnitCol, stockQuantityCol, stockBuyPriceCol, stockSellPriceCol, stockTable);
 
-        stockSearch();
+    stockSearch();
   }
 }
