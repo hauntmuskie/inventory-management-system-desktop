@@ -5,10 +5,13 @@ import java.sql.SQLException;
 import com.lestarieragemilang.app.desktop.Configurations.ReportConfiguration.JasperLoader;
 import com.lestarieragemilang.app.desktop.Entities.Category;
 
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+
 import com.lestarieragemilang.app.desktop.Utilities.CategoryTablePopulator;
 
 public class ReportCategory {
@@ -35,6 +38,9 @@ public class ReportCategory {
   private TableColumn<?, ?> weightCategoryCol;
 
   @FXML
+  private TextField categorySearchField;
+
+  @FXML
   void printJasperCategory(MouseEvent event) {
     try {
       JasperLoader loader = new JasperLoader();
@@ -47,9 +53,32 @@ public class ReportCategory {
   }
 
   @FXML
+  void categorySearch() {
+    FilteredList<Category> filteredData = new FilteredList<>(categoryTable.getItems());
+    categorySearchField.textProperty()
+        .addListener((observable, oldValue, newValue) -> filteredData.setPredicate(category -> {
+          if (newValue == null || newValue.isEmpty()) {
+            return true;
+          }
+          String lowerCaseFilter = newValue.toLowerCase();
+          if (category.getCategoryBrand().toLowerCase().contains(lowerCaseFilter)
+              || category.getCategoryType().toLowerCase().contains(lowerCaseFilter)
+              || category.getCategorySize().toLowerCase().contains(lowerCaseFilter)
+              || category.getCategoryWeight().toLowerCase().contains(lowerCaseFilter)
+              || category.getCategoryUnit().toLowerCase().contains(lowerCaseFilter)) {
+            return true;
+          }
+          return false;
+        }));
+    categoryTable.setItems(filteredData);
+  }
+
+  @FXML
   void initialize() throws SQLException {
     CategoryTablePopulator categoryTablePopulator = new CategoryTablePopulator();
     categoryTablePopulator.populateCategoryTable(categoryIDCol, brandCategoryCol, typeCategoryCol, sizeCategoryCol,
         weightCategoryCol, unitCategoryCol, categoryTable);
+
+    categorySearch();
   }
 }
