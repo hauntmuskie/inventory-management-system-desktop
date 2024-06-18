@@ -3,30 +3,13 @@ package com.lestarieragemilang.app.desktop.Entities.Transactions;
 import java.time.LocalDate;
 
 public class Buy {
-
     private LocalDate purchaseDate;
     private String brand, productType, supplierName;
     private int invoiceNumber, stockId, supplierId, quantity;
-    private double price, subTotal, total;
-
-    public double getSubTotal() {
-        return subTotal;
-    }
-
-    public void setSubTotal(double subTotal) {
-        this.subTotal = subTotal;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
+    private double price, subTotal, priceTotal;
 
     public Buy(LocalDate purchaseDate, String brand, String productType, String supplierName, int invoiceNumber,
-            int stockId, int supplierId, int quantity, double price, double subTotal, double total) {
+            int stockId, int supplierId, int quantity, double price, double subTotal, double priceTotal) {
         this.purchaseDate = purchaseDate;
         this.brand = brand;
         this.productType = productType;
@@ -36,6 +19,8 @@ public class Buy {
         this.supplierId = supplierId;
         this.quantity = quantity;
         this.price = price;
+        this.subTotal = subTotal;
+        this.priceTotal = priceTotal;
     }
 
     public LocalDate getPurchaseDate() {
@@ -108,6 +93,22 @@ public class Buy {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public double getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public double getPriceTotal() {
+        return priceTotal;
+    }
+
+    public void setPriceTotal(double priceTotal) {
+        this.priceTotal = priceTotal;
     }
 
 }

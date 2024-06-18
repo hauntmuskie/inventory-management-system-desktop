@@ -1,7 +1,6 @@
 package com.lestarieragemilang.app.desktop.Dao.Transactions;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,17 +21,18 @@ public class BuyDao extends DatabaseConfiguration {
                 ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                Buy buy = new Buy(null, null, null, null, 0, 0, 0, 0, 0, 0, 0);
+                Buy buy = new Buy(null, null, null, null, 0, 0, 0, 0, 0.0, 0.0, 0.0);
                 buy.setPurchaseDate(rs.getDate("purchase_date").toLocalDate());
-                buy.setBrand(rs.getString("brand"));
-                buy.setProductType(rs.getString("product_type"));
-                buy.setSupplierName(rs.getString("supplier_name"));
                 buy.setInvoiceNumber(rs.getInt("invoice_number"));
                 buy.setStockId(rs.getInt("stock_id"));
-                buy.setSupplierId(rs.getInt("supplier_id"));
-                buy.setQuantity(rs.getInt("quantity"));
+                buy.setBrand(rs.getString("brand"));
+                buy.setProductType(rs.getString("product_type"));
                 buy.setPrice(rs.getDouble("price"));
-
+                buy.setSubTotal(rs.getDouble("sub_total"));
+                buy.setPriceTotal(rs.getDouble("price_total"));
+                buy.setSupplierId(rs.getInt("supplier_id"));
+                buy.setSupplierName(rs.getString("supplier_name"));
+                buy.setQuantity(rs.getInt("quantity"));
                 buys.add(buy);
             }
         } catch (SQLException e) {
@@ -43,20 +43,22 @@ public class BuyDao extends DatabaseConfiguration {
     }
 
     public void addBuy(Buy buy) {
-        String sql = "INSERT INTO purchasing (purchase_date, brand, product_type, supplier_name, invoice_number, stock_id, supplier_id, quantity, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO purchasing (purchase_date, invoice_number, stock_id, brand, product_type, price, sub_total, price_total, supplier_id, supplier_name, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setDate(1, java.sql.Date.valueOf(buy.getPurchaseDate()));
-            stmt.setString(2, buy.getBrand());
-            stmt.setString(3, buy.getProductType());
-            stmt.setString(4, buy.getSupplierName());
-            stmt.setInt(5, buy.getInvoiceNumber());
-            stmt.setInt(6, buy.getStockId());
-            stmt.setInt(7, buy.getSupplierId());
-            stmt.setInt(8, buy.getQuantity());
-            stmt.setDouble(9, buy.getPrice());
+            stmt.setInt(2, buy.getInvoiceNumber());
+            stmt.setInt(3, buy.getStockId());
+            stmt.setString(4, buy.getBrand());
+            stmt.setString(5, buy.getProductType());
+            stmt.setDouble(6, buy.getPrice());
+            stmt.setDouble(7, buy.getSubTotal());
+            stmt.setDouble(8, buy.getPriceTotal());
+            stmt.setInt(9, buy.getSupplierId());
+            stmt.setString(10, buy.getSupplierName());
+            stmt.setInt(11, buy.getQuantity());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -65,20 +67,22 @@ public class BuyDao extends DatabaseConfiguration {
     }
 
     public void updateBuy(Buy buy) {
-        String sql = "UPDATE purchasing SET brand = ?, product_type = ?, supplier_name = ?, invoice_number = ?, stock_id = ?, supplier_id = ?, quantity = ?, price = ? WHERE purchase_date = ?";
+        String sql = "UPDATE purchasing SET brand = ?, product_type = ?, price = ?, sub_total = ?, price_total = ?, supplier_id = ?, supplier_name = ?, quantity = ? WHERE purchase_date = ? AND invoice_number = ? AND stock_id = ?";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, buy.getBrand());
             stmt.setString(2, buy.getProductType());
-            stmt.setString(3, buy.getSupplierName());
-            stmt.setInt(4, buy.getInvoiceNumber());
-            stmt.setInt(5, buy.getStockId());
+            stmt.setDouble(3, buy.getPrice());
+            stmt.setDouble(4, buy.getSubTotal());
+            stmt.setDouble(5, buy.getPriceTotal());
             stmt.setInt(6, buy.getSupplierId());
-            stmt.setInt(7, buy.getQuantity());
-            stmt.setDouble(8, buy.getPrice());
+            stmt.setString(7, buy.getSupplierName());
+            stmt.setInt(8, buy.getQuantity());
             stmt.setDate(9, java.sql.Date.valueOf(buy.getPurchaseDate()));
+            stmt.setInt(10, buy.getInvoiceNumber());
+            stmt.setInt(11, buy.getStockId());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -86,13 +90,13 @@ public class BuyDao extends DatabaseConfiguration {
         }
     }
 
-    public void removeBuy(Date purchaseDate) {
-        String sql = "DELETE FROM purchasing WHERE purchase_date = ?";
+    public void removeBuy(Buy buy) {
+        String sql = "DELETE FROM purchasing WHERE invoice_number = ?";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setDate(1, purchaseDate);
+            stmt.setInt(1, buy.getInvoiceNumber());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -225,11 +229,11 @@ public class BuyDao extends DatabaseConfiguration {
     public List<Integer> getSupplierIds() {
         List<Integer> ids = new ArrayList<>();
         String sql = "SELECT supplier_id FROM suppliers";
-    
+
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery()) {
-    
+
             while (rs.next()) {
                 ids.add(rs.getInt("supplier_id"));
             }
@@ -263,11 +267,11 @@ public class BuyDao extends DatabaseConfiguration {
     public List<Integer> getAllStockIds() {
         List<Integer> ids = new ArrayList<>();
         String sql = "SELECT stock_id FROM stocks";
-    
+
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery()) {
-    
+
             while (rs.next()) {
                 ids.add(rs.getInt("stock_id"));
             }
@@ -280,13 +284,13 @@ public class BuyDao extends DatabaseConfiguration {
     public List<String> getBrandTypePrice(String stockId) {
         List<String> brandTypePrice = new ArrayList<>();
         String sql = "SELECT c.brand, c.product_type, s.purchase_price FROM stocks s INNER JOIN categories c ON s.category_id = c.category_id WHERE s.stock_id = ?";
-    
+
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
-    
+
             stmt.setString(1, stockId);
             ResultSet rs = stmt.executeQuery();
-    
+
             while (rs.next()) {
                 brandTypePrice.add(rs.getString("brand"));
                 brandTypePrice.add(rs.getString("product_type"));

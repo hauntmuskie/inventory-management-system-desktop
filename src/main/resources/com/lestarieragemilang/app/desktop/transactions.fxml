@@ -57,6 +57,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </JFXButton>
+                                          <JFXButton layoutX="295.0" layoutY="208.0" onAction="#calculateBuyTotalPrice" prefHeight="32.0" prefWidth="108.0" text="KALKULASI" />
                                        </children>
                                     </AnchorPane>
                                  </bottom>
@@ -230,7 +231,7 @@
                                                       <Font size="14.0" />
                                                    </font>
                                                 </JFXButton>
-                                                <JFXButton buttonType="RAISED" onAction="#editBuyButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="EDIT" textFill="WHITE">
+                                                <JFXButton fx:id="editBuyButtonText" buttonType="RAISED" onAction="#editBuyButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="EDIT" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -284,6 +285,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </JFXButton>
+                                          <JFXButton layoutX="286.0" layoutY="208.0" onAction="#calculateSellTotalPrice" prefHeight="32.0" prefWidth="108.0" text="KALKULASI" />
                                        </children>
                                     </AnchorPane>
                                  </bottom>
@@ -457,7 +459,7 @@
                                                       <Font size="14.0" />
                                                    </font>
                                                 </JFXButton>
-                                                <JFXButton buttonType="RAISED" onAction="#editSellButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="EDIT" textFill="WHITE">
+                                                <JFXButton fx:id="editSellButtonText" buttonType="RAISED" onAction="#editSellButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="EDIT" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>

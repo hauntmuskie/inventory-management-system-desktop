@@ -131,7 +131,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" onAction="#editCategoryButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="EDIT" textFill="WHITE">
+                              <JFXButton fx:id="editCategoryButtonText" buttonType="RAISED" onAction="#editCategoryButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="EDIT" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

@@ -6,9 +6,9 @@ public class Sell {
     private LocalDate sellDate;
     private String brand, productType, customerName;
     private int invoiceNumber, stockId, customerId, quantity;
-    private Double price, subTotal, total;
+    private Double price, subTotal, priceTotal;
     public Sell(LocalDate sellDate, String brand, String productType, String customerName, int invoiceNumber,
-            int stockId, int customerId, int quantity, Double price, Double subTotal, Double total) {
+            int stockId, int customerId, int quantity, Double price, Double subTotal, Double priceTotal) {
         this.sellDate = sellDate;
         this.brand = brand;
         this.productType = productType;
@@ -19,7 +19,7 @@ public class Sell {
         this.quantity = quantity;
         this.price = price;
         this.subTotal = subTotal;
-        this.total = total;
+        this.priceTotal = priceTotal;
     }
     public LocalDate getSellDate() {
         return sellDate;
@@ -81,12 +81,11 @@ public class Sell {
     public void setSubTotal(Double subTotal) {
         this.subTotal = subTotal;
     }
-    public Double getTotal() {
-        return total;
+    public Double getPriceTotal() {
+        return priceTotal;
     }
-    public void setTotal(Double total) {
-        this.total = total;
+    public void setPriceTotal(Double priceTotal) {
+        this.priceTotal = priceTotal;
     }
-
-    
+        
 }

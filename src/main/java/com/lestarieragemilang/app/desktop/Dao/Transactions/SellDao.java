@@ -22,7 +22,7 @@ public class SellDao extends DatabaseConfiguration {
 
             while (rs.next()) {
                 Sell sell = new Sell(null, null, null, null, 0, 0, 0, 0, 0.0, 0.0, 0.0);
-                sell.setSellDate(rs.getDate("sell_date").toLocalDate());
+                sell.setSellDate(rs.getDate("sale_date").toLocalDate());
                 sell.setBrand(rs.getString("brand"));
                 sell.setProductType(rs.getString("product_type"));
                 sell.setCustomerName(rs.getString("customer_name"));
@@ -30,8 +30,8 @@ public class SellDao extends DatabaseConfiguration {
                 sell.setStockId(rs.getInt("stock_id"));
                 sell.setQuantity(rs.getInt("quantity"));
                 sell.setPrice(rs.getDouble("price"));
-                sell.setSubTotal(rs.getDouble("subtotal"));
-                sell.setTotal(rs.getDouble("total"));
+                sell.setSubTotal(rs.getDouble("sub_total"));
+                sell.setPriceTotal(rs.getDouble("price_total"));
 
                 sells.add(sell);
             }
@@ -43,7 +43,7 @@ public class SellDao extends DatabaseConfiguration {
     }
 
     public void addSell(Sell sell) {
-        String sql = "INSERT INTO sales (sell_date, brand, product_type, customer_name, invoice_number, stock_id, quantity, price, subtotal, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO sales (sale_date, brand, product_type, customer_name, invoice_number, stock_id, quantity, price, sub_total, price_total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -57,7 +57,7 @@ public class SellDao extends DatabaseConfiguration {
             stmt.setInt(7, sell.getQuantity());
             stmt.setDouble(8, sell.getPrice());
             stmt.setDouble(9, sell.getSubTotal());
-            stmt.setDouble(10, sell.getTotal());
+            stmt.setDouble(10, sell.getPriceTotal());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -66,7 +66,7 @@ public class SellDao extends DatabaseConfiguration {
     }
 
     public void updateSell(Sell sell) {
-        String sql = "UPDATE sales SET brand = ?, product_type = ?, customer_name = ?, invoice_number = ?, stock_id = ?, quantity = ?, price = ?, subtotal = ?, total = ? WHERE sell_date = ?";
+        String sql = "UPDATE sales SET brand = ?, product_type = ?, customer_name = ?, invoice_number = ?, stock_id = ?, quantity = ?, price = ?, sub_total = ?, price_total = ? WHERE sale_date = ?";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -79,7 +79,7 @@ public class SellDao extends DatabaseConfiguration {
             stmt.setInt(6, sell.getQuantity());
             stmt.setDouble(7, sell.getPrice());
             stmt.setDouble(8, sell.getSubTotal());
-            stmt.setDouble(9, sell.getTotal());
+            stmt.setDouble(9, sell.getPriceTotal());
             stmt.setDate(10, java.sql.Date.valueOf(sell.getSellDate()));
 
             stmt.executeUpdate();
@@ -88,14 +88,14 @@ public class SellDao extends DatabaseConfiguration {
         }
     }
 
-    public void removeSell(java.sql.Date sellDate) {
-        String sql = "DELETE FROM sales WHERE sell_date = ?";
-
+    public void removeSell(Sell sell) {
+        String sql = "DELETE FROM sales WHERE invoice_number = ?";
+    
         try (Connection conn = getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setDate(1, sellDate);
-
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+    
+            stmt.setInt(1, sell.getInvoiceNumber());
+    
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

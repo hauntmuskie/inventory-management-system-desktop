@@ -2,11 +2,11 @@ package com.lestarieragemilang.app.desktop.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import javax.swing.JOptionPane;
-
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.lestarieragemilang.app.desktop.Dao.CategoryDao;
 import com.lestarieragemilang.app.desktop.Entities.Category;
@@ -18,6 +18,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -25,6 +27,9 @@ import javafx.scene.control.TextField;
 
 public class CategoryForm {
     GenerateRandomID gen = new GenerateRandomID();
+
+    @FXML
+    JFXButton editCategoryButtonText;
 
     // Category Table
     @FXML
@@ -70,12 +75,87 @@ public class CategoryForm {
         Category selectedCategory = categoryTable.getSelectionModel().getSelectedItem();
 
         if (selectedCategory != null) {
-            categoryIDIncrement.setText(String.valueOf(selectedCategory.getCategoryId()));
-            categoryBrandDropDown.setValue(selectedCategory.getCategoryBrand());
-            categoryTypeDropDown.setValue(selectedCategory.getCategoryType());
-            categorySizeDropDown.setValue(selectedCategory.getCategorySize());
-            categoryWeightDropDown.setValue(selectedCategory.getCategoryWeight());
-            categoryUnitDropDown.setValue(selectedCategory.getCategoryUnit());
+            if (editCategoryButtonText.getText().equals("KONFIRMASI")) {
+                // Confirmation alert
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText(null);
+                alert.setContentText("Do you want to update the category?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    selectedCategory.setCategoryBrand(categoryBrandDropDown.getValue());
+                    selectedCategory.setCategoryType(categoryTypeDropDown.getValue());
+                    selectedCategory.setCategorySize(categorySizeDropDown.getValue());
+                    selectedCategory.setCategoryWeight(categoryWeightDropDown.getValue());
+                    selectedCategory.setCategoryUnit(categoryUnitDropDown.getValue());
+
+                    CategoryDao categoryDao = new CategoryDao();
+                    categoryDao.updateCategory(selectedCategory);
+
+                    categoryTable.refresh();
+
+                    editCategoryButtonText.setText("EDIT");
+
+                    // Success alert
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                    successAlert.setTitle("Success");
+                    successAlert.setHeaderText(null);
+                    successAlert.setContentText("Category has been successfully updated.");
+
+                    successAlert.showAndWait();
+                }
+            } else {
+                // Populate the fields with the selected category's details
+                categoryBrandDropDown.setValue(selectedCategory.getCategoryBrand());
+                categoryTypeDropDown.setValue(selectedCategory.getCategoryType());
+                categorySizeDropDown.setValue(selectedCategory.getCategorySize());
+                categoryWeightDropDown.setValue(selectedCategory.getCategoryWeight());
+                categoryUnitDropDown.setValue(selectedCategory.getCategoryUnit());
+
+                editCategoryButtonText.setText("KONFIRMASI");
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a category to edit.");
+
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void removeCategoryButton(ActionEvent event) {
+        Category category = categoryTable.getSelectionModel().getSelectedItem();
+        if (category != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                    "Are you sure you want to delete the following category: \n" + category.toString() + "?",
+                    ButtonType.YES,
+                    ButtonType.NO);
+            alert.setTitle("Delete Category");
+            alert.setHeaderText(null);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.YES) {
+                CategoryDao categoryDao = new CategoryDao();
+                categoryDao.removeCategory(category);
+
+                List<Category> categories = new ArrayList<>(categoryTable.getItems());
+                categories.remove(category);
+                categoryTable.setItems(FXCollections.observableArrayList(categories));
+
+                Alert infoAlert = new Alert(Alert.AlertType.INFORMATION,
+                        "Category with ID: " + category.getCategoryId() + " deleted.");
+                infoAlert.setTitle("Category Deleted");
+                infoAlert.setHeaderText(null);
+                infoAlert.showAndWait();
+            } else {
+                Alert infoAlert = new Alert(Alert.AlertType.INFORMATION, "Deletion cancelled.");
+                infoAlert.setTitle("Deletion Cancelled");
+                infoAlert.setHeaderText(null);
+                infoAlert.showAndWait();
+            }
         }
     }
 
@@ -90,25 +170,6 @@ public class CategoryForm {
     }
 
     @FXML
-    void removeCategoryButton(ActionEvent event) {
-        if (JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this category?", "Delete Category",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            Category category = categoryTable.getSelectionModel().getSelectedItem();
-            CategoryDao categoryDao = new CategoryDao();
-            categoryDao.removeCategory(category);
-
-            List<Category> categories = new ArrayList<>(categoryTable.getItems());
-            categories.remove(category);
-            categoryTable.setItems(FXCollections.observableArrayList(categories));
-            
-            JOptionPane.showMessageDialog(null, "Category deleted.");
-        } else {
-            JOptionPane.showMessageDialog(null, "Deletion cancelled.");
-        }
-    }
-
-    @FXML
-
     private void setCategoryDropDownItems(List<Category> categories, Function<Category, String> categoryMapper,
             ComboBox<String> dropDown) {
         ObservableList<String> categoryItems = categories.stream()
