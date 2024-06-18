@@ -1,5 +1,6 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -49,10 +50,16 @@ public class CustomerForm {
         CustomerDao customerDao = new CustomerDao();
         customerDao.addCustomer(customer);
 
+        customerTable.setItems(FXCollections.observableArrayList());
         customerTable.getItems().add(customer);
 
-        resetField();
+        tablePopulator();
 
+    }
+
+    void tablePopulator() {
+        customerTablePopulator.populateCustomerTable(customerIDCol, customerNameCol, customerAddressCol,
+                customerContactCol, customerEmailCol, customerTable);
     }
 
     @FXML
@@ -90,7 +97,11 @@ public class CustomerForm {
             Customer customer = customerTable.getSelectionModel().getSelectedItem();
             CustomerDao customerDao = new CustomerDao();
             customerDao.removeCustomer(customer);
-            customerTable.getItems().remove(customer);
+
+            List<Customer> customers = new ArrayList<>(customerTable.getItems());
+            customers.remove(customer);
+            customerTable.setItems(FXCollections.observableArrayList(customers));
+
             JOptionPane.showMessageDialog(null, "Customer deleted.");
         } else {
             JOptionPane.showMessageDialog(null, "Deletion cancelled.");

@@ -58,8 +58,8 @@ public class StockForm {
             List<Category> categories = categoryDao.getAllCategories();
 
             Stock stock = new Stock(gen.generateRandomId(), categoryIDDropDown.getValue(), categories.get(0).getCategoryBrand(),
-                    categories.get(0).getCategoryType(), stockSizeField.getText(), categories.get(0).getCategoryWeight(),
-                    categories.get(0).getCategoryUnit(), stockQuantityField.getText(), stockBuyPriceField.getText(),
+                    categories.get(0).getCategoryType(), stockQuantityField.getText(), categories.get(0).getCategorySize(),
+                    categories.get(0).getCategoryUnit(), stockBuyPriceField.getText(), categories.get(0).getCategoryWeight(),
                     stockSellPriceField.getText());
             stockDao.addStock(stock);
 

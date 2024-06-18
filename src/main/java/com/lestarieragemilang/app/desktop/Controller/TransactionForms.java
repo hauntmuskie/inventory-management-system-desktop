@@ -7,7 +7,9 @@ import javax.swing.JOptionPane;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.lestarieragemilang.app.desktop.Dao.Transactions.BuyDao;
+import com.lestarieragemilang.app.desktop.Dao.Transactions.SellDao;
 import com.lestarieragemilang.app.desktop.Entities.Transactions.Buy;
+import com.lestarieragemilang.app.desktop.Entities.Transactions.Sell;
 import com.lestarieragemilang.app.desktop.Utilities.GenerateRandomID;
 import com.lestarieragemilang.app.desktop.Utilities.Transactions.BuyTablePopulator;
 
@@ -31,18 +33,112 @@ public class TransactionForms {
     @FXML
     private TableColumn<?, ?> buyBrandCol, buyDateCol, buyInvoiceCol, buyOnSupplierNameCol, buyPriceCol, buySubTotalCol,
             buyTotalCol, buyTypeCol;
+
+    @FXML
+    private TableColumn<?, ?> sellBrandCol, sellDateCol, sellInvoiceCol, sellOnSupplierNameCol, sellPriceCol,
+            sellSubTotalCol,
+            sellTotalCol, sellTypeCol;
     @FXML
     private TextField buyBrandField, buyInvoiceNumber, buyPriceField, buyTotalField, buyTypeField, supplierNameField,
             transactionBuySearchField;
+
+    @FXML
+    private TextField sellBrandField, sellInvoiceNumber, sellPriceField, sellTotalField, sellTypeField,
+            customerNameField,
+            transactionSellSearchField;
     @FXML
     private DatePicker buyDate;
+
+    @FXML
+    private DatePicker sellDate;
+
     @FXML
     private TableView<Buy> buyTable;
+
+    @FXML
+    private TableView<Sell> sellTable;
+
     @FXML
     private JFXComboBox<Object> stockIDDropdown;
+
     @FXML
     private JFXComboBox<Object> supplierIDDropDown;
 
+    // Sell Form
+    // @FXML
+    // void addSellButton(ActionEvent event) {
+    //     GenerateRandomID gen = new GenerateRandomID();
+    //     int invoiceNumber = gen.generateRandomId();
+
+    //     Sell newSell = new Sell(LocalDate.now(), sellBrandField.getText(), sellTypeField.getText(),
+    //             customerNameField.getText(),
+    //             invoiceNumber, Integer.parseInt(sellInvoiceNumber.getText()), 1,
+    //             Double.parseDouble(sellPriceField.getText()),
+    //             Double.parseDouble(sellTotalField.getText()), Double.parseDouble(sellTotalField.getText());
+
+    //     SellDao sellDao = new SellDao();
+    //     sellDao.addSell(newSell);
+
+    //     sellTable.getItems().add(newSell);
+
+    //     sellBrandField.clear();
+    //     sellTypeField.clear();
+    //     sellPriceField.clear();
+    //     sellTotalField.clear();
+    //     sellInvoiceNumber.clear();
+    //     customerNameField.clear();
+    //     sellDate.setValue(null);
+    // }
+
+    // @FXML
+    // void editSellButton() {
+    //     Sell selectedSell = sellTable.getSelectionModel().getSelectedItem();
+    //     if (selectedSell != null) {
+    //         sellBrandField.setText(selectedSell.getBrand());
+    //         sellTypeField.setText(selectedSell.getProductType());
+    //         sellPriceField.setText(String.valueOf(selectedSell.getPrice()));
+    //         sellTotalField.setText(String.valueOf(selectedSell.getTotal()));
+    //         sellInvoiceNumber.setText(String.valueOf(selectedSell.getInvoiceNumber()));
+    //         customerNameField.setText(selectedSell.getCustomerName());
+    //         sellDate.setValue(selectedSell.getSellDate());
+    //     } else {
+    //         JOptionPane.showMessageDialog(null, "Please select a row to edit");
+    //     }
+    // }
+
+    // @FXML
+    // void removeSellButton(ActionEvent event) {
+    //     Sell selectedSell = sellTable.getSelectionModel().getSelectedItem();
+    //     if (selectedSell != null) {
+    //         sellTable.getItems().remove(selectedSell);
+    //     } else {
+    //         JOptionPane.showMessageDialog(null, "Please select a row to remove");
+    //     }
+    // }
+
+    // @FXML
+    // void resetSellButton(ActionEvent event) {
+    //     sellBrandField.clear();
+    //     sellTypeField.clear();
+    //     sellPriceField.clear();
+    //     sellTotalField.clear();
+    //     sellInvoiceNumber.clear();
+    //     customerNameField.clear();
+    //     sellDate.setValue(null);
+    // }
+
+    // @FXML
+    // void confirmSellButton() {
+    //     Sell selectedSell = sellTable.getSelectionModel().getSelectedItem();
+    //     if (selectedSell != null) {
+    //         SellDao sellDao = new SellDao();
+    //         sellDao.updateSell(selectedSell);
+    //     } else {
+    //         JOptionPane.showMessageDialog(null, "Please select a row to confirm");
+    //     }
+    // }
+
+    // Buy Form
     @FXML
     void addBuyButton(ActionEvent event) {
         GenerateRandomID gen = new GenerateRandomID();
@@ -99,7 +195,13 @@ public class TransactionForms {
 
     @FXML
     void resetBuyButton(ActionEvent event) {
-
+        buyBrandField.clear();
+        buyTypeField.clear();
+        buyPriceField.clear();
+        buyTotalField.clear();
+        buyInvoiceNumber.clear();
+        supplierNameField.clear();
+        buyDate.setValue(null);
     }
 
     @FXML

@@ -1,5 +1,6 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -56,7 +57,11 @@ public class CategoryForm {
         categoryTable.setItems(FXCollections.observableArrayList());
         categoryTable.getItems().add(category);
 
-        // refresh
+        tablePopulator();
+
+    }
+
+    void tablePopulator() {
         categoryTablePopulator.populateCategoryTable(categoryIDCol, brandCategoryCol, typeCategoryCol, sizeCategoryCol,
                 weightCategoryCol, unitCategoryCol, categoryTable);
     }
@@ -92,7 +97,11 @@ public class CategoryForm {
             Category category = categoryTable.getSelectionModel().getSelectedItem();
             CategoryDao categoryDao = new CategoryDao();
             categoryDao.removeCategory(category);
-            categoryTable.getItems().remove(category);
+
+            List<Category> categories = new ArrayList<>(categoryTable.getItems());
+            categories.remove(category);
+            categoryTable.setItems(FXCollections.observableArrayList(categories));
+            
             JOptionPane.showMessageDialog(null, "Category deleted.");
         } else {
             JOptionPane.showMessageDialog(null, "Deletion cancelled.");

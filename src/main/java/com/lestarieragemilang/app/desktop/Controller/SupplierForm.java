@@ -1,5 +1,6 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -51,7 +52,15 @@ public class SupplierForm {
         SupplierDao supplierDao = new SupplierDao();
         supplierDao.addSupplier(supplier);
 
+        supplierTable.setItems(FXCollections.observableArrayList());
         supplierTable.getItems().add(supplier);
+
+        tablePopulator();
+    }
+
+    void tablePopulator() {
+        supplierTablePopulator.populateSupplierTable(supplierIDCol, supplierNameCol, supplierAddressCol,
+                supplierContactCol, supplierEmailCol, supplierTable);
     }
 
     @FXML
@@ -89,6 +98,8 @@ public class SupplierForm {
         } else {
             JOptionPane.showMessageDialog(null, "Please select a supplier to edit.");
         }
+
+        
     }
 
     @FXML
@@ -108,7 +119,11 @@ public class SupplierForm {
             Supplier supplier = supplierTable.getSelectionModel().getSelectedItem();
             SupplierDao supplierDao = new SupplierDao();
             supplierDao.removeSupplier(supplier);
-            supplierTable.getItems().remove(supplier);
+
+            List<Supplier> list = new ArrayList<>(supplierTable.getItems());
+            list.remove(supplier);
+            supplierTable.setItems(FXCollections.observableArrayList(list));
+
             JOptionPane.showMessageDialog(null, "Supplier deleted.");
         } else {
             JOptionPane.showMessageDialog(null, "Deletion cancelled.");
