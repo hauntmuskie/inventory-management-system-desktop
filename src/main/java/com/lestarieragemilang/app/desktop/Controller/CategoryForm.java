@@ -15,7 +15,6 @@ import com.lestarieragemilang.app.desktop.Utilities.GenerateRandomID;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -109,32 +108,24 @@ public class CategoryForm {
         dropDown.setItems(categoryItems);
     }
 
-    void searchData() {
-        CategoryDao categoryDao = new CategoryDao();
-        List<Category> categories = categoryDao.getAllCategories();
-        ObservableList<Category> categoryList = FXCollections.observableArrayList(categories);
-        FilteredList<Category> filteredData = new FilteredList<>(categoryList, p -> true);
-
-        categorySearchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(category -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                if (category.getCategoryBrand().toLowerCase().contains(lowerCaseFilter)
-                        || category.getCategoryType().toLowerCase().contains(lowerCaseFilter)
-                        || category.getCategorySize().toLowerCase().contains(lowerCaseFilter)
-                        || category.getCategoryWeight().toLowerCase().contains(lowerCaseFilter)
-                        || category.getCategoryUnit().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-                return false;
-            });
-        });
-
-        SortedList<Category> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(categoryTable.comparatorProperty());
-        categoryTable.setItems(sortedData);
+    void categorySearch() {
+        FilteredList<Category> filteredData = new FilteredList<>(categoryTable.getItems());
+        categorySearchField.textProperty()
+                .addListener((observable, oldValue, newValue) -> filteredData.setPredicate(category -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseFilter = newValue.toLowerCase();
+                    if (category.getCategoryBrand().toLowerCase().contains(lowerCaseFilter)
+                            || category.getCategoryType().toLowerCase().contains(lowerCaseFilter)
+                            || category.getCategorySize().toLowerCase().contains(lowerCaseFilter)
+                            || category.getCategoryWeight().toLowerCase().contains(lowerCaseFilter)
+                            || category.getCategoryUnit().toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    }
+                    return false;
+                }));
+        categoryTable.setItems(filteredData);
     }
 
     @FXML
@@ -142,7 +133,6 @@ public class CategoryForm {
         categoryTablePopulator.populateCategoryTable(categoryIDCol, brandCategoryCol, typeCategoryCol, sizeCategoryCol,
                 weightCategoryCol, unitCategoryCol, categoryTable);
 
-        searchData();
         CategoryDao categoryDao = new CategoryDao();
 
         setCategoryDropDownItems(categoryDao.getAllCategoryBrands(), Category::getCategoryBrand, categoryBrandDropDown);
@@ -151,6 +141,7 @@ public class CategoryForm {
         setCategoryDropDownItems(categoryDao.getAllCategoryWeights(), Category::getCategoryWeight,
                 categoryWeightDropDown);
         setCategoryDropDownItems(categoryDao.getAllCategoryUnits(), Category::getCategoryUnit, categoryUnitDropDown);
+        categorySearch();
 
     }
 
