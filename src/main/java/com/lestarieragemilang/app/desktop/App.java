@@ -12,6 +12,8 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import atlantafx.base.theme.CupertinoLight;
+
 /**
  * JavaFX App
  */
@@ -24,19 +26,25 @@ public class App extends Application {
     private static final Logger LOGGER = Logger.getLogger(App.class.getName());
 
     @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML(LOGIN_FXML), WIDTH, HEIGHT);
-        // addStylesheets("style.css");
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        // enableDrag(stage);
-        stage.show();
+    public void start(Stage stage) {
+
+        Application.setUserAgentStylesheet(new CupertinoLight().getUserAgentStylesheet());
+        try {
+            scene = new Scene(loadFXML(LOGIN_FXML), WIDTH, HEIGHT);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Failed to load the FXML file: " + LOGIN_FXML, e);
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "An unexpected error occurred", e);
+        }
     }
 
     @SuppressWarnings("unused")
     private void addStylesheets(String stylesheet) {
-    scene.getStylesheets().add(getClass().getResource(stylesheet).toExternalForm());
+        scene.getStylesheets().add(getClass().getResource(stylesheet).toExternalForm());
     }
 
     @SuppressWarnings("unused")
