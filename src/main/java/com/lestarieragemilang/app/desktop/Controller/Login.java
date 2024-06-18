@@ -50,7 +50,7 @@ public class Login extends AuthRepositories {
 
     Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
       LocalTime currentTime = LocalTime.now();
-      localTimeApp.setText("Current Time: " + currentTime.format(formatter));
+      localTimeApp.setText("Waktu saat ini: " + currentTime.format(formatter));
     }),
         new KeyFrame(Duration.seconds(1)));
     clock.setCycleCount(Timeline.INDEFINITE);
@@ -63,7 +63,7 @@ public class Login extends AuthRepositories {
         username.getText(), password.getText());
 
     if (validation) {
-      Redirect.page("dashboard", null);
+      Redirect.page("dashboard", anchorPane);
     } else {
       Alert confirmationDialog = new Alert(Alert.AlertType.ERROR);
       confirmationDialog.getDialogPane().setPrefSize(450, 250);

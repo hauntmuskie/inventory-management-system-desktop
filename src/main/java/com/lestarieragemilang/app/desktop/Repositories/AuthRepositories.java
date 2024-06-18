@@ -3,12 +3,15 @@ package com.lestarieragemilang.app.desktop.Repositories;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
+
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.sql.PreparedStatement;
 
 import com.lestarieragemilang.app.desktop.Configurations.DatabaseConfiguration;
 
 /**
- *  Auth Repositories
+ * Auth Repositories
  */
 public class AuthRepositories extends DatabaseConfiguration {
   /**
@@ -20,25 +23,31 @@ public class AuthRepositories extends DatabaseConfiguration {
    */
   protected boolean loginRepo(String username, String password) {
     Connection connection = getConnection();
-    String query = (
-      "SELECT * FROM auth WHERE username = ?" +
-      "AND password = ?"
-    );
-        
+    String query = ("SELECT * FROM auth WHERE username = ?");
+
     try {
       PreparedStatement statement = connection
-        .prepareStatement(query);
-                
+          .prepareStatement(query);
+
       statement.setString(1, username);
-      statement.setString(2, password);
 
       ResultSet resultSet = statement.executeQuery();
-      return resultSet.next() ? true : false;
+
+      if (resultSet.next()) {
+        String hashedPassword = resultSet.getString("password");
+
+        // Use BCrypt to check if the provided password matches the hashed password in
+        // the database
+        if (BCrypt.checkpw(password, hashedPassword)) {
+          return true;
+        }
+      }
+
+      return false;
 
     } catch (SQLException exception) {
       exception.printStackTrace();
       return false;
-
     }
   }
 

@@ -54,12 +54,13 @@
             <version>2.0.1</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+        <!-- https://mvnrepository.com/artifact/org.mindrot/jbcrypt -->
         <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>5.1.0</version>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
         </dependency>
+
 
     </dependencies>
     <build>

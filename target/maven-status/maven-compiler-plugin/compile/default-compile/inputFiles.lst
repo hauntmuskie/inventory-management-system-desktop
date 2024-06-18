@@ -17,6 +17,7 @@ C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\j
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\ReturnForm.java
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\StockDao.java
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Customer.java
+C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\HashingGen.java
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\Transactions\BuyTablePopulator.java
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Transactions\Buy.java
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Configurations\DatabaseConfiguration.java
