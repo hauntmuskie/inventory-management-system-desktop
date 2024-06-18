@@ -66,7 +66,7 @@ public class TransactionForms {
     private JFXComboBox<Object> buyStockIDDropdown, sellStockIDDropdown;
 
     @FXML
-    private JFXComboBox<Object> supplierIDDropDown;
+    private JFXComboBox<Object> supplierIDDropDown, customerIDDropDown;
 
     // Sell Form
     @FXML
@@ -379,6 +379,24 @@ public class TransactionForms {
             }
         });
 
+        // Customer ID Dropdown
+        ObservableList<Object> customerIds = FXCollections.observableArrayList(sellDao.getCustomerIds());
+        customerIDDropDown.setItems(customerIds);
+        if (!customerIds.isEmpty()) {
+            customerIDDropDown.getSelectionModel().selectFirst();
+            String firstCustomerId = customerIds.get(0).toString();
+            String firstCustomerName = sellDao.getCustomerName(firstCustomerId);
+            customerNameField.setText(firstCustomerName);
+        }
+
+        customerIDDropDown.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                String customerId = newValue.toString();
+                String customerName = sellDao.getCustomerName(customerId);
+                customerNameField.setText(customerName);
+            }
+        });
+        
         searchSellData();
     }
 
