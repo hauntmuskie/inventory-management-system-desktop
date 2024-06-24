@@ -7,10 +7,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.lestarieragemilang.app.desktop.Configurations.DatabaseConfiguration;
 import com.lestarieragemilang.app.desktop.Entities.Stock;
 
 public class StockDao extends DatabaseConfiguration {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(StockDao.class);
+
     public List<Stock> getAllStocks() {
         List<Stock> stocks = new ArrayList<>();
         String sql = "SELECT * FROM stocks";
@@ -20,17 +26,12 @@ public class StockDao extends DatabaseConfiguration {
                 ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                Stock stock = new Stock(0, 0, null, null, null, null, null, null, null, null);
-                stock.setStockID(rs.getInt("stock_id"));
-                stock.setStockOnCategoryID(rs.getInt("category_id"));
-                stock.setQuantity(rs.getString("quantity"));
-                stock.setPurchasePrice(rs.getString("purchase_price"));
-                stock.setPurchaseSell(rs.getString("selling_price"));
-
+                Stock stock = new Stock(rs.getInt("stock_id"), rs.getInt("category_id"), null, null, null, null, null,
+                        rs.getString("quantity"), rs.getString("purchase_price"), rs.getString("selling_price"));
                 stocks.add(stock);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("Failed to get all stocks", e);
 
         }
         return stocks;
@@ -55,58 +56,51 @@ public class StockDao extends DatabaseConfiguration {
 
     public void updateStock(Stock stock) {
         String sql = "UPDATE stocks SET quantity = ?, purchase_price = ?, selling_price = ? WHERE stock_id = ?";
-    
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, stock.getQuantity());
             stmt.setString(2, stock.getPurchasePrice());
             stmt.setString(3, stock.getPurchaseSell());
             stmt.setInt(4, stock.getStockID());
-    
+
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("Failed to update stock", e);
         }
     }
 
-    public void removeStock(int stockId) {
-        String sqlDeleteSales = "DELETE FROM sales WHERE stock_id = ?";
-        String sqlDeletePurchasing = "DELETE FROM purchasing WHERE stock_id = ?";
-        String sqlDeleteStocks = "DELETE FROM stocks WHERE stock_id = ?";
-    
-        try (Connection conn = getConnection(); 
-             PreparedStatement stmtSales = conn.prepareStatement(sqlDeleteSales);
-             PreparedStatement stmtPurchasing = conn.prepareStatement(sqlDeletePurchasing);
-             PreparedStatement stmtStocks = conn.prepareStatement(sqlDeleteStocks)) {
-    
-            // Delete referencing records in sales
-            stmtSales.setInt(1, stockId);
-            stmtSales.executeUpdate();
-    
-            // Delete referencing records in purchasing
-            stmtPurchasing.setInt(1, stockId);
-            stmtPurchasing.executeUpdate();
-    
-            // Delete record in stocks
-            stmtStocks.setInt(1, stockId);
-            stmtStocks.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public void removeStock(int... stockIds) {
+        String[] tables = {"sales", "purchasing", "stocks"};
+        for (int stockId : stockIds) {
+            for (String table : tables) {
+                deleteRecordById(table, stockId);
+            }
         }
-    }   
+    }
+
+    private void deleteRecordById(String tableName, int id) {
+        String sql = String.format("DELETE FROM %s WHERE stock_id = ?", tableName);
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.error("Failed to delete record from " + tableName, e);
+        }
+    }
 
     public List<Stock> searchStock(String keyword) {
         List<Stock> stocks = new ArrayList<>();
         String sql = "SELECT s.*, c.brand, c.product_type, c.size, c.weight, c.weight_unit " +
-                     "FROM stocks s " +
-                     "LEFT JOIN categories c ON s.category_id = c.category_id " +
-                     "WHERE s.stock_id LIKE ? OR s.category_id LIKE ? OR s.quantity LIKE ? OR s.purchase_price LIKE ? OR s.selling_price LIKE ? " +
-                     "OR c.brand LIKE ? OR c.product_type LIKE ? OR c.size LIKE ? OR c.weight LIKE ? OR c.weight_unit LIKE ?";
-    
+                "FROM stocks s " +
+                "LEFT JOIN categories c ON s.category_id = c.category_id " +
+                "WHERE s.stock_id LIKE ? OR s.category_id LIKE ? OR s.quantity LIKE ? OR s.purchase_price LIKE ? OR s.selling_price LIKE ? "
+                +
+                "OR c.brand LIKE ? OR c.product_type LIKE ? OR c.size LIKE ? OR c.weight LIKE ? OR c.weight_unit LIKE ?";
+
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             for (int i = 1; i <= 10; i++) {
                 stmt.setString(i, "%" + keyword + "%");
             }
-    
+
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Stock stock = new Stock(0, 0, null, null, null, null, null, null, null, null);
@@ -120,7 +114,7 @@ public class StockDao extends DatabaseConfiguration {
                     stock.setCategorySize(rs.getString("size"));
                     stock.setCategoryWeight(rs.getString("weight"));
                     stock.setCategoryUnit(rs.getString("weight_unit"));
-    
+
                     stocks.add(stock);
                 }
             }
@@ -174,7 +168,7 @@ public class StockDao extends DatabaseConfiguration {
                 +
                 "FROM stocks s " +
                 "INNER JOIN cat c ON s.category_id = c.category_id";
-    
+
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
