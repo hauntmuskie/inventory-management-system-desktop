@@ -53,7 +53,7 @@ public class App extends Application {
     private void enableDrag(Stage stage) {
         final double[] xOffset = new double[1];
         final double[] yOffset = new double[1];
-        final double dragThreshold = 50; // The area on top of the app where dragging is allowed
+        final double dragThreshold = 50;
 
         scene.setOnMousePressed(event -> {
             if (event.getSceneY() <= dragThreshold) {
