@@ -19,7 +19,7 @@ public class Buy {
         this.supplierId = supplierId;
         this.quantity = quantity;
         this.price = price;
-        this.subTotal = subTotal;
+        this.subTotal = this.quantity * this.price;
         this.priceTotal = priceTotal;
     }
 
@@ -96,7 +96,7 @@ public class Buy {
     }
 
     public double getSubTotal() {
-        return subTotal;
+        return quantity * price;
     }
 
     public void setSubTotal(double subTotal) {

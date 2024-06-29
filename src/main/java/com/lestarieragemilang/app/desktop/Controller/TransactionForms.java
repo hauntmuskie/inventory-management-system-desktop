@@ -262,16 +262,21 @@ public class TransactionForms {
         int invoiceNumber = gen.generateRandomId();
 
         Buy newBuy = new Buy(LocalDate.now(), buyBrandField.getText(), buyTypeField.getText(),
-                supplierNameField.getText(),
-                invoiceNumber, Integer.parseInt(buyStockIDDropdown.getValue().toString()),
-                Integer.parseInt(supplierIDDropDown.getValue().toString()), 1,
-                Double.parseDouble(buyPriceField.getText()),
-                Double.parseDouble(buyTotalField.getText()), Double.parseDouble(buyTotalField.getText()));
+            supplierNameField.getText(),
+            invoiceNumber, Integer.parseInt(buyStockIDDropdown.getValue().toString()),
+            Integer.parseInt(supplierIDDropDown.getValue().toString()), 
+            Integer.parseInt(buyTotalField.getText()),
+            Double.parseDouble(buyPriceField.getText()),
+            Double.parseDouble(buyTotalField.getText()),
+            Double.parseDouble(buyTotalField.getText())
+        );
 
         BuyDao buyDao = new BuyDao();
         buyDao.addBuy(newBuy);
 
         buyTable.getItems().add(newBuy);
+
+        buyTotalPrice.setText(Long.toString(buyDao.sumTotal()));
 
         buyBrandField.clear();
         buyTypeField.clear();
@@ -280,7 +285,6 @@ public class TransactionForms {
         buyInvoiceNumber.clear();
         supplierNameField.clear();
         buyDate.setValue(null);
-
     }
 
     @FXML
@@ -443,8 +447,10 @@ public class TransactionForms {
         BuyTablePopulator buyTablePopulator = new BuyTablePopulator();
 
         // Buy Table
-        buyTablePopulator.populateBuyTable(buyDateCol, buyBrandCol, buyTypeCol, buyOnSupplierNameCol, buyInvoiceCol,
-                buySubTotalCol, buyPriceCol, buyTotalCol, buyTable);
+        buyTablePopulator.populateBuyTable(
+            buyDateCol, buyBrandCol, buyTypeCol, buyOnSupplierNameCol,
+            buyInvoiceCol, buySubTotalCol, buyPriceCol, buyTotalCol, buyTable
+        );
 
         BuyDao buyDao = new BuyDao();
 
@@ -557,6 +563,9 @@ public class TransactionForms {
     @FXML
     public void initialize() {
         try {
+            BuyDao buyDao = new BuyDao();
+            buyTotalPrice.setText(Long.toString(buyDao.sumTotal()));
+            
             buyInit();
             sellInit();
             searchBuyData();

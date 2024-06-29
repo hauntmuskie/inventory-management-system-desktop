@@ -14,6 +14,7 @@ com\lestarieragemilang\app\desktop\Entities\Transactions\Buy.class
 com\lestarieragemilang\app\desktop\Utilities\StockTablePopulator.class
 com\lestarieragemilang\app\desktop\Configurations\ReportConfiguration\JasperLoader.class
 com\lestarieragemilang\app\desktop\Repositories\AuthRepositories.class
+com\lestarieragemilang\app\desktop\Utilities\HashingGen.class
 com\lestarieragemilang\app\desktop\Controller\Login.class
 com\lestarieragemilang\app\desktop\Dao\SupplierDao.class
 com\lestarieragemilang\app\desktop\Entities\Transactions\Sell.class

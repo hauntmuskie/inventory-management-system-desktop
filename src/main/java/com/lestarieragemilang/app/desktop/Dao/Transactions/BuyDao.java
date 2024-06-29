@@ -22,18 +22,18 @@ public class BuyDao extends DatabaseConfiguration {
 
             while (rs.next()) {
                 Buy buy = new Buy(null, null, null, null, 0, 0, 0, 0, 0.0, 0.0, 0.0);
+
                 buy.setPurchaseDate(rs.getDate("purchase_date").toLocalDate());
                 buy.setInvoiceNumber(rs.getInt("invoice_number"));
                 buy.setStockId(rs.getInt("stock_id"));
                 buy.setBrand(rs.getString("brand"));
                 buy.setProductType(rs.getString("product_type"));
                 buy.setPrice(rs.getDouble("price"));
-                buy.setSubTotal(rs.getDouble("sub_total"));
-                buy.setPriceTotal(rs.getDouble("price_total"));
                 buy.setSupplierId(rs.getInt("supplier_id"));
                 buy.setSupplierName(rs.getString("supplier_name"));
                 buy.setQuantity(rs.getInt("quantity"));
                 buys.add(buy);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,8 +42,27 @@ public class BuyDao extends DatabaseConfiguration {
         return buys;
     }
 
+    public long sumTotal() {
+        String sql = "SELECT SUM(quantity * price) FROM purchasing";
+        long totalCost = 0;
+
+        try (Connection conn = getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                totalCost = rs.getLong(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return totalCost;
+    }
+
     public void addBuy(Buy buy) {
-        String sql = "INSERT INTO purchasing (purchase_date, invoice_number, stock_id, brand, product_type, price, sub_total, price_total, supplier_id, supplier_name, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO purchasing (purchase_date, invoice_number, stock_id, brand, product_type, price, supplier_id, supplier_name, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -54,13 +73,11 @@ public class BuyDao extends DatabaseConfiguration {
             stmt.setString(4, buy.getBrand());
             stmt.setString(5, buy.getProductType());
             stmt.setDouble(6, buy.getPrice());
-            stmt.setDouble(7, buy.getSubTotal());
-            stmt.setDouble(8, buy.getPriceTotal());
-            stmt.setInt(9, buy.getSupplierId());
-            stmt.setString(10, buy.getSupplierName());
-            stmt.setInt(11, buy.getQuantity());
-
+            stmt.setInt(7, buy.getSupplierId());
+            stmt.setString(8, buy.getSupplierName());
+            stmt.setInt(9, buy.getQuantity());
             stmt.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

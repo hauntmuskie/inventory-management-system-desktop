@@ -46,7 +46,7 @@
                                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                              </columnResizePolicy>
                                           </TableView>
-                                          <TextField fx:id="buyTotalPrice" layoutX="91.0" layoutY="196.0" style="-fx-background-radius: 5;" AnchorPane.bottomAnchor="20.0" />
+                                          <TextField fx:id="buyTotalPrice" disable="true" layoutX="91.0" layoutY="196.0" style="-fx-background-radius: 5;" AnchorPane.bottomAnchor="20.0" />
                                           <Label alignment="CENTER" layoutX="20.0" layoutY="195.0" text="TOTAL" AnchorPane.bottomAnchor="20.0">
                                              <font>
                                                 <Font size="18.0" />

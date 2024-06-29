@@ -1,41 +1,41 @@
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Stock.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\SupplierForm.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\ReportStock.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\Transactions\BuyDao.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\CustomerTablePopulator.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\SupplierTablePopulator.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\ReportCustomer.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\ReportSupplier.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\Transactions\StockItem.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\CustomerDao.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\Transactions\SellTablePopulator.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\CategoryDao.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\Report.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Helpers\Alerting.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\App.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\Dashboard.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\ReturnForm.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\StockDao.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Customer.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\HashingGen.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\Transactions\BuyTablePopulator.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Transactions\Buy.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Configurations\DatabaseConfiguration.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Configurations\ReportConfiguration\JasperLoader.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\StockForm.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\module-info.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\TransactionForms.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Repositories\AuthRepositories.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\StockTablePopulator.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\SupplierDao.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\ReportCategory.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\CustomerForm.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\CategoryForm.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Supplier.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\CategoryTablePopulator.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Category.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\Login.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\GenerateRandomID.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\Redirect.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Transactions\Sell.java
-C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\Transactions\SellDao.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\Dashboard.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\ReportCategory.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Transactions\Buy.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\ReportStock.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\StockDao.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\Transactions\StockItem.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Category.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Configurations\DatabaseConfiguration.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\SupplierForm.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\module-info.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\SupplierDao.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\CategoryDao.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Helpers\Alerting.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\CustomerDao.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\StockForm.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\CustomerTablePopulator.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\TransactionForms.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\Transactions\BuyDao.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\App.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Repositories\AuthRepositories.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\StockTablePopulator.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\Transactions\SellDao.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Configurations\ReportConfiguration\JasperLoader.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\ReportSupplier.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Customer.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\Report.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\ReportCustomer.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\HashingGen.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\ReturnForm.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\Transactions\BuyTablePopulator.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Supplier.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Stock.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\CategoryTablePopulator.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Transactions\Sell.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\Login.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\CustomerForm.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\GenerateRandomID.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\Redirect.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\SupplierTablePopulator.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\Transactions\SellTablePopulator.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\CategoryForm.java
