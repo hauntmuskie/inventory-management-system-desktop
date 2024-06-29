@@ -165,9 +165,9 @@ public class StockDao extends DatabaseConfiguration {
     public List<Stock> getStocksWithCategoryDetails() {
         List<Stock> stocks = new ArrayList<>();
         String sql = "SELECT s.stock_id, s.category_id, c.brand, c.product_type, c.size, c.weight, c.weight_unit, s.quantity as stok, s.purchase_price as hargaBeli, s.selling_price as hargaJual "
-                +
-                "FROM stocks s " +
-                "INNER JOIN cat c ON s.category_id = c.category_id";
+                        +
+                        "FROM stocks s " +
+                        "INNER JOIN categories c ON s.category_id = c.category_id";
 
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             try (ResultSet rs = stmt.executeQuery()) {

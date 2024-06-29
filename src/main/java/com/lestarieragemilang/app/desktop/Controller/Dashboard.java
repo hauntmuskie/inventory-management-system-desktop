@@ -2,34 +2,41 @@ package com.lestarieragemilang.app.desktop.Controller;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Optional;
 
 import animatefx.animation.FadeIn;
 import animatefx.animation.FadeOut;
+
 import com.lestarieragemilang.app.desktop.Utilities.Redirect;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Dashboard {
-
     @FXML
     private AnchorPane setScene;
 
     @FXML
     private Label localTimeApp;
+
+    @FXML
+    private BorderPane bp;
 
     @FXML
     public void initialize() throws IOException {
@@ -38,8 +45,9 @@ public class Dashboard {
         showDateAndTime();
     }
 
-    void showDateAndTime(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy '['HH:mm:ss']'", new Locale.Builder().setLanguageTag("id").build());
+    void showDateAndTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy '['HH:mm:ss']'",
+                new Locale.Builder().setLanguageTag("id").build());
 
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             LocalDateTime currentTime = LocalDateTime.now();
@@ -59,10 +67,7 @@ public class Dashboard {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            new FadeOut(setScene).play();
-            PauseTransition delay = new PauseTransition(Duration.seconds(1));
-            delay.setOnFinished(e -> System.exit(0));
-            delay.play();
+            System.exit(0);
         }
     }
 
@@ -108,4 +113,55 @@ public class Dashboard {
         new FadeIn(setScene).play();
     }
 
+    @FXML
+    void setSceneAI(MouseEvent event) throws IOException {
+        Redirect.page("ai", setScene);
+        new FadeIn(setScene).play();
+    }
+
+    @FXML
+    void setSceneLogin(MouseEvent event) {
+        Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Konfirmasi");
+        confirmationAlert.setHeaderText(null);
+        confirmationAlert.setContentText("Apakah anda yakin ingin kembali ke halaman login?");
+
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                // Load the login FXML
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/com/lestarieragemilang/app/desktop/login.fxml"));
+                Parent loginRoot = loader.load();
+
+                // Get the current stage
+                Stage stage = (Stage) setScene.getScene().getWindow();
+
+                // Create a new scene with the login view
+                Scene loginScene = new Scene(loginRoot);
+
+                // Apply fade out animation to current scene
+                new FadeOut(setScene).play();
+
+                // Use PauseTransition to delay the scene change
+                PauseTransition delay = new PauseTransition(Duration.seconds(0.5));
+                delay.setOnFinished(e -> {
+                    // Set the new scene
+                    stage.setScene(loginScene);
+
+                    // Apply fade in animation to new scene
+                    new FadeIn(loginRoot).play();
+                });
+                delay.play();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Gagal memuat halaman login: " + e.getMessage());
+                alert.showAndWait();
+            }
+        }
+    }
 }

@@ -6,14 +6,16 @@ module com.lestarieragemilang.app.desktop {
     requires com.jfoenix;
     requires java.logging;
     requires java.sql;
-    requires transitive javafx.graphics;
-    requires transitive javafx.base;
     requires atlantafx.base;
     requires com.zaxxer.hikari;
     requires org.slf4j;
     requires jbcrypt;
     requires jasperreports;
     requires animatefx;
+    requires cohere.java;
+    requires java.dotenv;
+    requires transitive javafx.graphics;
+    requires transitive javafx.base;
 
     opens com.lestarieragemilang.app.desktop to javafx.fxml;
     opens com.lestarieragemilang.app.desktop.Controller to javafx.fxml;

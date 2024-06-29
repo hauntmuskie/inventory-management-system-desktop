@@ -5,6 +5,7 @@ com\lestarieragemilang\app\desktop\Configurations\DatabaseConfiguration.class
 com\lestarieragemilang\app\desktop\Entities\Category.class
 com\lestarieragemilang\app\desktop\Controller\CategoryForm.class
 com\lestarieragemilang\app\desktop\Entities\Supplier.class
+com\lestarieragemilang\app\desktop\AI\CohereAI.class
 com\lestarieragemilang\app\desktop\Controller\ReportCategory.class
 com\lestarieragemilang\app\desktop\Utilities\SupplierTablePopulator.class
 com\lestarieragemilang\app\desktop\Helpers\Alerting.class
@@ -12,6 +13,7 @@ com\lestarieragemilang\app\desktop\Entities\Customer.class
 com\lestarieragemilang\app\desktop\Controller\CustomerForm.class
 com\lestarieragemilang\app\desktop\Entities\Transactions\Buy.class
 com\lestarieragemilang\app\desktop\Utilities\StockTablePopulator.class
+com\lestarieragemilang\app\desktop\Controller\AI.class
 com\lestarieragemilang\app\desktop\Configurations\ReportConfiguration\JasperLoader.class
 com\lestarieragemilang\app\desktop\Utilities\HashingGen.class
 com\lestarieragemilang\app\desktop\Dao\SupplierDao.class

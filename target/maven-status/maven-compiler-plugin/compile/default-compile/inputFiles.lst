@@ -14,6 +14,7 @@ C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\j
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Helpers\Alerting.java
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\App.java
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\Dashboard.java
+C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\AI\CohereAI.java
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\ReturnForm.java
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\AuthController.java
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\StockDao.java
@@ -35,6 +36,7 @@ C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\j
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Supplier.java
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\CategoryTablePopulator.java
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Category.java
+C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\AI.java
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\GenerateRandomID.java
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\Redirect.java
 C:\Users\Operation\Documents\Code\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Transactions\Sell.java
