@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lestarieragemilang.app.desktop.Controller.Data">
+   <children>
+      <AnchorPane prefHeight="585.0" prefWidth="970.0">
+         <children>
+            <TabPane layoutX="153.0" layoutY="132.0" prefHeight="200.0" prefWidth="200.0" style="-fx-tab-min-width: 124; -fx-tab-min-height: 50;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <tabs>
+                  <Tab closable="false" text="KATEGORI">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane layoutX="108.0" layoutY="99.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <center>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" layoutX="47.0" layoutY="111.0" prefHeight="50.0" prefWidth="450.0" spacing="15.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="200.0">
+                                             <children>
+                                                <Label text="CARI DATA">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField prefHeight="30.0" prefWidth="250.0" style="-fx-background-radius: 5;" />
+                                                <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" layoutX="20.0" layoutY="17.0" spacing="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                             <children>
+                                                <HBox>
+                                                   <children>
+                                                      <VBox prefHeight="133.0" prefWidth="116.0" spacing="5.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="ID KATEGORI">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="MEREK">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="JENIS">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="200.0" spacing="20.0">
+                                                         <children>
+                                                            <TextField fx:id="categoryIDIncrement" disable="true" promptText="Auto-Generated" style="-fx-background-radius: 5;" />
+                                                            <JFXComboBox fx:id="categoryBrandDropDown" prefHeight="25.0" prefWidth="200.0" />
+                                                            <JFXComboBox fx:id="categoryTypeDropDown" prefHeight="25.0" prefWidth="200.0" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox>
+                                                   <children>
+                                                      <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="5.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="UKURAN">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="BERAT">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <Label text="SATUAN">
+                                                               <font>
+                                                                  <Font size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="BASELINE_CENTER" prefHeight="133.0" prefWidth="200.0" spacing="20.0">
+                                                         <children>
+                                                            <JFXComboBox fx:id="categorySizeDropDown" prefHeight="25.0" prefWidth="200.0" />
+                                                            <JFXComboBox fx:id="categoryWeightDropDown" prefHeight="25.0" prefWidth="200.0" />
+                                                            <JFXComboBox fx:id="categoryUnitDropDown" prefHeight="25.0" prefWidth="200.0" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_RIGHT" layoutX="687.0" layoutY="143.0" prefHeight="33.0" prefWidth="392.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
+                                             <children>
+                                                <JFXButton buttonType="RAISED" onAction="#resetCategoryButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="RESET" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton buttonType="RAISED" onAction="#addCategoryButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="TAMBAH" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton buttonType="RAISED" onAction="#editCategoryButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="EDIT" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton buttonType="RAISED" onAction="#removeCategoryButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="HAPUS" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </center>
+                                 <bottom>
+                                    <AnchorPane prefHeight="260.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <TableView fx:id="categoryTable" layoutX="164.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn fx:id="categoryIDCol" prefWidth="75.0" text="ID KATEGORI" />
+                                                <TableColumn fx:id="brandCategoryCol" prefWidth="75.0" text="MEREK" />
+                                                <TableColumn fx:id="typeCategoryCol" prefWidth="75.0" text="JENIS" />
+                                                <TableColumn fx:id="sizeCategoryCol" prefWidth="75.0" text="UKURAN" />
+                                                <TableColumn fx:id="weightCategoryCol" prefWidth="75.0" text="BERAT" />
+                                                <TableColumn fx:id="unitCategoryCol" prefWidth="75.0" text="SATUAN" />
+                                             </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </bottom>
+                              </BorderPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="PELANGGAN">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane layoutX="108.0" layoutY="99.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <center>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" layoutX="47.0" layoutY="111.0" prefHeight="50.0" prefWidth="450.0" spacing="15.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="200.0">
+                                             <children>
+                                                <Label text="CARI DATA">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField prefHeight="32.0" prefWidth="250.0" style="-fx-background-radius: 5;" />
+                                                <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                          <HBox layoutX="20.0" layoutY="17.0" spacing="100.0">
+                                             <children>
+                                                <HBox spacing="30.0">
+                                                   <children>
+                                                      <VBox prefHeight="133.0" prefWidth="180.0" spacing="5.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="140.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="ID PELANGGAN">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="NAMA PELANGGAN">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="KONTAK">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="20.0">
+                                                         <children>
+                                                            <TextField fx:id="customerIDIncrement" disable="true" promptText="Auto-Generated" style="-fx-background-radius: 5;" />
+                                                            <TextField fx:id="customerNameField" style="-fx-background-radius: 5;" />
+                                                            <TextField fx:id="customerContactField" style="-fx-background-radius: 5;" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox spacing="30.0">
+                                                   <children>
+                                                      <VBox prefHeight="133.0" prefWidth="116.0" spacing="5.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="ALAMAT">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="EMAIL">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="20.0">
+                                                         <children>
+                                                            <TextField fx:id="customerAddressField" style="-fx-background-radius: 5;" />
+                                                            <TextField fx:id="customerEmailField" style="-fx-background-radius: 5;" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_RIGHT" layoutX="687.0" layoutY="143.0" prefHeight="33.0" prefWidth="392.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
+                                             <children>
+                                                <JFXButton buttonType="RAISED" onAction="#resetCustomerButton" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="RESET" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton buttonType="RAISED" onAction="#addCustomerButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="TAMBAH" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton buttonType="RAISED" onAction="#editCustomerButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="EDIT" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton buttonType="RAISED" onAction="#removeCustomerButton" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="HAPUS" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </center>
+                                 <bottom>
+                                    <AnchorPane prefHeight="260.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <TableView fx:id="customerTable" layoutX="164.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn fx:id="customerIDCol" prefWidth="75.0" text="ID PELANGGAN" />
+                                                <TableColumn fx:id="customerNameCol" prefWidth="75.0" text="NAMA PELANGGAN" />
+                                                <TableColumn fx:id="customerContactCol" prefWidth="75.0" text="KONTAK" />
+                                                <TableColumn fx:id="customerAddressCol" prefWidth="75.0" text="ALAMAT" />
+                                                <TableColumn fx:id="customerEmailCol" prefWidth="75.0" text="EMAIL" />
+                                             </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </bottom>
+                              </BorderPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="PEMBELIAN">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane layoutX="108.0" layoutY="99.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <bottom>
+                                    <AnchorPane prefHeight="260.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <TableView layoutX="164.0" layoutY="47.0" prefHeight="200.0" prefWidth="930.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="TANGGAL PEMBELIAN" />
+                                                <TableColumn prefWidth="75.0" text="FAKTUR" />
+                                                <TableColumn prefWidth="75.0" text="NAMA SUPPLIER" />
+                                                <TableColumn prefWidth="75.0" text="MEREK" />
+                                                <TableColumn prefWidth="75.0" text="JENIS" />
+                                                <TableColumn prefWidth="75.0" text="JUMLAH" />
+                                                <TableColumn prefWidth="75.0" text="HARGA" />
+                                                <TableColumn prefWidth="75.0" text="SUB TOTAL" />
+                                             </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                          <TextField layoutX="91.0" layoutY="196.0" style="-fx-background-radius: 5;" AnchorPane.bottomAnchor="20.0" />
+                                          <Label alignment="CENTER" layoutX="20.0" layoutY="195.0" text="TOTAL" AnchorPane.bottomAnchor="20.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXButton buttonType="RAISED" layoutX="826.0" layoutY="193.0" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="KONFIRMASI" textFill="WHITE" AnchorPane.bottomAnchor="20.0">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </JFXButton>
+                                       </children>
+                                    </AnchorPane>
+                                 </bottom>
+                                 <top>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" layoutX="47.0" layoutY="111.0" prefHeight="50.0" prefWidth="450.0" spacing="15.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="200.0">
+                                             <children>
+                                                <Label text="CARI DATA">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField prefHeight="32.0" prefWidth="250.0" style="-fx-background-radius: 5;" />
+                                                <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="Cari" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                          <HBox layoutX="20.0" layoutY="17.0" spacing="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                                             <children>
+                                                <HBox prefHeight="133.0" prefWidth="173.0">
+                                                   <children>
+                                                      <VBox prefHeight="133.0" prefWidth="116.0" spacing="5.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="TANGGAL PEMBELIAN">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="FAKTUR">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="BASELINE_LEFT" prefHeight="85.0" prefWidth="131.0" spacing="20.0">
+                                                         <children>
+                                                            <DatePicker />
+                                                            <TextField disable="true" promptText="Auto-Generated" style="-fx-background-radius: 5;" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox>
+                                                   <children>
+                                                      <VBox alignment="BASELINE_LEFT" prefHeight="136.0" prefWidth="116.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="ID STOK">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="MEREK">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="JENIS">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <Label text="HARGA">
+                                                               <font>
+                                                                  <Font size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="10.0">
+                                                         <children>
+                                                            <JFXComboBox prefHeight="25.0" prefWidth="127.0" />
+                                                            <TextField disable="true" style="-fx-background-radius: 5;" />
+                                                            <TextField disable="true" style="-fx-background-radius: 5;" />
+                                                            <TextField disable="true" style="-fx-background-radius: 5;" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="136.0" prefWidth="250.0">
+                                                   <children>
+                                                      <VBox alignment="BASELINE_LEFT" prefHeight="130.0" prefWidth="140.0" spacing="5.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="ID SUPPLIER">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="NAMA SUPPLIER">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="20.0">
+                                                         <children>
+                                                            <JFXComboBox prefHeight="25.0" prefWidth="127.0" />
+                                                            <TextField disable="true" style="-fx-background-radius: 5;" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="133.0" prefWidth="170.0">
+                                                   <children>
+                                                      <VBox alignment="BASELINE_CENTER" prefHeight="128.0" prefWidth="130.0" spacing="5.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label alignment="BASELINE_CENTER" text="JUMLAH">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="BASELINE_CENTER">
+                                                         <children>
+                                                            <TextField alignment="BASELINE_CENTER" style="-fx-background-radius: 5;" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_RIGHT" layoutX="687.0" layoutY="143.0" prefHeight="33.0" prefWidth="392.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
+                                             <children>
+                                                <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="Tambah Data" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="Edit Data" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="Hapus Data" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </top>
+                              </BorderPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="PENJUALAN">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane layoutX="108.0" layoutY="99.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <bottom>
+                                    <AnchorPane prefHeight="260.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <TableView layoutX="164.0" layoutY="47.0" prefHeight="200.0" prefWidth="930.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="TANGGAL PENJUALAN" />
+                                                <TableColumn prefWidth="75.0" text="FAKTUR" />
+                                                <TableColumn prefWidth="75.0" text="NAMA PELANGGAN" />
+                                                <TableColumn prefWidth="75.0" text="MEREK" />
+                                                <TableColumn prefWidth="75.0" text="JENIS" />
+                                                <TableColumn prefWidth="75.0" text="JUMLAH" />
+                                                <TableColumn prefWidth="75.0" text="HARGA" />
+                                                <TableColumn prefWidth="75.0" text="SUB TOTAL" />
+                                             </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                          <TextField layoutX="91.0" layoutY="196.0" style="-fx-background-radius: 5;" AnchorPane.bottomAnchor="20.0" />
+                                          <Label alignment="CENTER" layoutX="20.0" layoutY="195.0" text="TOTAL" AnchorPane.bottomAnchor="20.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXButton buttonType="RAISED" layoutX="826.0" layoutY="193.0" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="KONFIRMASI" textFill="WHITE" AnchorPane.bottomAnchor="20.0">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </JFXButton>
+                                       </children>
+                                    </AnchorPane>
+                                 </bottom>
+                                 <top>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" layoutX="47.0" layoutY="111.0" prefHeight="50.0" prefWidth="450.0" spacing="15.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="200.0">
+                                             <children>
+                                                <Label text="CARI DATA">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField prefHeight="32.0" prefWidth="250.0" style="-fx-background-radius: 5;" />
+                                                <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="Cari" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                          <HBox layoutX="20.0" layoutY="17.0" spacing="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                                             <children>
+                                                <HBox prefHeight="133.0" prefWidth="173.0">
+                                                   <children>
+                                                      <VBox prefHeight="133.0" prefWidth="116.0" spacing="5.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="TANGGAL PEMBELIAN">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="FAKTUR">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="BASELINE_LEFT" prefHeight="85.0" prefWidth="131.0" spacing="20.0">
+                                                         <children>
+                                                            <DatePicker />
+                                                            <TextField disable="true" style="-fx-background-radius: 5;" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox>
+                                                   <children>
+                                                      <VBox alignment="BASELINE_LEFT" prefHeight="136.0" prefWidth="116.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="ID STOK">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="MEREK">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="JENIS">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <Label text="HARGA">
+                                                               <font>
+                                                                  <Font size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="10.0">
+                                                         <children>
+                                                            <JFXComboBox prefHeight="25.0" prefWidth="127.0" />
+                                                            <TextField disable="true" style="-fx-background-radius: 5;" />
+                                                            <TextField disable="true" style="-fx-background-radius: 5;" />
+                                                            <TextField disable="true" style="-fx-background-radius: 5;" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="136.0" prefWidth="250.0">
+                                                   <children>
+                                                      <VBox alignment="BASELINE_LEFT" prefHeight="130.0" prefWidth="140.0" spacing="5.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="ID PELANGGAN">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="NAMA PELANGGAN">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="20.0">
+                                                         <children>
+                                                            <JFXComboBox prefHeight="25.0" prefWidth="127.0" />
+                                                            <TextField disable="true" style="-fx-background-radius: 5;" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="133.0" prefWidth="170.0">
+                                                   <children>
+                                                      <VBox alignment="BASELINE_CENTER" prefHeight="128.0" prefWidth="130.0" spacing="5.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label alignment="BASELINE_CENTER" text="JUMLAH">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="BASELINE_CENTER">
+                                                         <children>
+                                                            <TextField alignment="BASELINE_CENTER" style="-fx-background-radius: 5;" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_RIGHT" layoutX="687.0" layoutY="143.0" prefHeight="33.0" prefWidth="392.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
+                                             <children>
+                                                <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="Tambah Data" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="Edit Data" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="Hapus Data" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </top>
+                              </BorderPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="PENGEMBALIAN">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane layoutX="108.0" layoutY="99.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <center>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" layoutX="47.0" layoutY="111.0" prefHeight="50.0" prefWidth="450.0" spacing="15.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="200.0">
+                                             <children>
+                                                <Label text="CARI DATA">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField prefHeight="32.0" prefWidth="250.0" style="-fx-background-radius: 5;" />
+                                                <JFXButton fx:id="searchStockButton" buttonType="RAISED" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="Cari" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                          <HBox layoutX="20.0" layoutY="17.0" spacing="30.0">
+                                             <children>
+                                                <HBox>
+                                                   <children>
+                                                      <VBox prefHeight="133.0" prefWidth="116.0" spacing="5.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="TANGGAL PENGEMBALIAN">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="ID PENGEMBALIAN">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="20.0">
+                                                         <children>
+                                                            <DatePicker />
+                                                            <TextField disable="true" promptText="Auto-Generated" style="-fx-background-radius: 5;" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox>
+                                                   <children>
+                                                      <VBox alignment="CENTER" prefHeight="133.0" prefWidth="116.0" spacing="5.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="JENIS PENGEMBALIAN">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="CENTER" prefHeight="133.0" prefWidth="116.0" spacing="20.0">
+                                                         <children>
+                                                            <JFXRadioButton text="PEMBELIAN" />
+                                                            <JFXRadioButton text="PENJUALAN" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox>
+                                                   <children>
+                                                      <VBox prefHeight="133.0" prefWidth="116.0" spacing="5.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                                               <children>
+                                                                  <Label text="FAKTUR">
+                                                                     <font>
+                                                                        <Font size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </HBox>
+                                                            <Label text="ALASAN">
+                                                               <font>
+                                                                  <Font size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="CENTER" prefHeight="133.0" prefWidth="116.0" spacing="20.0">
+                                                         <children>
+                                                            <JFXComboBox prefHeight="25.0" prefWidth="122.0" />
+                                                            <TextArea prefHeight="200.0" prefWidth="200.0" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_RIGHT" layoutX="687.0" layoutY="143.0" prefHeight="33.0" prefWidth="392.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
+                                             <children>
+                                                <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="Tambah Data" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="Edit Data" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="Hapus Data" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </center>
+                                 <bottom>
+                                    <AnchorPane prefHeight="260.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <TableView layoutX="164.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" text="TANGGAL PENGEMBALIAN" />
+                                                <TableColumn prefWidth="75.0" text="ID PENGEMBALIAN" />
+                                                <TableColumn prefWidth="75.0" text="FAKTUR" />
+                                                <TableColumn prefWidth="75.0" text="JENIS PENGEMBALIAN" />
+                                                <TableColumn prefWidth="75.0" text="TOTAL BARANG" />
+                                                <TableColumn prefWidth="75.0" text="TOTAL HARGA" />
+                                                <TableColumn prefWidth="75.0" text="ALASAN" />
+                                             </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </bottom>
+                              </BorderPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

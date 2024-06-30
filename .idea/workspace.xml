@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="unnamed" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b28d5bad-36f2-4a9a-bbc1-6af57575f4ea" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lestarieragemilang/app/desktop/AI/CohereAI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lestarieragemilang/app/desktop/AI/Gemini.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lestarieragemilang/app/desktop/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lestarieragemilang/app/desktop/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lestarieragemilang/app/desktop/Controller/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lestarieragemilang/app/desktop/Controller/AI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lestarieragemilang/app/desktop/Controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lestarieragemilang/app/desktop/Controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lestarieragemilang/app/desktop/Dao/AuthDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lestarieragemilang/app/desktop/Dao/AuthDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lestarieragemilang/app/desktop/ai.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lestarieragemilang/app/desktop/ai.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lestarieragemilang/app/desktop/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lestarieragemilang/app/desktop/dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lestarieragemilang/app/desktop/data.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/lestarieragemilang/app/desktop/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/lestarieragemilang/app/desktop/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/AI/CohereAI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/AI/Gemini.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Configurations/DatabaseConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Configurations/DatabaseConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Configurations/ReportConfiguration/JasperLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Configurations/ReportConfiguration/JasperLoader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Configurations/ReportConfiguration/category-list.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Configurations/ReportConfiguration/customer-list.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Configurations/ReportConfiguration/stock-list.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Configurations/ReportConfiguration/supplier-list.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/AI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/AI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/CategoryForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/CategoryForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/CustomerForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/CustomerForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/Dashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/Dashboard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/Report.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/Report.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/ReportCategory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/ReportCategory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/ReportCustomer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/ReportCustomer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/ReportStock.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/ReportStock.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/ReportSupplier.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/ReportSupplier.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/ReturnForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/ReturnForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/StockForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/StockForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/SupplierForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/SupplierForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/TransactionForms.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Controller/TransactionForms.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/AuthDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/AuthDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/CategoryDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/CategoryDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/CustomerDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/CustomerDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/StockDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/StockDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/SupplierDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/SupplierDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/Transactions/BuyDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/Transactions/BuyDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/Transactions/SellDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/Transactions/SellDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/Transactions/StockItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Dao/Transactions/StockItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Entities/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Entities/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Entities/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Entities/Customer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Entities/Stock.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Entities/Stock.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Entities/Supplier.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Entities/Supplier.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Entities/Transactions/Buy.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Entities/Transactions/Buy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Entities/Transactions/Sell.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Entities/Transactions/Sell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/CategoryTablePopulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/CategoryTablePopulator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/CustomerTablePopulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/CustomerTablePopulator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/GenerateRandomID.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/GenerateRandomID.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/HashingGen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/HashingGen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/Redirect.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/Redirect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/StockTablePopulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/StockTablePopulator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/SupplierTablePopulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/SupplierTablePopulator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/Transactions/BuyTablePopulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/Transactions/BuyTablePopulator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/Transactions/SellTablePopulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/Utilities/Transactions/SellTablePopulator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/ai.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/ai.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/data.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lestarieragemilang/app/desktop/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2ibnYlLwqLKK2Cvj7bnSxWaPxIV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Operation/Documents/Code/inventory-management-system-desktop",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.lestarieragemilang.app.desktop.Main" />
+      <module name="inventory-management-system-desktop" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lestarieragemilang.app.desktop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b28d5bad-36f2-4a9a-bbc1-6af57575f4ea" name="Changes" comment="" />
+      <created>1719768197483</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1719768197483</updated>
+      <workItem from="1719768198250" duration="1186000" />
+      <workItem from="1719769410185" duration="2218000" />
+      <workItem from="1719771665497" duration="516000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
