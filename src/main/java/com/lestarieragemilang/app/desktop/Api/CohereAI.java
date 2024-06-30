@@ -1,4 +1,4 @@
-package com.lestarieragemilang.app.desktop.AI;
+package com.lestarieragemilang.app.desktop.Api;
 
 import com.cohere.api.Cohere;
 import com.cohere.api.core.ApiError;

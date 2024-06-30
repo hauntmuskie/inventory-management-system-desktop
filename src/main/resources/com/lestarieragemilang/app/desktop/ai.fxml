@@ -1,27 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="570.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lestarieragemilang.app.desktop.Controller.AI">
+
+<VBox xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lestarieragemilang.app.desktop.Controller.AI">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Laporan dengan AI" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <ScrollPane layoutX="10.0" layoutY="249.0" prefHeight="380.0" prefWidth="1180.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
-         <content>
-            <Label fx:id="aiResponse" />
-         </content>
-      </ScrollPane>
-      <JFXButton fx:id="aiGenerateButton" layoutX="14.0" layoutY="119.0" onAction="#aiGenerateReportButton" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: #E9E7DF; -fx-background-radius: 15; -fx-border-color: gray; -fx-border-radius: 15; -fx-cursor: hand;" text="Hasilkan Laporan ֎" wrapText="true" AnchorPane.leftAnchor="10.0">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </JFXButton>
+      <AnchorPane prefHeight="570.0" prefWidth="970.0">
+         <children>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="53.0" prefWidth="943.0" spacing="30.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <children>
+                  <Separator maxWidth="20.0" orientation="VERTICAL" prefHeight="20.0" prefWidth="2.0" />
+                  <Label text="Laporan dengan AI">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Separator maxWidth="20.0" orientation="VERTICAL" prefHeight="20.0" prefWidth="2.0" />
+               </children>
+            </HBox>
+            <ScrollPane layoutX="10.0" layoutY="249.0" prefHeight="380.0" prefWidth="1180.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-background-color: #E9E7DF; -fx-border-color: #E9E7DF;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+               <content>
+                  <Label fx:id="aiResponse" style="-fx-font-family: sans;" wrapText="true">
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </content>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </ScrollPane>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="120.0" prefHeight="40.0" prefWidth="425.0" spacing="10.0" AnchorPane.leftAnchor="10.0">
+               <children>
+                  <JFXButton fx:id="aiGenerateButton" buttonType="RAISED" onAction="#aiGenerateReportButton" prefHeight="40.0" prefWidth="133.0" style="-fx-background-color: #E9E7DF; -fx-background-radius: 15; -fx-border-radius: 15; -fx-cursor: hand;" text="Hasilkan Laporan ֎" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <Label prefHeight="17.0" prefWidth="212.0" text="Output yang dihasilkan menggunakan..." underline="true" />
+                  <ImageView fitHeight="35.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/Images/Gemini_language_model_logo.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</VBox>

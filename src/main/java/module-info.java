@@ -9,15 +9,16 @@ module com.lestarieragemilang.app.desktop {
     requires java.base;
     requires com.jfoenix;
     requires java.logging;
-    requires java.sql;
     requires com.zaxxer.hikari;
     requires org.slf4j;
     requires animatefx;
     requires com.google.gson;
     requires org.commonmark;
     requires org.jfxtras.styles.jmetro;
+    requires transitive java.sql;
     requires transitive javafx.graphics;
     requires transitive javafx.base;
+    requires okhttp3;
 
     opens com.lestarieragemilang.app.desktop to javafx.fxml;
     opens com.lestarieragemilang.app.desktop.Controller to javafx.fxml;

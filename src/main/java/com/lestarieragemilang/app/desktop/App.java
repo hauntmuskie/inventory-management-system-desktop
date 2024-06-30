@@ -22,12 +22,11 @@ import jfxtras.styles.jmetro.Style;
 public class App extends Application {
 
     private static Scene scene;
-    private static final String LOGIN_FXML = "dashboard";
+    private static final String LOGIN_FXML = "login";
     private static final int WIDTH = 1200;
     private static final int HEIGHT = 650;
     private static final Logger LOGGER = Logger.getLogger(App.class.getName());
 
-    
     @Override
     public void start(Stage stage) {
         try {
