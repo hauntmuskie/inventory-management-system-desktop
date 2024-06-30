@@ -46,18 +46,22 @@
                                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                              </columnResizePolicy>
                                           </TableView>
-                                          <TextField fx:id="buyTotalPrice" disable="true" layoutX="91.0" layoutY="196.0" style="-fx-background-radius: 5;" AnchorPane.bottomAnchor="20.0" />
-                                          <Label alignment="CENTER" layoutX="20.0" layoutY="195.0" text="TOTAL" AnchorPane.bottomAnchor="20.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <JFXButton buttonType="RAISED" layoutX="826.0" layoutY="193.0" onAction="#confirmBuyButton" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="KONFIRMASI" textFill="WHITE" AnchorPane.bottomAnchor="20.0">
+                                          <HBox alignment="CENTER" layoutX="20.0" layoutY="215.0" spacing="15.0">
+                                             <children>
+                                                <Label alignment="CENTER" text="TOTAL">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="buyTotalPrice" disable="true" prefHeight="30.0" style="-fx-background-radius: 7;" />
+                                                <JFXButton buttonType="RAISED" onAction="#calculateBuyTotalPrice" prefHeight="30.0" prefWidth="108.0" style="-fx-background-color: #131313; -fx-text-fill: #E8E7DE; -fx-background-radius: 10; -fx-font-weight: bold; -fx-border-radius: 10; -fx-cursor: hand;" text="KALKULASI" />
+                                             </children>
+                                          </HBox>
+                                          <JFXButton buttonType="RAISED" layoutX="826.0" layoutY="215.0" onAction="#confirmBuyButton" prefHeight="30.0" prefWidth="125.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-font-weight: bold; -fx-border-radius: 10;" text="KONFIRMASI" textFill="WHITE" AnchorPane.bottomAnchor="15.0">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </JFXButton>
-                                          <JFXButton layoutX="295.0" layoutY="208.0" onAction="#calculateBuyTotalPrice" prefHeight="32.0" prefWidth="108.0" text="KALKULASI" />
                                        </children>
                                     </AnchorPane>
                                  </bottom>
@@ -72,7 +76,7 @@
                                                    </font>
                                                 </Label>
                                                 <TextField fx:id="transactionBuySearchField" prefHeight="32.0" prefWidth="250.0" style="-fx-background-radius: 5;" />
-                                                <JFXButton buttonType="RAISED" onAction="#searchDataBuyAction" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
+                                                <JFXButton buttonType="RAISED" onAction="#searchDataBuyAction" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-font-weight: bold; -fx-border-radius: 10;" text="CARI" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -108,7 +112,7 @@
                                                       </VBox>
                                                       <VBox alignment="BASELINE_LEFT" prefHeight="85.0" prefWidth="131.0" spacing="20.0">
                                                          <children>
-                                                            <DatePicker fx:id="buyDate" disable="true" />
+                                                            <DatePicker fx:id="buyDate" disable="true" style="-fx-background-radius: 7;" />
                                                             <TextField fx:id="buyInvoiceNumber" disable="true" promptText="Auto-Generated" style="-fx-background-radius: 5;" />
                                                          </children>
                                                       </VBox>
@@ -154,10 +158,10 @@
                                                       </VBox>
                                                       <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="10.0">
                                                          <children>
-                                                            <JFXComboBox fx:id="buyStockIDDropdown" prefHeight="25.0" prefWidth="127.0" />
-                                                            <TextField fx:id="buyBrandField" disable="true" style="-fx-background-radius: 5;" />
-                                                            <TextField fx:id="buyTypeField" disable="true" style="-fx-background-radius: 5;" />
-                                                            <TextField fx:id="buyPriceField" disable="true" style="-fx-background-radius: 5;" />
+                                                            <JFXComboBox fx:id="buyStockIDDropdown" prefHeight="25.0" prefWidth="127.0" style="-fx-background-radius: 7; -fx-border-radius: 7;" />
+                                                            <TextField fx:id="buyBrandField" disable="true" style="-fx-background-radius: 7;" />
+                                                            <TextField fx:id="buyTypeField" disable="true" style="-fx-background-radius: 7;" />
+                                                            <TextField fx:id="buyPriceField" disable="true" style="-fx-background-radius: 7;" />
                                                          </children>
                                                       </VBox>
                                                    </children>
@@ -189,8 +193,8 @@
                                                       </VBox>
                                                       <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="20.0">
                                                          <children>
-                                                            <JFXComboBox fx:id="supplierIDDropDown" prefHeight="25.0" prefWidth="127.0" />
-                                                            <TextField fx:id="supplierNameField" disable="true" style="-fx-background-radius: 5;" />
+                                                            <JFXComboBox fx:id="supplierIDDropDown" prefHeight="25.0" prefWidth="127.0" style="-fx-background-radius: 7; -fx-border-radius: 7;" />
+                                                            <TextField fx:id="supplierNameField" disable="true" style="-fx-background-radius: 7;" />
                                                          </children>
                                                       </VBox>
                                                    </children>
@@ -212,7 +216,7 @@
                                                       </VBox>
                                                       <VBox alignment="BASELINE_CENTER">
                                                          <children>
-                                                            <TextField fx:id="buyTotalField" alignment="BASELINE_CENTER" style="-fx-background-radius: 5;" />
+                                                            <TextField fx:id="buyTotalField" alignment="BASELINE_CENTER" style="-fx-background-radius: 7;" />
                                                          </children>
                                                       </VBox>
                                                    </children>
@@ -221,22 +225,22 @@
                                           </HBox>
                                           <HBox alignment="CENTER_RIGHT" layoutX="687.0" layoutY="143.0" prefHeight="33.0" prefWidth="392.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
                                              <children>
-                                                <JFXButton buttonType="RAISED" onAction="#resetBuyButton" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="RESET" textFill="WHITE">
+                                                <JFXButton buttonType="RAISED" onAction="#resetBuyButton" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-font-weight: bold; -fx-border-radius: 10;" text="RESET" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </JFXButton>
-                                                <JFXButton buttonType="RAISED" onAction="#addBuyButton" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="TAMBAH" textFill="WHITE">
+                                                <JFXButton buttonType="RAISED" onAction="#addBuyButton" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-font-weight: bold; -fx-border-radius: 10;" text="TAMBAH" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </JFXButton>
-                                                <JFXButton fx:id="editBuyButtonText" buttonType="RAISED" onAction="#editBuyButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="EDIT" textFill="WHITE">
+                                                <JFXButton fx:id="editBuyButtonText" buttonType="RAISED" onAction="#editBuyButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-font-weight: bold; -fx-border-radius: 10;" text="EDIT" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </JFXButton>
-                                                <JFXButton buttonType="RAISED" onAction="#removeBuyButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="HAPUS" textFill="WHITE">
+                                                <JFXButton buttonType="RAISED" onAction="#removeBuyButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-font-weight: bold; -fx-border-radius: 10;" text="HAPUS" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -274,18 +278,22 @@
                                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                              </columnResizePolicy>
                                           </TableView>
-                                          <TextField fx:id="sellTotalPrice" disable="true" layoutX="91.0" layoutY="196.0" style="-fx-background-radius: 5;" AnchorPane.bottomAnchor="20.0" />
-                                          <Label alignment="CENTER" layoutX="20.0" layoutY="195.0" text="TOTAL" AnchorPane.bottomAnchor="20.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <JFXButton buttonType="RAISED" layoutX="826.0" layoutY="193.0" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="KONFIRMASI" textFill="WHITE" AnchorPane.bottomAnchor="20.0">
+                                          <HBox alignment="CENTER" layoutX="20.0" layoutY="212.6666717529297" spacing="15.0">
+                                             <children>
+                                                <Label alignment="CENTER" text="TOTAL">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="sellTotalPrice" disable="true" style="-fx-background-radius: 7;" />
+                                                <JFXButton buttonType="RAISED" onAction="#calculateSellTotalPrice" prefHeight="30.0" prefWidth="108.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-border-radius: 10; -fx-font-weight: bold; -fx-cursor: hand; -fx-text-fill: #E8E7DE;" text="KALKULASI" />
+                                             </children>
+                                          </HBox>
+                                          <JFXButton buttonType="RAISED" layoutX="826.0" layoutY="193.0" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-border-radius: 10; -fx-font-weight: bold;" text="KONFIRMASI" textFill="WHITE" AnchorPane.bottomAnchor="15.0">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </JFXButton>
-                                          <JFXButton layoutX="286.0" layoutY="208.0" onAction="#calculateSellTotalPrice" prefHeight="32.0" prefWidth="108.0" text="KALKULASI" />
                                        </children>
                                     </AnchorPane>
                                  </bottom>
@@ -300,7 +308,7 @@
                                                    </font>
                                                 </Label>
                                                 <TextField fx:id="transactionSellSearchField" prefHeight="32.0" prefWidth="250.0" style="-fx-background-radius: 5;" />
-                                                <JFXButton buttonType="RAISED" onAction="#searchDataSellAction" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
+                                                <JFXButton buttonType="RAISED" onAction="#searchDataSellAction" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-font-weight: bold; -fx-border-radius: 10;" text="CARI" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -336,8 +344,8 @@
                                                       </VBox>
                                                       <VBox alignment="BASELINE_LEFT" prefHeight="85.0" prefWidth="131.0" spacing="20.0">
                                                          <children>
-                                                            <DatePicker fx:id="sellDate" disable="true" />
-                                                            <TextField fx:id="sellInvoiceNumber" disable="true" promptText="Auto-Generated" style="-fx-background-radius: 5;" />
+                                                            <DatePicker fx:id="sellDate" disable="true" style="-fx-background-radius: 7;" />
+                                                            <TextField fx:id="sellInvoiceNumber" disable="true" promptText="Auto-Generated" style="-fx-background-radius: 7;" />
                                                          </children>
                                                       </VBox>
                                                    </children>
@@ -382,10 +390,10 @@
                                                       </VBox>
                                                       <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="10.0">
                                                          <children>
-                                                            <JFXComboBox fx:id="sellStockIDDropdown" prefHeight="25.0" prefWidth="127.0" />
-                                                            <TextField fx:id="sellBrandField" disable="true" style="-fx-background-radius: 5;" />
-                                                            <TextField fx:id="sellTypeField" disable="true" style="-fx-background-radius: 5;" />
-                                                            <TextField fx:id="sellPriceField" disable="true" style="-fx-background-radius: 5;" />
+                                                            <JFXComboBox fx:id="sellStockIDDropdown" prefHeight="25.0" prefWidth="127.0" style="-fx-background-radius: 7;" />
+                                                            <TextField fx:id="sellBrandField" disable="true" style="-fx-background-radius: 7;" />
+                                                            <TextField fx:id="sellTypeField" disable="true" style="-fx-background-radius: 7;" />
+                                                            <TextField fx:id="sellPriceField" disable="true" style="-fx-background-radius: 7;" />
                                                          </children>
                                                       </VBox>
                                                    </children>
@@ -417,8 +425,8 @@
                                                       </VBox>
                                                       <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="20.0">
                                                          <children>
-                                                            <JFXComboBox fx:id="customerIDDropDown" prefHeight="25.0" prefWidth="127.0" />
-                                                            <TextField fx:id="customerNameField" disable="true" style="-fx-background-radius: 5;" />
+                                                            <JFXComboBox fx:id="customerIDDropDown" prefHeight="25.0" prefWidth="127.0" style="-fx-background-radius: 7;" />
+                                                            <TextField fx:id="customerNameField" disable="true" style="-fx-background-radius: 7;" />
                                                          </children>
                                                       </VBox>
                                                    </children>
@@ -440,7 +448,7 @@
                                                       </VBox>
                                                       <VBox alignment="BASELINE_CENTER">
                                                          <children>
-                                                            <TextField fx:id="sellTotalField" alignment="BASELINE_CENTER" style="-fx-background-radius: 5;" />
+                                                            <TextField fx:id="sellTotalField" alignment="BASELINE_CENTER" style="-fx-background-radius: 7;" />
                                                          </children>
                                                       </VBox>
                                                    </children>
@@ -449,22 +457,22 @@
                                           </HBox>
                                           <HBox alignment="CENTER_RIGHT" layoutX="687.0" layoutY="143.0" prefHeight="33.0" prefWidth="392.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
                                              <children>
-                                                <JFXButton buttonType="RAISED" onAction="#resetSellButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="RESET" textFill="WHITE">
+                                                <JFXButton buttonType="RAISED" onAction="#resetSellButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-font-weight: bold; -fx-border-radius: 10;" text="RESET" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </JFXButton>
-                                                <JFXButton buttonType="RAISED" onAction="#addSellButton" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="TAMBAH" textFill="WHITE">
+                                                <JFXButton buttonType="RAISED" onAction="#addSellButton" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-font-weight: bold; -fx-border-radius: 10;" text="TAMBAH" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </JFXButton>
-                                                <JFXButton fx:id="editSellButtonText" buttonType="RAISED" onAction="#editSellButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="EDIT" textFill="WHITE">
+                                                <JFXButton fx:id="editSellButtonText" buttonType="RAISED" onAction="#editSellButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-font-weight: bold; -fx-border-radius: 10;" text="EDIT" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </JFXButton>
-                                                <JFXButton buttonType="RAISED" onAction="#removeSellButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="HAPUS" textFill="WHITE">
+                                                <JFXButton buttonType="RAISED" onAction="#removeSellButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-font-weight: bold; -fx-border-radius: 10;" text="HAPUS" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>

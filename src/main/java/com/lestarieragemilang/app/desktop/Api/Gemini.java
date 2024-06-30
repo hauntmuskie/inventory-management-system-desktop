@@ -19,11 +19,14 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.Properties;
 
 public class Gemini {
-    // private static final Logger logger = LogManager.getLogger(GeminiApiClient.class);
-    private static final Dotenv dotenv = Dotenv.load();
+    // private static final Logger logger =
+    // LogManager.getLogger(GeminiApiClient.class);
+    private static final Dotenv dotenv = Dotenv.configure()
+            .ignoreIfMalformed()
+            .ignoreIfMissing()
+            .load();
     private static final String API_KEY = dotenv.get("GEMINI_API_KEY");
     private static final String ENDPOINT_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent?key="
             + API_KEY;
@@ -32,12 +35,14 @@ public class Gemini {
     private static final TextContentRenderer renderer = TextContentRenderer.builder().build();
 
     /**
-     * Sends a request to the Gemini API with the given prompt and returns the response.
+     * Sends a request to the Gemini API with the given prompt and returns the
+     * response.
      *
      * @param prompt the prompt to send to the API
      * @return the response from the API
-     * @throws IOException if an error occurs while sending the request or reading the response
-     * @throws URISyntaxException 
+     * @throws IOException        if an error occurs while sending the request or
+     *                            reading the response
+     * @throws URISyntaxException
      */
     public static String sendRequest(String prompt) throws IOException, URISyntaxException {
         if (prompt == null || prompt.isEmpty()) {
@@ -112,7 +117,8 @@ public class Gemini {
     }
 
     /**
-     * Processes the JSON response from the Gemini API and extracts the text content.
+     * Processes the JSON response from the Gemini API and extracts the text
+     * content.
      *
      * @param jsonResponse the JSON response from the API
      * @return the extracted text content
@@ -141,7 +147,8 @@ public class Gemini {
     }
 
     /**
-     * The main method that sends a request to the Gemini API and prints the response.
+     * The main method that sends a request to the Gemini API and prints the
+     * response.
      *
      * @param args the command-line arguments
      */

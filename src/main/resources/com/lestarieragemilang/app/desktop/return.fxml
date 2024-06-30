@@ -30,8 +30,8 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="32.0" prefWidth="250.0" style="-fx-background-radius: 5;" />
-                              <JFXButton fx:id="searchStockButton" buttonType="RAISED" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
+                              <TextField prefHeight="32.0" prefWidth="250.0" style="-fx-background-radius: 7;" />
+                              <JFXButton fx:id="searchStockButton" buttonType="RAISED" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-font-weight: bold; -fx-text-fill: #E8E7DE; -fx-border-radius: 10;" text="CARI" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -66,31 +66,31 @@
                                     </VBox>
                                     <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="20.0">
                                        <children>
-                                          <DatePicker fx:id="returnDate" />
-                                          <TextField fx:id="returnIDIncrement" disable="true" promptText="Auto-Generated" style="-fx-background-radius: 5;" />
+                                          <DatePicker fx:id="returnDate" style="-fx-background-radius: 7;" />
+                                          <TextField fx:id="returnIDIncrement" disable="true" promptText="Auto-Generated" style="-fx-background-radius: 7;" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
-                              <HBox>
+                              <HBox prefHeight="87.0" prefWidth="232.0">
                                  <children>
-                                    <VBox alignment="CENTER" prefHeight="133.0" prefWidth="116.0" spacing="5.0">
+                                    <VBox alignment="CENTER_LEFT" prefHeight="133.0" prefWidth="255.0" spacing="5.0">
                                        <children>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0">
+                                          <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="148.0" spacing="15.0">
                                              <children>
-                                                <Label text="JENIS PENGEMBALIAN">
+                                                <Label prefHeight="27.0" prefWidth="186.0" text="JENIS PENGEMBALIAN">
                                                    <font>
                                                       <Font size="18.0" />
                                                    </font>
                                                 </Label>
                                              </children>
                                           </HBox>
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="133.0" prefWidth="116.0" spacing="20.0">
-                                       <children>
-                                          <JFXRadioButton fx:id="returnIsBuy" text="PEMBELIAN" />
-                                          <JFXRadioButton fx:id="returnIsSell" text="PENJUALAN" />
+                                          <VBox alignment="CENTER_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="20.0">
+                                             <children>
+                                                <JFXRadioButton fx:id="returnIsBuy" text="PEMBELIAN" />
+                                                <JFXRadioButton fx:id="returnIsSell" text="PENJUALAN" />
+                                             </children>
+                                          </VBox>
                                        </children>
                                     </VBox>
                                  </children>
@@ -117,8 +117,8 @@
                                     </VBox>
                                     <VBox alignment="CENTER" prefHeight="133.0" prefWidth="116.0" spacing="20.0">
                                        <children>
-                                          <JFXComboBox fx:id="returnInvoicePurchasing" prefHeight="25.0" prefWidth="122.0" />
-                                          <TextArea fx:id="reuturnReasonField" prefHeight="200.0" prefWidth="200.0" />
+                                          <JFXComboBox fx:id="returnInvoicePurchasing" prefHeight="25.0" prefWidth="122.0" style="-fx-background-radius: 10;" />
+                                          <TextArea fx:id="reuturnReasonField" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -127,22 +127,22 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" layoutX="687.0" layoutY="143.0" prefHeight="33.0" prefWidth="392.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
                            <children>
-                              <JFXButton buttonType="RAISED" onAction="#resetReturnButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="RESET" textFill="WHITE">
+                              <JFXButton buttonType="RAISED" onAction="#resetReturnButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-font-weight: bold; -fx-text-fill: #E8E7DE; -fx-border-radius: 10;" text="RESET" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" onAction="#addReturnButton" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="TAMBAH" textFill="WHITE">
+                              <JFXButton buttonType="RAISED" onAction="#addReturnButton" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-font-weight: bold; -fx-text-fill: #E8E7DE; -fx-border-radius: 10;" text="TAMBAH" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" onAction="#editReturnButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="EDIT" textFill="WHITE">
+                              <JFXButton buttonType="RAISED" onAction="#editReturnButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-font-weight: bold; -fx-text-fill: #E8E7DE; -fx-border-radius: 10;" text="EDIT" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" onAction="#removeReturnButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="HAPUS" textFill="WHITE">
+                              <JFXButton buttonType="RAISED" onAction="#removeReturnButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-font-weight: bold; -fx-text-fill: #E8E7DE; -fx-border-radius: 10;" text="HAPUS" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
