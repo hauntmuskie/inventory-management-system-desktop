@@ -1,4 +1,8 @@
 module com.lestarieragemilang.app.desktop {
+    requires jbcrypt;
+    requires jasperreports;
+    requires cohere.java;
+    requires java.dotenv;
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
@@ -6,14 +10,12 @@ module com.lestarieragemilang.app.desktop {
     requires com.jfoenix;
     requires java.logging;
     requires java.sql;
-    requires atlantafx.base;
     requires com.zaxxer.hikari;
     requires org.slf4j;
-    requires jbcrypt;
-    requires jasperreports;
     requires animatefx;
-    requires cohere.java;
-    requires java.dotenv;
+    requires com.google.gson;
+    requires org.commonmark;
+    requires org.jfxtras.styles.jmetro;
     requires transitive javafx.graphics;
     requires transitive javafx.base;
 

@@ -1,7 +1,5 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,17 +12,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
-
 import java.io.IOException;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
 import com.lestarieragemilang.app.desktop.Dao.AuthDao;
 import com.lestarieragemilang.app.desktop.Utilities.Redirect;
+
+import animatefx.animation.FadeIn;
 
 public class AuthController {
     @FXML
@@ -69,7 +65,6 @@ public class AuthController {
         List<String> profiles = authDao.fetchProfiles();
         ObservableList<String> observableList = FXCollections.observableArrayList();
         for (String profile : profiles) {
-            // Split using the "||" delimiter
             String[] parts = profile.split("\\|\\|");
             if (parts.length < 2) {
                 System.err.println("Invalid profile format: " + profile);
@@ -77,7 +72,6 @@ public class AuthController {
             }
             String email = parts[0].trim();
             String username = parts[1].trim();
-            // Format as "[email] - [username]"
             observableList.add("[" + email + "] - [" + username + "]");
         }
         profileListView.setItems(observableList);
@@ -100,6 +94,7 @@ public class AuthController {
     private void loginToApp() throws IOException {
         if (authDao.loginRepo(loginUsername.getText(), loginPassword.getText())) {
             Redirect.page("dashboard", anchorPane);
+            new FadeIn(anchorPane).play();
         } else {
             Alert confirmationDialog = new Alert(Alert.AlertType.ERROR);
             confirmationDialog.getDialogPane().setPrefSize(450, 250);

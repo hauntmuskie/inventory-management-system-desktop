@@ -15,10 +15,10 @@
       </Label>
       <ScrollPane layoutX="10.0" layoutY="249.0" prefHeight="380.0" prefWidth="1180.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <content>
-            <Label fx:id="aiResponse" alignment="TOP_LEFT" prefHeight="345.0" prefWidth="1160.0" wrapText="true" />
+            <Label fx:id="aiResponse" />
          </content>
       </ScrollPane>
-      <JFXButton fx:id="aiGenerateButton" layoutX="14.0" layoutY="119.0" onAction="#aiGenerateReportButton" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: #E9E7DF; -fx-background-radius: 15;" text="Hasilkan Laporan ֎" wrapText="true" AnchorPane.leftAnchor="10.0">
+      <JFXButton fx:id="aiGenerateButton" layoutX="14.0" layoutY="119.0" onAction="#aiGenerateReportButton" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: #E9E7DF; -fx-background-radius: 15; -fx-border-color: gray; -fx-border-radius: 15; -fx-cursor: hand;" text="Hasilkan Laporan ֎" wrapText="true" AnchorPane.leftAnchor="10.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

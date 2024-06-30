@@ -129,27 +129,20 @@ public class Dashboard {
         Optional<ButtonType> result = confirmationAlert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
-                // Load the login FXML
                 FXMLLoader loader = new FXMLLoader(
                         getClass().getResource("/com/lestarieragemilang/app/desktop/login.fxml"));
                 Parent loginRoot = loader.load();
 
-                // Get the current stage
                 Stage stage = (Stage) setScene.getScene().getWindow();
 
-                // Create a new scene with the login view
                 Scene loginScene = new Scene(loginRoot);
 
-                // Apply fade out animation to current scene
                 new FadeOut(setScene).play();
 
-                // Use PauseTransition to delay the scene change
                 PauseTransition delay = new PauseTransition(Duration.seconds(0.5));
                 delay.setOnFinished(e -> {
-                    // Set the new scene
                     stage.setScene(loginScene);
 
-                    // Apply fade in animation to new scene
                     new FadeIn(loginRoot).play();
                 });
                 delay.play();

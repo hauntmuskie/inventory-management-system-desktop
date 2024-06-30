@@ -26,8 +26,8 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="customerSearchField" prefHeight="32.0" prefWidth="250.0" style="-fx-background-radius: 5;" />
-                              <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
+                              <TextField fx:id="customerSearchField" prefHeight="32.0" prefWidth="250.0" style="-fx-background-radius: 7;" />
+                              <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-border-radius: 10; -fx-font-weight: bold;" text="CARI" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -71,9 +71,9 @@
                                     </VBox>
                                     <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="20.0">
                                        <children>
-                                          <TextField fx:id="customerIDIncrement" disable="true" promptText="Auto-Generated" style="-fx-background-radius: 5;" />
-                                          <TextField fx:id="customerNameField" style="-fx-background-radius: 5;" />
-                                          <TextField fx:id="customerContactField" style="-fx-background-radius: 5;" />
+                                          <TextField fx:id="customerIDIncrement" disable="true" promptText="Auto-Generated" style="-fx-background-radius: 7;" />
+                                          <TextField fx:id="customerNameField" style="-fx-background-radius: 7;" />
+                                          <TextField fx:id="customerContactField" style="-fx-background-radius: 7;" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -100,13 +100,12 @@
                                                 </Label>
                                              </children>
                                           </HBox>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="930.0" spacing="15.0" />
                                        </children>
                                     </VBox>
-                                    <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="116.0" spacing="20.0">
+                                    <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="300.0" spacing="20.0">
                                        <children>
-                                          <TextField fx:id="customerAddressField" style="-fx-background-radius: 5;" />
-                                          <TextField fx:id="customerEmailField" style="-fx-background-radius: 5;" />
+                                          <TextField fx:id="customerAddressField" style="-fx-background-radius: 7;" />
+                                          <TextField fx:id="customerEmailField" style="-fx-background-radius: 7;" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -115,22 +114,22 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" layoutX="687.0" layoutY="143.0" prefHeight="33.0" prefWidth="392.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
                            <children>
-                              <JFXButton buttonType="RAISED" onAction="#resetCustomerButton" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="RESET" textFill="WHITE">
+                              <JFXButton buttonType="RAISED" onAction="#resetCustomerButton" prefHeight="30.0" prefWidth="91.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-border-radius: 10; -fx-font-weight: bold;" text="RESET" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" onAction="#addCustomerButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="TAMBAH" textFill="WHITE">
+                              <JFXButton buttonType="RAISED" onAction="#addCustomerButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-border-radius: 10; -fx-font-weight: bold;" text="TAMBAH" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton fx:id="editCustomerButtonText" buttonType="RAISED" onAction="#editCustomerButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="EDIT" textFill="WHITE">
+                              <JFXButton fx:id="editCustomerButtonText" buttonType="RAISED" onAction="#editCustomerButton" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-border-radius: 10; -fx-font-weight: bold;" text="EDIT" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" onAction="#removeCustomerButton" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="HAPUS" textFill="WHITE">
+                              <JFXButton buttonType="RAISED" onAction="#removeCustomerButton" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-border-radius: 10; -fx-font-weight: bold;" text="HAPUS" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
