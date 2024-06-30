@@ -15,7 +15,7 @@ public class BuyTablePopulator {
     private BuyDao buyDao = new BuyDao();
 
     public void populateBuyTable(
-        TableColumn<?, ?> buyDateCol,
+        TableColumn<?, ?> buyDateCol, 
         TableColumn<?, ?> buyBrandCol,
         TableColumn<?, ?> buyTypeCol,
         TableColumn<?, ?> buyOnSupplierNameCol,

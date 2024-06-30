@@ -16,8 +16,8 @@ F:\projects\application projects\inventory-management-system-desktop\src\main\ja
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\CustomerTablePopulator.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\TransactionForms.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\Transactions\BuyDao.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\AuthDao.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\App.java
-F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Repositories\AuthRepositories.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\StockTablePopulator.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Dao\Transactions\SellDao.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Configurations\ReportConfiguration\JasperLoader.java
@@ -27,12 +27,12 @@ F:\projects\application projects\inventory-management-system-desktop\src\main\ja
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\ReportCustomer.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\HashingGen.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\ReturnForm.java
+F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\AuthController.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\Transactions\BuyTablePopulator.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Supplier.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Stock.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\CategoryTablePopulator.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Entities\Transactions\Sell.java
-F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\Login.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Controller\CustomerForm.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\GenerateRandomID.java
 F:\projects\application projects\inventory-management-system-desktop\src\main\java\com\lestarieragemilang\app\desktop\Utilities\Redirect.java

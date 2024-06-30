@@ -7,10 +7,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.lestarieragemilang.app.desktop.Configurations.DatabaseConfiguration;
 import com.lestarieragemilang.app.desktop.Entities.Category;
 
 public class CategoryDao extends DatabaseConfiguration {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(StockDao.class);
+
     public List<Category> getAllCategories() {
         List<Category> categories = new ArrayList<>();
         String sql = "SELECT * FROM categories";
@@ -20,18 +26,16 @@ public class CategoryDao extends DatabaseConfiguration {
                 ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                Category category = new Category(0, null, null, null, null, null);
-                category.setCategoryId(rs.getInt("category_id"));
-                category.setCategoryBrand(rs.getString("brand"));
-                category.setCategoryType(rs.getString("product_type"));
-                category.setCategorySize(rs.getString("size"));
-                category.setCategoryWeight(rs.getString("weight"));
-                category.setCategoryUnit(rs.getString("weight_unit"));
-
-                categories.add(category);
+                categories.add(new Category(
+                        rs.getInt("category_id"),
+                        rs.getString("brand"),
+                        rs.getString("product_type"),
+                        rs.getString("size"),
+                        rs.getString("weight"),
+                        rs.getString("weight_unit")));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("Failed to get all categories", e);
         }
         return categories;
     }
@@ -56,7 +60,6 @@ public class CategoryDao extends DatabaseConfiguration {
         return categories;
     }
 
-    // ukuran
     public List<Category> getAllCategorySizes() {
         List<Category> categories = new ArrayList<>();
         String sql = "SELECT DISTINCT size FROM categories";
@@ -77,7 +80,6 @@ public class CategoryDao extends DatabaseConfiguration {
         return categories;
     }
 
-    // berat
     public List<Category> getAllCategoryWeights() {
         List<Category> categories = new ArrayList<>();
         String sql = "SELECT DISTINCT weight FROM categories";
@@ -98,7 +100,6 @@ public class CategoryDao extends DatabaseConfiguration {
         return categories;
     }
 
-    // satuan
     public List<Category> getAllCategoryUnits() {
         List<Category> categories = new ArrayList<>();
         String sql = "SELECT DISTINCT weight_unit FROM categories";
@@ -118,7 +119,7 @@ public class CategoryDao extends DatabaseConfiguration {
         }
         return categories;
     }
-    
+
     public List<Category> getAllCategoryTypes() {
         List<Category> categories = new ArrayList<>();
         String sql = "SELECT DISTINCT product_type FROM categories";
@@ -191,8 +192,6 @@ public class CategoryDao extends DatabaseConfiguration {
         }
     }
 
-    // get id only
-
     public Category getCategoryById(int i) {
         Category category = new Category(0, null, null, null, null, null);
         String sql = "SELECT * FROM categories WHERE category_id = ?";
@@ -217,6 +216,4 @@ public class CategoryDao extends DatabaseConfiguration {
         }
         return category;
     }
-
-
 }

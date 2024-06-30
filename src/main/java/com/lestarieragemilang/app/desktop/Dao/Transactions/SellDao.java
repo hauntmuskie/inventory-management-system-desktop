@@ -23,15 +23,14 @@ public class SellDao extends DatabaseConfiguration {
             while (rs.next()) {
                 Sell sell = new Sell(null, null, null, null, 0, 0, 0, 0, 0.0, 0.0, 0.0);
                 sell.setSellDate(rs.getDate("sale_date").toLocalDate());
-                sell.setBrand(rs.getString("brand"));
-                sell.setProductType(rs.getString("product_type"));
-                sell.setCustomerName(rs.getString("customer_name"));
                 sell.setInvoiceNumber(rs.getInt("invoice_number"));
                 sell.setStockId(rs.getInt("stock_id"));
-                sell.setQuantity(rs.getInt("quantity"));
+                sell.setBrand(rs.getString("brand"));
+                sell.setProductType(rs.getString("product_type"));
                 sell.setPrice(rs.getDouble("price"));
-                sell.setSubTotal(rs.getDouble("sub_total"));
-                sell.setPriceTotal(rs.getDouble("price_total"));
+                sell.setCustomerId(rs.getInt("customer_id"));
+                sell.setCustomerName(rs.getString("customer_name"));
+                sell.setQuantity(rs.getInt("quantity"));
 
                 sells.add(sell);
             }
@@ -42,22 +41,88 @@ public class SellDao extends DatabaseConfiguration {
         return sells;
     }
 
+    public long sumTotal() {
+        String sql = "SELECT SUM(quantity * price) FROM sales";
+        long totalCost = 0;
+
+        try (Connection conn = getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                totalCost = rs.getLong(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return totalCost;
+    }
+
+    public List<Sell> searchSellData(String data) {
+        List<Sell> sells = new ArrayList<>();
+        String queryString = String.format(
+            "SELECT *              " +
+            "FROM sales            " +
+            "WHERE (               " +
+                "sale_date         LIKE '%%%s%%' OR " +
+                "invoice_number    LIKE '%%%s%%' OR " +
+                "stock_id          LIKE '%%%s%%' OR " +
+                "brand             LIKE '%%%s%%' OR " +
+                "product_type      LIKE '%%%s%%' OR " +
+                "price             LIKE '%%%s%%' OR " +
+                "customer_id       LIKE '%%%s%%' OR " +
+                "customer_name     LIKE '%%%s%%' OR " +
+                "quantity          LIKE '%%%s%%'    " +
+            ")",
+            data, data, data,
+            data, data, data,
+            data, data, data
+        );
+
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(queryString);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Sell sell = new Sell(null, null, null, null, 0, 0, 0, 0, 0.0, 0.0, 0.0);
+
+                sell.setSellDate(rs.getDate("sale_date").toLocalDate());
+                sell.setInvoiceNumber(rs.getInt("invoice_number"));
+                sell.setStockId(rs.getInt("stock_id"));
+                sell.setBrand(rs.getString("brand"));
+                sell.setProductType(rs.getString("product_type"));
+                sell.setPrice(rs.getDouble("price"));
+                sell.setCustomerId(rs.getInt("customer_id"));
+                sell.setCustomerName(rs.getString("customer_name"));
+                sell.setQuantity(rs.getInt("quantity"));
+
+                sells.add(sell);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return sells;
+    }
+
     public void addSell(Sell sell) {
-        String sql = "INSERT INTO sales (sale_date, brand, product_type, customer_name, invoice_number, stock_id, quantity, price, sub_total, price_total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO sales (sale_date, invoice_number, stock_id, brand, product_type, price, customer_id, customer_name, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setDate(1, java.sql.Date.valueOf(sell.getSellDate()));
-            stmt.setString(2, sell.getBrand());
-            stmt.setString(3, sell.getProductType());
-            stmt.setString(4, sell.getCustomerName());
-            stmt.setInt(5, sell.getInvoiceNumber());
-            stmt.setInt(6, sell.getStockId());
-            stmt.setInt(7, sell.getQuantity());
-            stmt.setDouble(8, sell.getPrice());
-            stmt.setDouble(9, sell.getSubTotal());
-            stmt.setDouble(10, sell.getPriceTotal());
+            stmt.setInt(2, sell.getInvoiceNumber());
+            stmt.setInt(3, sell.getStockId());
+            stmt.setString(4, sell.getBrand());
+            stmt.setString(5, sell.getProductType());
+            stmt.setDouble(6, sell.getPrice());
+            stmt.setInt(7, sell.getCustomerId());
+            stmt.setString(8, sell.getCustomerName());
+            stmt.setInt(9, sell.getQuantity());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -66,11 +131,11 @@ public class SellDao extends DatabaseConfiguration {
     }
 
     public void updateSell(Sell sell) {
-        String sql = "UPDATE sales SET brand = ?, product_type = ?, customer_name = ?, invoice_number = ?, stock_id = ?, quantity = ?, price = ?, sub_total = ?, price_total = ? WHERE sale_date = ?";
-
+        String sql = "UPDATE sales SET brand = ?, product_type = ?, customer_name = ?, invoice_number = ?, stock_id = ?, quantity = ?, price = ?, sale_date = ? WHERE invoice_number = ?";
+    
         try (Connection conn = getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+    
             stmt.setString(1, sell.getBrand());
             stmt.setString(2, sell.getProductType());
             stmt.setString(3, sell.getCustomerName());
@@ -78,15 +143,15 @@ public class SellDao extends DatabaseConfiguration {
             stmt.setInt(5, sell.getStockId());
             stmt.setInt(6, sell.getQuantity());
             stmt.setDouble(7, sell.getPrice());
-            stmt.setDouble(8, sell.getSubTotal());
-            stmt.setDouble(9, sell.getPriceTotal());
-            stmt.setDate(10, java.sql.Date.valueOf(sell.getSellDate()));
-
+            stmt.setDate(8, java.sql.Date.valueOf(sell.getSellDate()));
+            stmt.setInt(9, sell.getInvoiceNumber());
+    
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    
 
     public void removeSell(Sell sell) {
         String sql = "DELETE FROM sales WHERE invoice_number = ?";

@@ -70,7 +70,7 @@ public class SupplierForm {
         SupplierDao supplierDao = new SupplierDao();
     
         if (selectedSupplier != null) {
-            if (editSupplierButtonText.getText().equals("Konfirmasi")) {
+            if (editSupplierButtonText.getText().equals("KONFIRMASI")) {
                 // Update the supplier details
                 selectedSupplier.setSupplierName(supplierNameField.getText());
                 selectedSupplier.setSupplierAddress(supplierAddressField.getText());
@@ -98,7 +98,7 @@ public class SupplierForm {
                 supplierContactField.setText(selectedSupplier.getSupplierContact());
                 supplierEmailField.setText(selectedSupplier.getSupplierEmail());
     
-                editSupplierButtonText.setText("Konfirmasi");
+                editSupplierButtonText.setText("KONFIRMASI");
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

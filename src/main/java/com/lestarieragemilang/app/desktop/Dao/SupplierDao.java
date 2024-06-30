@@ -7,14 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.lestarieragemilang.app.desktop.Configurations.DatabaseConfiguration;
 import com.lestarieragemilang.app.desktop.Entities.Supplier;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 
 public class SupplierDao extends DatabaseConfiguration {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SupplierDao.class);
 
     public List<Supplier> getAllSuppliers() {
         List<Supplier> suppliers = new ArrayList<>();
@@ -25,66 +28,65 @@ public class SupplierDao extends DatabaseConfiguration {
                 ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                Supplier supplier = new Supplier(0, null, null, null, null);
-                supplier.setSupplierId(rs.getInt("supplier_id"));
-                supplier.setSupplierName(rs.getString("supplier_name"));
-                supplier.setSupplierAddress(rs.getString("address"));
-                supplier.setSupplierContact(rs.getString("contact"));
-                supplier.setSupplierEmail(rs.getString("email"));
+                Supplier supplier = new Supplier(
+                        rs.getInt("supplier_id"),
+                        rs.getString("supplier_name"),
+                        rs.getString("address"),
+                        rs.getString("contact"),
+                        rs.getString("email"));
 
                 suppliers.add(supplier);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("Failed to fetch all suppliers", e);
         }
         return suppliers;
-
     }
 
     public void addSupplier(Supplier supplier) {
         String sql = "INSERT INTO suppliers (supplier_id, supplier_name, address, contact, email) VALUES (?, ?, ?, ?, ?)";
-    
+
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-    
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setInt(1, supplier.getSupplierId());
             stmt.setString(2, supplier.getSupplierName());
             stmt.setString(3, supplier.getSupplierAddress());
             stmt.setString(4, supplier.getSupplierContact());
             stmt.setString(5, supplier.getSupplierEmail());
-    
+
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("Failed to add a new supplier", e);
         }
     }
 
     public void updateSupplier(Supplier supplier) {
         String sql = "UPDATE suppliers SET supplier_name = ?, address = ?, contact = ?, email = ? WHERE supplier_id = ?";
-    
+
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-    
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setString(1, supplier.getSupplierName());
             stmt.setString(2, supplier.getSupplierAddress());
             stmt.setString(3, supplier.getSupplierContact());
             stmt.setString(4, supplier.getSupplierEmail());
             stmt.setInt(5, supplier.getSupplierId());
-    
+
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("Failed to update supplier", e);
         }
     }
 
     public void removeSupplier(Supplier supplier) {
         String sql = "DELETE FROM suppliers WHERE supplier_id = ?";
-    
+
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-    
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setInt(1, supplier.getSupplierId());
-    
+
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -92,7 +94,7 @@ public class SupplierDao extends DatabaseConfiguration {
     }
 
     public void searchSupplier(ObservableList<Supplier> supplierData, FilteredList<Supplier> filteredData,
-            SortedList<Supplier> sortedData, String search) {
+            String search) {
         filteredData.setPredicate(supplier -> {
             if (search == null || search.isEmpty()) {
                 return true;
@@ -100,20 +102,10 @@ public class SupplierDao extends DatabaseConfiguration {
 
             String lowerCaseFilter = search.toLowerCase();
 
-            if (supplier.getSupplierName().toLowerCase().contains(lowerCaseFilter)) {
-                return true;
-            } else if (supplier.getSupplierAddress().toLowerCase().contains(lowerCaseFilter)) {
-                return true;
-            } else if (supplier.getSupplierContact().toLowerCase().contains(lowerCaseFilter)) {
-                return true;
-            } else if (supplier.getSupplierEmail().toLowerCase().contains(lowerCaseFilter)) {
-                return true;
-            }
-
-            return false;
+            return supplier.getSupplierName().toLowerCase().contains(lowerCaseFilter)
+                    || supplier.getSupplierAddress().toLowerCase().contains(lowerCaseFilter)
+                    || supplier.getSupplierContact().toLowerCase().contains(lowerCaseFilter)
+                    || supplier.getSupplierEmail().toLowerCase().contains(lowerCaseFilter);
         });
-
-        sortedData.comparatorProperty().bind(((SortedList<Supplier>) supplierData).comparatorProperty());
     }
-
 }

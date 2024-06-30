@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import animatefx.animation.FadeIn;
 import atlantafx.base.theme.CupertinoLight;
 
 /**
@@ -20,7 +21,7 @@ import atlantafx.base.theme.CupertinoLight;
 public class App extends Application {
 
     private static Scene scene;
-    private static final String LOGIN_FXML = "login";
+    private static final String LOGIN_FXML = "dashboard";
     private static final int WIDTH = 1200;
     private static final int HEIGHT = 650;
     private static final Logger LOGGER = Logger.getLogger(App.class.getName());
@@ -28,7 +29,6 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
 
-        // Set the default theme
         Application.setUserAgentStylesheet(new CupertinoLight().getUserAgentStylesheet());
 
         try {
@@ -36,6 +36,7 @@ public class App extends Application {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(scene);
             stage.centerOnScreen();
+            new FadeIn(scene.getRoot()).play(); // Apply FadeIn animation
             stage.show();
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Failed to load the FXML file: " + LOGIN_FXML, e);
@@ -53,7 +54,7 @@ public class App extends Application {
     private void enableDrag(Stage stage) {
         final double[] xOffset = new double[1];
         final double[] yOffset = new double[1];
-        final double dragThreshold = 50; // The area on top of the app where dragging is allowed
+        final double dragThreshold = 50;
 
         scene.setOnMousePressed(event -> {
             if (event.getSceneY() <= dragThreshold) {
@@ -76,7 +77,9 @@ public class App extends Application {
 
     static void setRoot(String fxml) throws IOException {
         if (fxmlExists(fxml)) {
-            scene.setRoot(loadFXML(fxml));
+            Parent newRoot = loadFXML(fxml);
+            new FadeIn(newRoot).play(); // Apply FadeIn animation before setting the new root
+            scene.setRoot(newRoot);
         } else {
             LOGGER.log(Level.SEVERE, "FXML file does not exist: {0}", fxml);
             throw new IOException("FXML file does not exist: " + fxml);

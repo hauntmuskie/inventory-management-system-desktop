@@ -42,6 +42,53 @@ public class BuyDao extends DatabaseConfiguration {
         return buys;
     }
 
+    public List<Buy> searchBuyData(String data) {
+        List<Buy> buys = new ArrayList<>();
+        String queryString = String.format(
+            "SELECT *              " +
+            "FROM purchasing       " +
+            "WHERE (               " +
+                "purchase_date     LIKE '%%%s%%' OR " +
+                "invoice_number    LIKE '%%%s%%' OR " +
+                "stock_id          LIKE '%%%s%%' OR " +
+                "brand             LIKE '%%%s%%' OR " +
+                "product_type      LIKE '%%%s%%' OR " +
+                "price             LIKE '%%%s%%' OR " +
+                "supplier_id       LIKE '%%%s%%' OR " +
+                "supplier_name     LIKE '%%%s%%' OR " +
+                "quantity          LIKE '%%%s%%'    " +
+            ")",
+            data, data, data,
+            data, data, data,
+            data, data, data
+        );
+
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(queryString);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Buy buy = new Buy(null, null, null, null, 0, 0, 0, 0, 0.0, 0.0, 0.0);
+
+                buy.setPurchaseDate(rs.getDate("purchase_date").toLocalDate());
+                buy.setInvoiceNumber(rs.getInt("invoice_number"));
+                buy.setStockId(rs.getInt("stock_id"));
+                buy.setBrand(rs.getString("brand"));
+                buy.setProductType(rs.getString("product_type"));
+                buy.setPrice(rs.getDouble("price"));
+                buy.setSupplierId(rs.getInt("supplier_id"));
+                buy.setSupplierName(rs.getString("supplier_name"));
+                buy.setQuantity(rs.getInt("quantity"));
+                buys.add(buy);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return buys;
+    }
+
     public long sumTotal() {
         String sql = "SELECT SUM(quantity * price) FROM purchasing";
         long totalCost = 0;
@@ -81,31 +128,31 @@ public class BuyDao extends DatabaseConfiguration {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+    } 
 
     public void updateBuy(Buy buy) {
-        String sql = "UPDATE purchasing SET brand = ?, product_type = ?, price = ?, sub_total = ?, price_total = ?, supplier_id = ?, supplier_name = ?, quantity = ? WHERE purchase_date = ? AND invoice_number = ? AND stock_id = ?";
-
+        String sql = "UPDATE purchasing SET brand = ?, product_type = ?, price = ?, supplier_id = ?, supplier_name = ?, quantity = ?, purchase_date = ?, invoice_number = ?, stock_id = ? WHERE invoice_number = ?";
+    
         try (Connection conn = getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+    
             stmt.setString(1, buy.getBrand());
             stmt.setString(2, buy.getProductType());
             stmt.setDouble(3, buy.getPrice());
-            stmt.setDouble(4, buy.getSubTotal());
-            stmt.setDouble(5, buy.getPriceTotal());
-            stmt.setInt(6, buy.getSupplierId());
-            stmt.setString(7, buy.getSupplierName());
-            stmt.setInt(8, buy.getQuantity());
-            stmt.setDate(9, java.sql.Date.valueOf(buy.getPurchaseDate()));
+            stmt.setInt(4, buy.getSupplierId());
+            stmt.setString(5, buy.getSupplierName());
+            stmt.setInt(6, buy.getQuantity());
+            stmt.setDate(7, java.sql.Date.valueOf(buy.getPurchaseDate()));
+            stmt.setInt(8, buy.getInvoiceNumber());
+            stmt.setInt(9, buy.getStockId());
             stmt.setInt(10, buy.getInvoiceNumber());
-            stmt.setInt(11, buy.getStockId());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    
 
     public void removeBuy(Buy buy) {
         String sql = "DELETE FROM purchasing WHERE invoice_number = ?";

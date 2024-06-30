@@ -13,9 +13,7 @@ com\lestarieragemilang\app\desktop\Controller\CustomerForm.class
 com\lestarieragemilang\app\desktop\Entities\Transactions\Buy.class
 com\lestarieragemilang\app\desktop\Utilities\StockTablePopulator.class
 com\lestarieragemilang\app\desktop\Configurations\ReportConfiguration\JasperLoader.class
-com\lestarieragemilang\app\desktop\Repositories\AuthRepositories.class
 com\lestarieragemilang\app\desktop\Utilities\HashingGen.class
-com\lestarieragemilang\app\desktop\Controller\Login.class
 com\lestarieragemilang\app\desktop\Dao\SupplierDao.class
 com\lestarieragemilang\app\desktop\Entities\Transactions\Sell.class
 com\lestarieragemilang\app\desktop\Utilities\Redirect.class
@@ -30,7 +28,9 @@ com\lestarieragemilang\app\desktop\Dao\Transactions\SellDao.class
 com\lestarieragemilang\app\desktop\Dao\CategoryDao.class
 com\lestarieragemilang\app\desktop\Dao\StockDao.class
 com\lestarieragemilang\app\desktop\Dao\CustomerDao.class
+com\lestarieragemilang\app\desktop\Dao\AuthDao.class
 module-info.class
+com\lestarieragemilang\app\desktop\Controller\AuthController.class
 com\lestarieragemilang\app\desktop\Utilities\Transactions\BuyTablePopulator.class
 com\lestarieragemilang\app\desktop\Controller\Report.class
 com\lestarieragemilang\app\desktop\Controller\ReportSupplier.class

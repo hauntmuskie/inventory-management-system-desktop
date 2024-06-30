@@ -72,7 +72,7 @@
                                                    </font>
                                                 </Label>
                                                 <TextField fx:id="transactionBuySearchField" prefHeight="32.0" prefWidth="250.0" style="-fx-background-radius: 5;" />
-                                                <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
+                                                <JFXButton buttonType="RAISED" onAction="#searchDataBuyAction" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -274,7 +274,7 @@
                                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                              </columnResizePolicy>
                                           </TableView>
-                                          <TextField fx:id="sellTotalPrice" layoutX="91.0" layoutY="196.0" style="-fx-background-radius: 5;" AnchorPane.bottomAnchor="20.0" />
+                                          <TextField fx:id="sellTotalPrice" disable="true" layoutX="91.0" layoutY="196.0" style="-fx-background-radius: 5;" AnchorPane.bottomAnchor="20.0" />
                                           <Label alignment="CENTER" layoutX="20.0" layoutY="195.0" text="TOTAL" AnchorPane.bottomAnchor="20.0">
                                              <font>
                                                 <Font size="18.0" />
@@ -300,7 +300,7 @@
                                                    </font>
                                                 </Label>
                                                 <TextField fx:id="transactionSellSearchField" prefHeight="32.0" prefWidth="250.0" style="-fx-background-radius: 5;" />
-                                                <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
+                                                <JFXButton buttonType="RAISED" onAction="#searchDataSellAction" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>

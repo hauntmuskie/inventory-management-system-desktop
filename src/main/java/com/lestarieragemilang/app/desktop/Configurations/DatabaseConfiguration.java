@@ -1,8 +1,13 @@
 package com.lestarieragemilang.app.desktop.Configurations;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
@@ -10,42 +15,44 @@ import javafx.scene.control.Alert.AlertType;
 
 public class DatabaseConfiguration {
 
-    private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/steel_shop";
-    private static final String USER = "root";
-    private static final String PASS = "";
+    private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseConfiguration.class);
+    private static HikariDataSource dataSource;
 
-    private Connection connection;
-
-    public DatabaseConfiguration() {
+    static {
         try {
-            Class.forName(JDBC_DRIVER);
-            connection = DriverManager.getConnection(DB_URL, USER, PASS);
-        } catch (ClassNotFoundException | SQLException e) {
-            showErrorMessage(e.getMessage());
+            HikariConfig config = new HikariConfig();
+            config.setJdbcUrl("jdbc:mysql://localhost:3306/steel_shop");
+            config.setUsername("root");
+            config.setPassword("");
+            config.setDriverClassName("com.mysql.cj.jdbc.Driver");
+            config.addDataSourceProperty("cachePrepStmts", "true");
+            config.addDataSourceProperty("prepStmtCacheSize", "250");
+            config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+    
+            dataSource = new HikariDataSource(config);
+        } catch (Exception e) {
+            LOGGER.error("Failed to initialize database configuration", e);
+            throw new ExceptionInInitializerError(e);
         }
     }
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         try {
-            if (connection == null || connection.isClosed()) {
-                connection = DriverManager.getConnection(DB_URL, USER, PASS);
-            }
+            return dataSource.getConnection();
         } catch (SQLException e) {
+            LOGGER.error("Failed to get a connection from the connection pool", e);
             showErrorMessage(e.getMessage());
-        }
-        return connection;
-    }
-
-    public void closeConnection() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            showErrorMessage(e.getMessage());
+            return null;
         }
     }
 
-    private void showErrorMessage(String errorMessage) {
+    public static void closeConnectionPool() {
+        if (dataSource != null && !dataSource.isClosed()) {
+            dataSource.close();
+        }
+    }
+
+    private static void showErrorMessage(String errorMessage) {
         Platform.runLater(() -> {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error");

@@ -33,9 +33,9 @@ public class SellTablePopulator {
         sellTypeCol.setCellValueFactory(new PropertyValueFactory<>("productType"));
         sellOnCustomerNameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         sellInvoiceCol.setCellValueFactory(new PropertyValueFactory<>("invoiceNumber"));
-        sellSubTotalCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        sellTotalCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         sellPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-        sellTotalCol.setCellValueFactory(new PropertyValueFactory<>("total"));
+        sellSubTotalCol.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
 
         sellData.addAll(sells);
         sellTable.setItems(sellData);
