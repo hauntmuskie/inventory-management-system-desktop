@@ -13,7 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import animatefx.animation.FadeIn;
-import atlantafx.base.theme.CupertinoLight;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 /**
  * JavaFX App
@@ -26,17 +27,23 @@ public class App extends Application {
     private static final int HEIGHT = 650;
     private static final Logger LOGGER = Logger.getLogger(App.class.getName());
 
+    
     @Override
     public void start(Stage stage) {
-
-        Application.setUserAgentStylesheet(new CupertinoLight().getUserAgentStylesheet());
-
         try {
-            scene = new Scene(loadFXML(LOGIN_FXML), WIDTH, HEIGHT);
+            Parent root = loadFXML(LOGIN_FXML);
+
+            scene = new Scene(root, WIDTH, HEIGHT);
+
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
+
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(scene);
             stage.centerOnScreen();
-            new FadeIn(scene.getRoot()).play(); // Apply FadeIn animation
+
+            new FadeIn(root).play();
+
             stage.show();
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Failed to load the FXML file: " + LOGIN_FXML, e);
@@ -78,7 +85,7 @@ public class App extends Application {
     static void setRoot(String fxml) throws IOException {
         if (fxmlExists(fxml)) {
             Parent newRoot = loadFXML(fxml);
-            new FadeIn(newRoot).play(); // Apply FadeIn animation before setting the new root
+            new FadeIn(newRoot).play();
             scene.setRoot(newRoot);
         } else {
             LOGGER.log(Level.SEVERE, "FXML file does not exist: {0}", fxml);

@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.swing.JOptionPane;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import com.lestarieragemilang.app.desktop.Dao.SupplierDao;
 import com.lestarieragemilang.app.desktop.Entities.Supplier;
 import com.lestarieragemilang.app.desktop.Utilities.GenerateRandomID;
@@ -30,8 +31,11 @@ public class SupplierForm {
 
     // Supplier Table
     @FXML
-    TextField supplierIDIncrement, supplierNameField, supplierAddressField, supplierContactField, supplierEmailField,
+    private TextField supplierIDIncrement, supplierNameField, supplierContactField, supplierEmailField,
             supplierSearchField;
+
+    @FXML
+    private JFXTextArea supplierAddressField;
 
     @FXML
     private TableColumn<Supplier, String> supplierIDCol, supplierNameCol, supplierAddressCol, supplierContactCol,
@@ -68,7 +72,7 @@ public class SupplierForm {
     void editSupplierButton(ActionEvent event) {
         Supplier selectedSupplier = supplierTable.getSelectionModel().getSelectedItem();
         SupplierDao supplierDao = new SupplierDao();
-    
+
         if (selectedSupplier != null) {
             if (editSupplierButtonText.getText().equals("KONFIRMASI")) {
                 // Update the supplier details
@@ -76,19 +80,19 @@ public class SupplierForm {
                 selectedSupplier.setSupplierAddress(supplierAddressField.getText());
                 selectedSupplier.setSupplierContact(supplierContactField.getText());
                 selectedSupplier.setSupplierEmail(supplierEmailField.getText());
-    
+
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Update Supplier");
                 alert.setHeaderText(null);
                 alert.setContentText("Are you sure you want to update this supplier?");
-    
+
                 Optional<ButtonType> result = alert.showAndWait();
-                if (result.isPresent() && result.get() == ButtonType.OK){
+                if (result.isPresent() && result.get() == ButtonType.OK) {
                     supplierDao.updateSupplier(selectedSupplier);
                 }
-    
+
                 supplierTable.refresh();
-    
+
                 editSupplierButtonText.setText("Edit");
             } else {
                 // Populate the fields with the selected supplier's details
@@ -97,7 +101,7 @@ public class SupplierForm {
                 supplierAddressField.setText(selectedSupplier.getSupplierAddress());
                 supplierContactField.setText(selectedSupplier.getSupplierContact());
                 supplierEmailField.setText(selectedSupplier.getSupplierEmail());
-    
+
                 editSupplierButtonText.setText("KONFIRMASI");
             }
         } else {
@@ -105,7 +109,7 @@ public class SupplierForm {
             alert.setTitle("Information");
             alert.setHeaderText(null);
             alert.setContentText("Please select a supplier to edit.");
-    
+
             alert.showAndWait();
         }
     }
@@ -163,7 +167,7 @@ public class SupplierForm {
         // Supplier Table
         supplierTablePopulator.populateSupplierTable(supplierIDCol, supplierNameCol, supplierAddressCol,
                 supplierContactCol, supplierEmailCol, supplierTable);
-                
+
         // Add this in your initialize method
         supplierTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection == null) {

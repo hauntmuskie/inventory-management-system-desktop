@@ -27,8 +27,8 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="categorySearchField" prefHeight="30.0" prefWidth="250.0" style="-fx-background-radius: 5;" />
-                              <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="CARI" textFill="WHITE">
+                              <TextField fx:id="categorySearchField" prefHeight="30.0" prefWidth="250.0" style="-fx-background-radius: 7;" />
+                              <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-border-radius: 10; -fx-font-weight: bold;" text="CARI" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -72,9 +72,9 @@
                                     </VBox>
                                     <VBox alignment="BASELINE_LEFT" prefHeight="133.0" prefWidth="200.0" spacing="20.0">
                                        <children>
-                                          <TextField fx:id="categoryIDIncrement" disable="true" promptText="Auto-Generated" style="-fx-background-radius: 5;" />
-                                          <JFXComboBox fx:id="categoryBrandDropDown" prefHeight="25.0" prefWidth="200.0" />
-                                          <JFXComboBox fx:id="categoryTypeDropDown" prefHeight="25.0" prefWidth="200.0" />
+                                          <TextField fx:id="categoryIDIncrement" disable="true" promptText="Auto-Generated" style="-fx-background-radius: 7;" />
+                                          <JFXComboBox fx:id="categoryBrandDropDown" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 7;" />
+                                          <JFXComboBox fx:id="categoryTypeDropDown" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 7;" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -110,9 +110,9 @@
                                     </VBox>
                                     <VBox alignment="BASELINE_CENTER" prefHeight="133.0" prefWidth="200.0" spacing="20.0">
                                        <children>
-                                          <JFXComboBox fx:id="categorySizeDropDown" prefHeight="25.0" prefWidth="200.0" />
-                                          <JFXComboBox fx:id="categoryWeightDropDown" prefHeight="25.0" prefWidth="200.0" />
-                                          <JFXComboBox fx:id="categoryUnitDropDown" prefHeight="25.0" prefWidth="200.0" />
+                                          <JFXComboBox fx:id="categorySizeDropDown" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 7;" />
+                                          <JFXComboBox fx:id="categoryWeightDropDown" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 7;" />
+                                          <JFXComboBox fx:id="categoryUnitDropDown" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 7;" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -121,22 +121,22 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" layoutX="687.0" layoutY="143.0" prefHeight="33.0" prefWidth="392.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
                            <children>
-                              <JFXButton buttonType="RAISED" onAction="#resetCategoryButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="RESET" textFill="WHITE">
+                              <JFXButton buttonType="RAISED" onAction="#resetCategoryButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-border-radius: 10; -fx-font-weight: bold;" text="RESET" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" onAction="#addCategoryButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="TAMBAH" textFill="WHITE">
+                              <JFXButton buttonType="RAISED" onAction="#addCategoryButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-border-radius: 10; -fx-font-weight: bold;" text="TAMBAH" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton fx:id="editCategoryButtonText" buttonType="RAISED" onAction="#editCategoryButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="EDIT" textFill="WHITE">
+                              <JFXButton fx:id="editCategoryButtonText" buttonType="RAISED" onAction="#editCategoryButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-border-radius: 10; -fx-font-weight: bold;" text="EDIT" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" onAction="#removeCategoryButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND;" text="HAPUS" textFill="WHITE">
+                              <JFXButton buttonType="RAISED" onAction="#removeCategoryButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #131313; -fx-background-radius: 10; -fx-cursor: HAND; -fx-text-fill: #E8E7DE; -fx-border-radius: 10; -fx-font-weight: bold;" text="HAPUS" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
