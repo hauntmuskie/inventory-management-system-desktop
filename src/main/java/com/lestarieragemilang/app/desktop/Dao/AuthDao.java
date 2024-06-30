@@ -1,13 +1,15 @@
 package com.lestarieragemilang.app.desktop.Dao;
 
-import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.PreparedStatement;
 
 import org.mindrot.jbcrypt.BCrypt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.lestarieragemilang.app.desktop.Configurations.DatabaseConfiguration;
 
@@ -15,14 +17,17 @@ import com.lestarieragemilang.app.desktop.Configurations.DatabaseConfiguration;
  * Auth Repositories
  */
 public class AuthDao extends DatabaseConfiguration {
+
+  private static final Logger logger = LoggerFactory.getLogger(AuthDao.class);
+
   /**
    * Login Repository
-   * 
+   *
    * @param username
    * @param password
    * @return
    */
-  private static final String LOGIN_QUERY = "SELECT a.password_hash FROM users u INNER JOIN auth a ON u.id = a.id WHERE u.username =?";
+  private static final String LOGIN_QUERY = "SELECT a.password_hash FROM users u INNER JOIN auth a ON u.id = a.id WHERE u.username = ?";
 
   public boolean loginRepo(String username, String password) {
     try (Connection connection = getConnection();
@@ -35,14 +40,14 @@ public class AuthDao extends DatabaseConfiguration {
         }
       }
     } catch (SQLException e) {
-      e.printStackTrace();
+      logger.error("Error during login", e);
     }
     return false;
   }
 
   /**
    * Register Repository
-   * 
+   *
    * @param username
    * @param email
    * @param name
@@ -52,7 +57,7 @@ public class AuthDao extends DatabaseConfiguration {
   private static final String REGISTER_QUERY = "INSERT INTO users (username, email, name) VALUES (?,?,?)";
   private static final String REGISTER_AUTH_QUERY = "INSERT INTO auth (id, password_hash, salt) VALUES (?,?,?)";
 
-  public boolean registerRepo(String username, String email, String name, String password) {
+  public boolean registerRepo(String username, String email, String name, String password) throws SQLException {
     try (Connection connection = getConnection();
         PreparedStatement userStatement = connection.prepareStatement(REGISTER_QUERY,
             PreparedStatement.RETURN_GENERATED_KEYS);
@@ -81,7 +86,7 @@ public class AuthDao extends DatabaseConfiguration {
         }
       }
     } catch (SQLException e) {
-      e.printStackTrace();
+      logger.error("Error during registration", e);
     }
     return false;
   }
@@ -98,19 +103,29 @@ public class AuthDao extends DatabaseConfiguration {
         profiles.add(email + "||" + username);
       }
     } catch (SQLException e) {
-      e.printStackTrace();
+      logger.error("Error during profile fetching", e);
     }
     return profiles;
   }
 
-  // Manual testing
-  public static void main(String[] args) {
-    AuthDao repository = new AuthDao();
-    boolean result = repository.loginRepo("", "");
+  /**
+   * Delete Repository
+   *
+   * @param username
+   * @return
+   */
+  private static final String DELETE_QUERY = "DELETE FROM users WHERE username = ?";
 
-    System.out.println(result);
-
-    boolean registerResult = repository.registerRepo("newuser", "newuser@example.com", "New User", "password123");
-    System.out.println(registerResult);
+  public boolean deleteRepo(String username) throws SQLException {
+    try (Connection connection = getConnection();
+        PreparedStatement statement = connection.prepareStatement(DELETE_QUERY)) {
+      statement.setString(1, username);
+      int rowsAffected = statement.executeUpdate();
+      return rowsAffected > 0;
+    } catch (SQLException e) {
+      logger.error("Error during deletion", e);
+    }
+    return false;
   }
+
 }

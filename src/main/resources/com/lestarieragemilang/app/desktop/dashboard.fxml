@@ -151,7 +151,7 @@
                               <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#EEEEEE" height="50.0" width="50" />
                               <ImageView fitHeight="35.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="navText">
                                  <image>
-                                    <Image url="@Assets/Images/bookmark-tabs_.png" />
+                                    <Image url="@Assets/Images/ai_.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -196,7 +196,7 @@
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton alignment="BASELINE_LEFT" onMouseClicked="#setSceneAI" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #EEEEEE; -fx-background-radius: 10; -fx-text-fill: #333333; -fx-cursor: hand; -fx-font-weight: bold; -fx-border-radius: 10;" text="AI" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <JFXButton alignment="BASELINE_LEFT" onMouseClicked="#setSceneAI" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #EEEEEE; -fx-background-radius: 10; -fx-text-fill: #333333; -fx-cursor: hand; -fx-font-weight: bold; -fx-border-radius: 10;" text="AI Report" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <font>
                         <Font size="14.0" />
                      </font>

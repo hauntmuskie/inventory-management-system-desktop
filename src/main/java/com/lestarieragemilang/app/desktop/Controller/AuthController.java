@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.NavigableMap;
 import java.util.TreeMap;
@@ -56,8 +57,6 @@ public class AuthController {
     @FXML
     private ListView<String> profileListView;
 
-    private ObservableList<String> profiles = FXCollections.observableArrayList();
-
     private static final NavigableMap<Integer, String> GREETINGS = new TreeMap<>();
 
     public void populateProfiles() {
@@ -89,7 +88,7 @@ public class AuthController {
     public void initialize() {
         populateProfiles();
     }
-    
+
     @FXML
     private void loginToApp() throws IOException {
         if (authDao.loginRepo(loginUsername.getText(), loginPassword.getText())) {
@@ -114,26 +113,75 @@ public class AuthController {
             return;
         }
         System.out.println("Attempting to register: " + registerUsername.getText());
-        if (authDao.registerRepo(registerUsername.getText(), registerEmail.getText(), registerUsername.getText(),
-                registerPassword.getText())) {
-            profiles.add(registerUsername.getText());
-            // refresh
-            profileListView.setItems(profiles); // Set the items again to trigger refresh
-            Alert confirmationDialog = new Alert(Alert.AlertType.INFORMATION);
-            confirmationDialog.getDialogPane().setPrefSize(450, 250);
-    
-            confirmationDialog.setTitle("Register Berhasil");
-            confirmationDialog.setHeaderText(" Anda berhasil mendaftar!!!...");
-    
-            confirmationDialog.getButtonTypes().setAll(ButtonType.YES);
-            confirmationDialog.showAndWait();
+        try {
+            if (authDao.registerRepo(registerUsername.getText(), registerEmail.getText(), registerUsername.getText(),
+                    registerPassword.getText())) {
+                populateProfiles(); // Refresh the table
+                Alert confirmationDialog = new Alert(Alert.AlertType.INFORMATION);
+                confirmationDialog.getDialogPane().setPrefSize(450, 250);
+
+                confirmationDialog.setTitle("Register Berhasil");
+                confirmationDialog.setHeaderText("Anda berhasil mendaftar!!!...");
+
+                confirmationDialog.getButtonTypes().setAll(ButtonType.YES);
+                confirmationDialog.showAndWait();
+            } else {
+                Alert confirmationDialog = new Alert(Alert.AlertType.ERROR);
+                confirmationDialog.getDialogPane().setPrefSize(450, 250);
+
+                confirmationDialog.setTitle("Register Gagal");
+                confirmationDialog.setHeaderText("Gagal mendaftar!!!...");
+
+                confirmationDialog.getButtonTypes().setAll(ButtonType.YES);
+                confirmationDialog.showAndWait();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void deleteAdmin() {
+        String selectedProfile = profileListView.getSelectionModel().getSelectedItem();
+        if (selectedProfile != null) {
+            String[] parts = selectedProfile.split(" - ");
+            if (parts.length < 2) {
+                System.err.println("Invalid profile format: " + selectedProfile);
+                return;
+            }
+            String username = parts[1].trim().replace("]", ""); // Extract username
+            username = username.substring(1); // Remove the leading "["
+            try {
+                if (authDao.deleteRepo(username)) {
+                    populateProfiles(); // Refresh the table
+                    Alert confirmationDialog = new Alert(Alert.AlertType.INFORMATION);
+                    confirmationDialog.getDialogPane().setPrefSize(450, 250);
+
+                    confirmationDialog.setTitle("Delete Berhasil");
+                    confirmationDialog.setHeaderText("Admin berhasil dihapus!!!...");
+
+                    confirmationDialog.getButtonTypes().setAll(ButtonType.YES);
+                    confirmationDialog.showAndWait();
+                } else {
+                    Alert confirmationDialog = new Alert(Alert.AlertType.ERROR);
+                    confirmationDialog.getDialogPane().setPrefSize(450, 250);
+
+                    confirmationDialog.setTitle("Delete Gagal");
+                    confirmationDialog.setHeaderText("Gagal menghapus admin!!!...");
+
+                    confirmationDialog.getButtonTypes().setAll(ButtonType.YES);
+                    confirmationDialog.showAndWait();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         } else {
             Alert confirmationDialog = new Alert(Alert.AlertType.ERROR);
             confirmationDialog.getDialogPane().setPrefSize(450, 250);
-    
-            confirmationDialog.setTitle("Register Gagal");
-            confirmationDialog.setHeaderText("Gagal mendaftar!!!...");
-    
+
+            confirmationDialog.setTitle("Delete Gagal");
+            confirmationDialog.setHeaderText("Tidak ada admin yang dipilih!!!...");
+
             confirmationDialog.getButtonTypes().setAll(ButtonType.YES);
             confirmationDialog.showAndWait();
         }
