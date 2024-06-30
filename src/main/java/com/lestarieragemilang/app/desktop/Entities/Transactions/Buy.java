@@ -9,7 +9,7 @@ public class Buy {
     private double price, subTotal, priceTotal;
 
     public Buy(LocalDate purchaseDate, String brand, String productType, String supplierName, int invoiceNumber,
-            int stockId, int supplierId, int quantity, double price, double subTotal, double priceTotal) {
+               int stockId, int supplierId, int quantity, double price, double subTotal, double priceTotal) {
         this.purchaseDate = purchaseDate;
         this.brand = brand;
         this.productType = productType;
@@ -19,9 +19,11 @@ public class Buy {
         this.supplierId = supplierId;
         this.quantity = quantity;
         this.price = price;
-        this.subTotal = subTotal;
+        this.subTotal = this.quantity * this.price;
         this.priceTotal = priceTotal;
     }
+
+    // Getters and Setters
 
     public LocalDate getPurchaseDate() {
         return purchaseDate;
@@ -96,7 +98,7 @@ public class Buy {
     }
 
     public double getSubTotal() {
-        return subTotal;
+        return quantity * price;
     }
 
     public void setSubTotal(double subTotal) {
@@ -110,5 +112,4 @@ public class Buy {
     public void setPriceTotal(double priceTotal) {
         this.priceTotal = priceTotal;
     }
-
 }

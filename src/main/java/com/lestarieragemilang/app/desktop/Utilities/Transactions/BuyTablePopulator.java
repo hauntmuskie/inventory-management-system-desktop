@@ -15,7 +15,7 @@ public class BuyTablePopulator {
     private BuyDao buyDao = new BuyDao();
 
     public void populateBuyTable(
-        TableColumn<?, ?> buyDateCol,
+        TableColumn<?, ?> buyDateCol, 
         TableColumn<?, ?> buyBrandCol,
         TableColumn<?, ?> buyTypeCol,
         TableColumn<?, ?> buyOnSupplierNameCol,
@@ -33,9 +33,9 @@ public class BuyTablePopulator {
         buyTypeCol.setCellValueFactory(new PropertyValueFactory<>("productType"));
         buyOnSupplierNameCol.setCellValueFactory(new PropertyValueFactory<>("supplierName"));
         buyInvoiceCol.setCellValueFactory(new PropertyValueFactory<>("invoiceNumber"));
-        buySubTotalCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         buyPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-        buyTotalCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        buyTotalCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        buySubTotalCol.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
 
         buyData.addAll(buys);
         buyTable.setItems(buyData);
