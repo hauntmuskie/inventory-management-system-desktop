@@ -8,6 +8,7 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -19,10 +20,10 @@ public class JasperLoader extends DatabaseConfiguration {
 
   private static final Logger LOGGER = Logger.getLogger(JasperLoader.class.getName());
 
-  public void showJasperReportSupplier(String reportFile, String nameSupplier, String contactSupplier,
+  public void showJasperReportSupplier(URL location, String nameSupplier, String contactSupplier,
       String addressSupplier, String emailSupplier, MouseEvent event) {
     try {
-      JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(reportFile);
+      JasperReport jasperReport = (JasperReport) JRLoader.loadObject(location);
       Map<String, Object> parameters = new HashMap<String, Object>();
       parameters.put("nameSupplier", "%" + nameSupplier + "%");
       parameters.put("contactSupplier", "%" + contactSupplier + "%");
@@ -43,10 +44,10 @@ public class JasperLoader extends DatabaseConfiguration {
     }
   }
 
-  public void showJasperReportCustomer(String reportFile, String nameCustomer, String contactCustomer,
+  public void showJasperReportCustomer(URL location, String nameCustomer, String contactCustomer,
       String addressCustomer, String emailCustomer, MouseEvent event) {
     try {
-      JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(reportFile);
+      JasperReport jasperReport = (JasperReport) JRLoader.loadObject(location);
       Map<String, Object> parameters = new HashMap<String, Object>();
       parameters.put("nameCustomer", "%" + nameCustomer + "%");
       parameters.put("contactCustomer", "%" + contactCustomer + "%");
@@ -67,10 +68,10 @@ public class JasperLoader extends DatabaseConfiguration {
     }
   }
 
-  public void showJasperReportCategory(String reportFile, String brandCategory, String typeCategory,
+  public void showJasperReportCategory(URL location, String brandCategory, String typeCategory,
       String sizeCategory, String weightCategory, String unitCategory, MouseEvent event) {
     try {
-      JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(reportFile);
+      JasperReport jasperReport = (JasperReport) JRLoader.loadObject(location);
       Map<String, Object> parameters = new HashMap<String, Object>();
       parameters.put("brandCategory", "%" + brandCategory + "%");
       parameters.put("typeCategory", "%" + typeCategory + "%");
@@ -92,11 +93,11 @@ public class JasperLoader extends DatabaseConfiguration {
     }
   }
 
-  public void showJasperReportStock(String reportFile, String brandStock, String typeStock,
+  public void showJasperReportStock(URL location, String brandStock, String typeStock,
       String sizeStock, String weightStock, String unitStock, String stock, String purchasePriceStock,
       String sellingPriceStock, MouseEvent event) {
     try {
-      JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(reportFile);
+      JasperReport jasperReport = (JasperReport) JRLoader.loadObject(location);
       Map<String, Object> parameters = new HashMap<String, Object>();
       parameters.put("brandStock", "%" + brandStock + "%");
       parameters.put("typeStock", "%" + typeStock + "%");

@@ -1,5 +1,8 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.SQLException;
 
 import com.lestarieragemilang.app.desktop.Configurations.ReportConfiguration.JasperLoader;
@@ -38,13 +41,18 @@ public class ReportCustomer {
   private TextField customerSearchField;
 
   @FXML
-  void printJasperCustomer(MouseEvent event) {
+  void printJasperCustomer(MouseEvent event) throws IOException, URISyntaxException {
+    String path = "/com/lestarieragemilang/app/desktop/jasper/customer-list.jasper";
+    URL url = ReportCustomer.class.getResource(path).toURI().toURL();
     try {
       JasperLoader loader = new JasperLoader();
       loader.showJasperReportCustomer(
-          "src/main/java/com/lestarieragemilang/app/desktop/Configurations/ReportConfiguration/customer-list.jasper",
-          customerSearchField.getText(), customerSearchField.getText(), customerSearchField.getText(),
-          customerSearchField.getText(), event);
+          url,
+          customerSearchField.getText(),
+          customerSearchField.getText(),
+          customerSearchField.getText(),
+          customerSearchField.getText(),
+          event);
     } catch (Exception e) {
       e.printStackTrace();
     }

@@ -8,7 +8,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.0</version>
+        <version>3.11.0</version>
         <configuration>
           <release>22</release>
         </configuration>
@@ -25,6 +25,9 @@
             </configuration>
           </execution>
         </executions>
+        <configuration>
+          <executable>${java.home}/bin/java.exe</executable>
+        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>

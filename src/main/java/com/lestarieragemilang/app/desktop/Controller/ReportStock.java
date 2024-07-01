@@ -1,5 +1,8 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.SQLException;
 
 import com.lestarieragemilang.app.desktop.Configurations.ReportConfiguration.JasperLoader;
@@ -52,18 +55,19 @@ public class ReportStock {
   private TextField stockSearchField;
 
   @FXML
-  void printJasperStock(MouseEvent event) {
+  void printJasperStock(MouseEvent event) throws IOException, URISyntaxException {
+    String path = "/com/lestarieragemilang/app/desktop/jasper/stock-list.jasper";
+    URL url = ReportStock.class.getResource(path).toURI().toURL();
     try {
       JasperLoader loader = new JasperLoader();
       loader.showJasperReportStock(
-          "src/main/java/com/lestarieragemilang/app/desktop/Configurations/ReportConfiguration/stock-list.jasper",
+          url,
           stockSearchField.getText(), stockSearchField.getText(), stockSearchField.getText(),
           stockSearchField.getText(), stockSearchField.getText(), stockSearchField.getText(),
           stockSearchField.getText(), stockSearchField.getText(), event);
     } catch (Exception e) {
       e.printStackTrace();
     }
-
   }
 
   @FXML

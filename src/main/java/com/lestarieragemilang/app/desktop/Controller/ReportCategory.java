@@ -1,5 +1,8 @@
 package com.lestarieragemilang.app.desktop.Controller;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.SQLException;
 
 import com.lestarieragemilang.app.desktop.Configurations.ReportConfiguration.JasperLoader;
@@ -41,13 +44,19 @@ public class ReportCategory {
   private TextField categorySearchField;
 
   @FXML
-  void printJasperCategory(MouseEvent event) {
+  void printJasperCategory(MouseEvent event) throws IOException, URISyntaxException {
+    String path = "/com/lestarieragemilang/app/desktop/jasper/category-list.jasper";
+    URL url = ReportCategory.class.getResource(path).toURI().toURL();
     try {
       JasperLoader loader = new JasperLoader();
       loader.showJasperReportCategory(
-          "src/main/java/com/lestarieragemilang/app/desktop/Configurations/ReportConfiguration/category-list.jasper",
-          categorySearchField.getText(), categorySearchField.getText(), categorySearchField.getText(),
-          categorySearchField.getText(), categorySearchField.getText(), event);
+          url,
+          categorySearchField.getText(),
+          categorySearchField.getText(),
+          categorySearchField.getText(),
+          categorySearchField.getText(),
+          categorySearchField.getText(),
+          event);
     } catch (Exception e) {
       e.printStackTrace();
     }

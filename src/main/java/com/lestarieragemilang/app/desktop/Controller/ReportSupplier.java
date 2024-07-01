@@ -7,6 +7,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.SQLException;
 
 import com.lestarieragemilang.app.desktop.Configurations.ReportConfiguration.JasperLoader;
@@ -36,13 +39,18 @@ public class ReportSupplier {
   private TextField supplierSearchField;
 
   @FXML
-  void printJasperSupplier(MouseEvent event) {
+  void printJasperSupplier(MouseEvent event) throws IOException, URISyntaxException {
+    String path = "/com/lestarieragemilang/app/desktop/jasper/supplier-list.jasper";
+    URL url = ReportSupplier.class.getResource(path).toURI().toURL();
     try {
       JasperLoader loader = new JasperLoader();
       loader.showJasperReportSupplier(
-          "src/main/java/com/lestarieragemilang/app/desktop/Configurations/ReportConfiguration/supplier-list.jasper",
+          url,
           supplierSearchField.getText(),
-          supplierSearchField.getText(), supplierSearchField.getText(), supplierSearchField.getText(), event);
+          supplierSearchField.getText(),
+          supplierSearchField.getText(),
+          supplierSearchField.getText(),
+          event);
     } catch (Exception e) {
       e.printStackTrace();
     }
